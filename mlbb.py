@@ -31,7 +31,7 @@ with st.form(key="chat_form", clear_on_submit=True):
     with col1:
         user_input = st.text_input(
     label="Ketik pertanyaan kamu", 
-    placeholder="💬 Ketik pertanyaan kamu...", 
+    placeholder="Ketik pertanyaan kamu...", 
     label_visibility="collapsed"
         )
 
