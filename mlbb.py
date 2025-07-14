@@ -1,9 +1,10 @@
 import streamlit as st
 from groq import Groq
 
+# Konfigurasi halaman
 st.set_page_config(page_title="MLBB GPT Chatbot", layout="centered")
 
-# CSS mirip GPT UI
+# CSS untuk tata letak mirip ChatGPT
 st.markdown("""
     <style>
     .main {
@@ -15,7 +16,7 @@ st.markdown("""
         padding: 1rem;
         border-radius: 8px;
         background-color: #f5f5f5;
-        margin-bottom: 80px;
+        margin-bottom: 100px;
     }
     .chat-bubble-user {
         background-color: #DCF8C6;
@@ -38,34 +39,29 @@ st.markdown("""
         background: white;
         padding: 1rem 2rem;
         box-shadow: 0 -3px 10px rgba(0,0,0,0.1);
+        z-index: 9998;
     }
-    .reset-btn {
+    div[data-testid="stButton"][key="reset_btn"] {
         position: fixed;
-        bottom: 90px;
+        bottom: 100px;
         right: 30px;
-        background-color: #ff6961;
-        color: white;
-        border: none;
-        border-radius: 100px;
-        padding: 0.7rem 1.2rem;
-        font-size: 14px;
-        cursor: pointer;
+        z-index: 9999;
     }
     </style>
 """, unsafe_allow_html=True)
 
-# Groq API client
+# Inisialisasi Groq
 client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 
-# Inisialisasi memori obrolan
+# Inisialisasi chat history
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = [
         {"role": "system", "content": "Kamu adalah pakar Mobile Legends. Jawablah dengan jelas, kontekstual, dan mudah dimengerti."}
     ]
 
-# Tampilkan seluruh riwayat chat
+# Area chat yang bisa discroll
 st.markdown('<div class="chat-area">', unsafe_allow_html=True)
-for msg in st.session_state.chat_history[1:]:  # skip system message
+for msg in st.session_state.chat_history[1:]:  # Skip system message
     if msg["role"] == "user":
         st.markdown(f'<div class="chat-bubble-user"><b>Kamu:</b><br>{msg["content"]}</div>', unsafe_allow_html=True)
     elif msg["role"] == "assistant":
@@ -73,41 +69,28 @@ for msg in st.session_state.chat_history[1:]:  # skip system message
 st.markdown('</div>', unsafe_allow_html=True)
 
 # Tombol reset tetap di pojok kanan bawah
-st.markdown("""
-    <form method="post">
-        <button class="reset-btn" name="reset" type="submit">🔁 Reset</button>
-    </form>
-""", unsafe_allow_html=True)
-
-# Proses reset jika tombol ditekan
-if st.session_state.get("reset_trigger", False):
+reset = st.button("🔁 Reset", key="reset_btn")
+if reset:
     st.session_state.chat_history = [
         {"role": "system", "content": "Kamu adalah pakar Mobile Legends. Jawablah dengan jelas, kontekstual, dan mudah dimengerti."}
     ]
-    st.session_state.reset_trigger = False
     st.rerun()
 
-# Menangkap input POST manual (karena pakai <form>)
-if st.requested_url_query_params.get("reset") == "":
-    st.session_state.reset_trigger = True
-    st.rerun()
+# Kolom input tetap di bawah
+st.markdown('<div class="fixed-input">', unsafe_allow_html=True)
+user_input = st.text_input("Ketik pertanyaanmu lalu tekan Enter", key="user_input", label_visibility="collapsed")
+st.markdown('</div>', unsafe_allow_html=True)
 
-# Kolom input tetap di bawah layar
-with st.container():
-    st.markdown('<div class="fixed-input">', unsafe_allow_html=True)
-    user_input = st.text_input("Tulis pertanyaanmu di sini lalu tekan Enter", key="user_input", label_visibility="collapsed")
-    st.markdown('</div>', unsafe_allow_html=True)
-
-# Proses input dan jawabannya
+# Proses input user
 if user_input:
     st.session_state.chat_history.append({"role": "user", "content": user_input})
 
-    with st.spinner("Bot sedang berpikir..."):
+    with st.spinner("🤖 Bot sedang menjawab..."):
         response = client.chat.completions.create(
             model="llama3-8b-8192",
             messages=st.session_state.chat_history
         )
-        answer = response.choices[0].message.content
-        st.session_state.chat_history.append({"role": "assistant", "content": answer})
+        bot_reply = response.choices[0].message.content
+        st.session_state.chat_history.append({"role": "assistant", "content": bot_reply})
 
     st.rerun()
