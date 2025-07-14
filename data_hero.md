@@ -9,4 +9,7 @@
 - Skill: Malefic Bomb, Destruction Rush
 - Kelebihan: Damage tinggi dari jarak jauh, cocok untuk late game
 
-mm = marksman
+#Singkatan
+Mm = Marksman
+Ml = Mobile Legends
+DHS = Demon Hunter Strike
