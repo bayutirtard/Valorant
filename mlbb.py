@@ -1,35 +1,33 @@
 import streamlit as st
 from groq import Groq
 
-# API Key dari secrets.toml atau bisa hardcode untuk uji coba
+# API Key dari secrets.toml
 client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 
 st.set_page_config(page_title="MLBB Chatbot AI Gratis", page_icon="🎮")
-st.title("🤖 Chatbot AI Mobile Legends (Gratis via Groq LLaMA3)")
+st.title("🤖 Chatbot AI Mobile Legends")
 
-st.markdown("Tanyakan apa saja tentang hero, counter, meta, atau build di Mobile Legends!")
+st.markdown("Tanyakan apa saja tentang hero, counter, build, atau meta MLBB!")
 
-if "chat_history" not in st.session_state:
-    st.session_state.chat_history = []
-
+# Input pertanyaan
 user_input = st.text_input("Ketik pertanyaan kamu di sini 👇")
 
+# Hapus jawaban lama
+if "last_answer" not in st.session_state:
+    st.session_state.last_answer = ""
+
 if user_input:
-    st.session_state.chat_history.append({"role": "user", "content": user_input})
-    
     with st.spinner("Menjawab..."):
         response = client.chat.completions.create(
             model="llama3-8b-8192",
             messages=[
-                {"role": "system", "content": "Kamu adalah pakar Mobile Legends. Jawab pertanyaan user dengan bahasa yang mudah dipahami, jelas, dan relevan."}
-            ] + st.session_state.chat_history,
+                {"role": "system", "content": "Kamu adalah pakar Mobile Legends."},
+                {"role": "user", "content": user_input}
+            ]
         )
-        answer = response.choices[0].message.content
-        st.session_state.chat_history.append({"role": "assistant", "content": answer})
+        st.session_state.last_answer = response.choices[0].message.content
 
-st.markdown("---")
-for msg in st.session_state.chat_history:
-    if msg["role"] == "user":
-        st.markdown(f"**👤 Kamu:** {msg['content']}")
-    else:
-        st.markdown(f"**🤖 Bot:** {msg['content']}")
+# Tampilkan jawaban terbaru saja
+if st.session_state.last_answer:
+    st.markdown("**🤖 Bot:**")
+    st.write(st.session_state.last_answer)
