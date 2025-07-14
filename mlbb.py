@@ -14,8 +14,8 @@ if "chat_history" not in st.session_state:
         {"role": "system", "content": "Kamu adalah pakar Mobile Legends. Jawablah dengan jelas dan mudah dipahami."}
     ]
 
-# Tampilkan riwayat chat (skip system message)
-for msg in st.session_state.chat_history[1:]:
+# Tampilkan riwayat obrolan
+for msg in st.session_state.chat_history[1:]:  # skip system
     if msg["role"] == "user":
         st.markdown(f"**🧑 Kamu:** {msg['content']}")
     elif msg["role"] == "assistant":
@@ -24,24 +24,21 @@ for msg in st.session_state.chat_history[1:]:
 # Spacer sebelum input
 st.markdown("<br>", unsafe_allow_html=True)
 
-# Kolom input dan tombol reset dalam satu baris
-col1, col2 = st.columns([6, 1])
-previous_length = len(st.session_state.chat_history)  # Simpan panjang sebelumnya
+# Form input dan tombol
+with st.form(key="chat_form", clear_on_submit=True):
+    col1, col2, col3 = st.columns([6, 1, 1])
+    
+    with col1:
+        user_input = st.text_input("💬 Ketik pertanyaan kamu", label_visibility="collapsed")
 
-# Input pengguna
-with col1:
-    user_input = st.text_input("💬 Ketik pertanyaan kamu lalu tekan Enter", label_visibility="collapsed")
+    with col2:
+        submit = st.form_submit_button("Kirim")
+    
+    with col3:
+        reset = st.form_submit_button("🔁 Reset")
 
-# Tombol reset
-with col2:
-    if st.button("🔁 Reset"):
-        st.session_state.chat_history = [
-            {"role": "system", "content": "Kamu adalah pakar Mobile Legends. Jawablah dengan jelas dan mudah dipahami."}
-        ]
-        st.rerun()
-
-# Jika ada input baru (Enter ditekan), dan bukan karena rerun/reset
-if user_input and len(st.session_state.chat_history) == previous_length:
+# Jika submit ditekan dan ada input
+if submit and user_input:
     st.session_state.chat_history.append({"role": "user", "content": user_input})
 
     with st.spinner("Menjawab..."):
@@ -51,5 +48,12 @@ if user_input and len(st.session_state.chat_history) == previous_length:
         )
         answer = response.choices[0].message.content
         st.session_state.chat_history.append({"role": "assistant", "content": answer})
+    
+    st.rerun()
 
+# Jika reset ditekan
+if reset:
+    st.session_state.chat_history = [
+        {"role": "system", "content": "Kamu adalah pakar Mobile Legends. Jawablah dengan jelas dan mudah dipahami."}
+    ]
     st.rerun()
