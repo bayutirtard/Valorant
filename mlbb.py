@@ -39,4 +39,6 @@ if user_input:
             messages=st.session_state.chat_history
         )
         answer = response.choices[0].message.content
-        st.session_state.chat_hi
+        st.session_state.chat_history.append({"role": "assistant", "content": answer})
+    
+    st.rerun()  # agar input kosong setelah dijawab dan langsung tampil
