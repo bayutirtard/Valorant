@@ -35,7 +35,7 @@ with st.form(key="chat_form", clear_on_submit=True):
         submit = st.form_submit_button("Kirim")
     
     with col3:
-        reset = st.form_submit_button("🔁 Reset")
+        reset = st.form_submit_button("Reset")
 
 # Jika submit ditekan dan ada input
 if submit and user_input:
