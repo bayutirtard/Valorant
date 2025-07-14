@@ -8,3 +8,5 @@
 - Role: Marksman
 - Skill: Malefic Bomb, Destruction Rush
 - Kelebihan: Damage tinggi dari jarak jauh, cocok untuk late game
+
+mm = marksman
