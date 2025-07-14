@@ -34,7 +34,8 @@ if st.button("🔁 Reset Chat"):
     st.session_state.chat_history = [
         {"role": "system", "content": "Kamu adalah pakar Mobile Legends. Jawablah pertanyaan user secara relevan dan ramah. Gunakan bahasa yang mudah dimengerti."}
     ]
-    st.experimental_rerun()
+    st.rerun()
+
 
 # Tampilkan riwayat obrolan (tanpa system message)
 for msg in st.session_state.chat_history[1:]:
