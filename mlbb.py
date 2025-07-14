@@ -24,7 +24,7 @@ if "chat_history" not in st.session_state:
     st.session_state.chat_history = [
         {
             "role": "system",
-            "content": "Kamu adalah pakar Mobile Legends. Jawablah berdasarkan informasi berikut:\n\n" + markdown_data
+            "content": "Kamu adalah pakar Mobile Legends. Jawab selalu menggunakan bahasa Indonesia berdasarkan informasi berikut:\n\n" + markdown_data
         }
     ]
 
