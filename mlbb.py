@@ -3,7 +3,7 @@ from groq import Groq
 
 # Konfigurasi halaman
 st.set_page_config(page_title="Chatbot MLBB", page_icon="🎮")
-st.title("🤖 Chatbot AI Mobile Legends")
+st.title("Chatbot AI Mobile Legends")
 
 # Inisialisasi klien Groq
 client = Groq(api_key=st.secrets["GROQ_API_KEY"])
@@ -17,9 +17,9 @@ if "chat_history" not in st.session_state:
 # Tampilkan riwayat obrolan
 for msg in st.session_state.chat_history[1:]:  # skip system
     if msg["role"] == "user":
-        st.markdown(f"**🧑 Kamu:** {msg['content']}")
+        st.markdown(f"**Kamu:** {msg['content']}")
     elif msg["role"] == "assistant":
-        st.markdown(f"**🤖 Bot:** {msg['content']}")
+        st.markdown(f"**Bot:** {msg['content']}")
 
 # Spacer sebelum input
 st.markdown("<br>", unsafe_allow_html=True)
