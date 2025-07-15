@@ -8,7 +8,7 @@ st.set_page_config(page_title="Chatbot MLBB", page_icon="🎮")
 logo = Image.open("logo-mobile-legend.png")  
 
 # Buat 3 kolom agar logo berada di tengah
-col1, col2, col3 = st.columns([1, 4, 1])
+col1, col2, col3 = st.columns([1, 1, 1])
 with col2:
     st.image(logo, width=150)
 st.title("Chatbot AI Mobile Legends")
