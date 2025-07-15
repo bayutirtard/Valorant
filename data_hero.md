@@ -1,4 +1,7 @@
-# Mobile Legends – Hero Guide (Batch 1: Aamon hingga Beatrix)
+# Mobile Legends – Hero Guide
+
+## Singkatan
+- MM = Marksman
 
 ## 1. Aamon – Duke of Shards (Assassin)
 
@@ -157,7 +160,7 @@
 ### Tips dan Build
 - Build: Swift Boots, Blade of Despair, Malefic Roar, DHS, Wind of Nature
 
-# Mobile Legends – Hero Guide (Batch 2: Benedetta hingga Chang'e)
+---
 
 ## 11. Benedetta – Shadow Ranger (Assassin)
 
