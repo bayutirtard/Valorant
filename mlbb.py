@@ -3,7 +3,6 @@ from groq import Groq
 
 # Konfigurasi halaman
 st.set_page_config(page_title="Chatbot MLBB", page_icon="🎮")
-st.title("Chatbot AI Mobile Legends")
 st.markdown(
     """
     <div style='text-align: center;'>
@@ -12,6 +11,8 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+st.title("Chatbot AI Mobile Legends")
+
 
 # Inisialisasi Groq client
 client = Groq(api_key=st.secrets["GROQ_API_KEY"])
