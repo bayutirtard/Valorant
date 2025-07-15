@@ -4,6 +4,7 @@ from groq import Groq
 # Konfigurasi halaman
 st.set_page_config(page_title="Chatbot MLBB", page_icon="🎮")
 st.title("Chatbot AI Mobile Legends")
+st.image("https://upload.wikimedia.org/wikipedia/en/8/80/Mobile_Legends_Bang_Bang_logo.png", width=150)
 
 # Inisialisasi Groq client
 client = Groq(api_key=st.secrets["GROQ_API_KEY"])
