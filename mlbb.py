@@ -1,5 +1,6 @@
 import streamlit as st
 from groq import Groq
+from PIL import Image
 
 # Konfigurasi halaman
 st.set_page_config(page_title="Chatbot MLBB", page_icon="🎮")
