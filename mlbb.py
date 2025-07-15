@@ -42,7 +42,7 @@ st.markdown("<br>", unsafe_allow_html=True)
 with st.form(key="chat_form", clear_on_submit=True):
     col1, col2, col3 = st.columns([6, 1, 1])
     with col1:
-        user_input = st.text_input("Ketik pertanyaan kamu", placeholder="Ketik pertanyaanmu (Contoh: Apa kelebihan Layla?)", label_visibility="collapsed")
+        user_input = st.text_input("Ketik pertanyaan kamu", placeholder="Ketik pertanyaanmu disini", label_visibility="collapsed")
     with col2:
         submit = st.form_submit_button("Kirim")
     with col3:
