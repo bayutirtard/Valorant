@@ -5,542 +5,460 @@
 
 ## Aamon
 
-### Lore  
-Aamon, the eldest of House Paxley, is a composed yet mysterious figure. After inheriting the family leadership, he swore revenge on those who wronged his kin, walking a dark path hidden in the shadows.
+**Lore**  
+Aamon is the eldest son of House Paxley and the older brother of Gusion. Behind his calm and elegant demeanor lies a cunning assassin who seeks revenge for his family.
 
-### Role  
-Assassin / Magic
+**Role**: Assassin / Magic Damage  
 
-### Skill & Passive  
-- **Passive – Invisible Armor**: After casting a skill, Aamon enters Camouflage, regenerating HP. His attacks reduce cooldowns.  
-- **Skill 1 – Soul Shards**: Throws magic shards, dealing burst damage.  
-- **Skill 2 – Slayer Shards**: Charges toward the target location and throws a shard.  
-- **Ultimate – Endless Shards**: Releases all stored shards to strike the enemy.  
+**Skills & Passive**  
+- **Passive**: Invisible Armor – Collects shards to turn invisible briefly and enhance his next attack.  
+- **Skill 1**: Soul Shards – Throws shards that explode on the target.  
+- **Skill 2**: Slayer Shards – Throws shards that mark enemies and deal AoE damage.  
+- **Ultimate**: Endless Shards – Rains shards on a locked enemy after entering invisibility.  
 
-### Strengths  
-- Stealth and burst damage  
-- Good survivability  
-- Strong mid-to-late game assassin  
+**Strengths**  
+- High burst damage  
+- Invisibility provides good escape  
+- Strong in 1v1 situations  
 
-### Recommended Items  
-- Magic Shoes  
-- Genius Wand  
-- Glowing Wand  
-- Divine Glaive  
-- Holy Crystal  
+**Recommended Items**  
+- Genius Wand, Arcane Boots, Glowing Wand, Holy Crystal, Divine Glaive, Blood Wings  
 
+---
 
 ## Akai
 
-### Lore  
-Once ridiculed for his dreams, Akai is a panda warrior who proved himself by mastering the art of kung fu. Now, he protects the Land of Dawn with strength and pride.
+**Lore**  
+Once a clumsy panda who dreamed of becoming a hero, Akai has trained hard and earned the respect of the Land of Dawn.
 
-### Role  
-Tank / Support
+**Role**: Tank / Support  
 
-### Skill & Passive  
-- **Passive – Tai Chi**: Grants a shield every time Akai uses a skill.  
-- **Skill 1 – Headbutt**: Charges forward and knocks back enemies.  
-- **Skill 2 – Body Slam**: Slows enemies and deals AoE damage.  
-- **Ultimate – Hurricane Dance**: Spins rapidly, knocking back and disabling enemies.  
+**Skills & Passive**  
+- **Passive**: Tai Chi – Gains shield after skill use.  
+- **Skill 1**: Headbutt – Charges forward to knock up enemies.  
+- **Skill 2**: Body Slam – Deals AoE damage and slows enemies.  
+- **Ultimate**: Hurricane Dance – Spins rapidly, knocking enemies away.  
 
-### Strengths  
-- Excellent crowd control  
-- Good initiator  
-- Durable frontliner  
+**Strengths**  
+- Exceptional crowd control  
+- Strong zoning and initiation  
+- Tanky with shield regeneration  
 
-### Recommended Items  
-- Tough Boots  
-- Cursed Helmet  
-- Dominance Ice  
-- Athena's Shield  
-- Immortality  
+**Recommended Items**  
+- Cursed Helmet, Warrior Boots, Dominance Ice, Athena’s Shield, Radiant Armor, Immortality  
 
+---
 
 ## Aldous
 
-### Lore  
-Aldous was once a guard of the Sanctuary of Light. After a catastrophic incident, he gained immense dark power, which he now uses to punish the wicked.
+**Lore**  
+Aldous is the guardian of the Minoan labyrinth, transformed by the alchemical powers into a living weapon.
 
-### Role  
-Fighter / Assassin
+**Role**: Fighter  
 
-### Skill & Passive  
-- **Passive – Contract: Transform**: After every two basic attacks, the third deals enhanced damage.  
-- **Skill 1 – Contract: Soul Steal**: Deals damage and gains stacks to increase power.  
-- **Skill 2 – Contract: Explosion**: Shields himself and explodes after a delay.  
-- **Ultimate – Contract: Chase Fate**: Locks onto and charges at an enemy anywhere on the map.  
+**Skills & Passive**  
+- **Passive**: Contract: Transform – Converts damage taken into a shield.  
+- **Skill 1**: Contract: Soul Steal – Charges and punches with stacking damage.  
+- **Skill 2**: Contract: Explosion – Gains shield and explodes after delay.  
+- **Ultimate**: Contract: Chase Fate – Locks onto and dashes to a target anywhere on the map.  
 
-### Strengths  
-- Strong late game damage  
-- Global ultimate  
-- Snowballs easily  
+**Strengths**  
+- One-shot potential with stacks  
+- Excellent late game  
+- Global ganking ability  
 
-### Recommended Items  
-- Tough Boots  
-- Endless Battle  
-- Blade of Despair  
-- Malefic Roar  
-- Immortality  
+**Recommended Items**  
+- Tough Boots, Endless Battle, Brute Force Breastplate, Blade of Despair, Malefic Roar, Immortality  
 
+---
 
 ## Alice
 
-### Lore  
-Alice is a queen of blood magic, a dark being who feeds on life force. She constantly seeks energy to sustain her immortal form.
+**Lore**  
+Alice is a dark queen who feeds on the blood of her enemies to prolong her power and life.
 
-### Role  
-Mage / Tank
+**Role**: Mage / Tank  
 
-### Skill & Passive  
-- **Passive – Blood Ancestry**: Gains permanent HP from absorbed orbs.  
-- **Skill 1 – Flowing Blood**: Launches a blood orb and teleports to it.  
-- **Skill 2 – Blood Awe**: Deals magic damage and immobilizes enemies.  
-- **Ultimate – Blood Ode**: Absorbs life from nearby enemies continuously.  
+**Skills & Passive**  
+- **Passive**: Blood Ancestry – Collects blood orbs to increase stats.  
+- **Skill 1**: Flowing Blood – Throws a blood wave that she can blink to.  
+- **Skill 2**: Blood Awe – Immobilizes enemies.  
+- **Ultimate**: Blood Ode – Drains HP from nearby enemies continuously.  
 
-### Strengths  
-- Sustain through lifesteal  
-- High durability for a mage  
-- Strong in team fights  
+**Strengths**  
+- Sustain-heavy mage  
+- High mobility with blink  
+- Good in team fights  
 
-### Recommended Items  
-- Demon Shoes  
-- Clock of Destiny  
-- Winter Truncheon  
-- Lightning Truncheon  
-- Blood Wings  
+**Recommended Items**  
+- Clock of Destiny, Demon Shoes, Enchanted Talisman, Winter Truncheon, Oracle, Blood Wings  
 
+---
 
 ## Alpha
 
-### Lore  
-A bionic warrior created from advanced technology, Alpha seeks his identity while fighting with his robotic sidekick, Beta.
+**Lore**  
+Alpha is a bionic warrior created by Dr. Rooney to fight alongside his robotic partner, Beta.
 
-### Role  
-Fighter
+**Role**: Fighter  
 
-### Skill & Passive  
-- **Passive – Beta, Advance!**: Beta follows up Alpha’s attacks with lasers.  
-- **Skill 1 – Rotary Impact**: Slashes forward and slows enemies.  
-- **Skill 2 – Force Swing**: Charges and deals damage in an arc.  
-- **Ultimate – Spear of Alpha**: Charges and knocks enemies airborne.  
+**Skills & Passive**  
+- **Passive**: Beta, Advance! – Beta assists in every skill attack.  
+- **Skill 1**: Rotary Impact – Slashes forward and slows enemies.  
+- **Skill 2**: Force Swing – Sweeps an area, healing Alpha.  
+- **Ultimate**: Spear of Alpha – Charges forward, launching enemies.  
 
-### Strengths  
-- Consistent DPS with Beta  
-- Good crowd control  
-- Effective initiator  
+**Strengths**  
+- Sustain and burst mix  
+- Strong engage with Beta  
+- Decent in 1v1s  
 
-### Recommended Items  
-- War Axe  
-- Bloodlust Axe  
-- Hunter Strike  
-- Brute Force Breastplate  
-- Immortality  
+**Recommended Items**  
+- Bloodlust Axe, Warrior Boots, Hunter Strike, Queen’s Wings, Brute Force, Immortality  
 
+---
 
 ## Alucard
 
-### Lore  
-Alucard is a demon hunter forged by tragedy, wielding dual blades in his quest for vengeance against demonic forces.
+**Lore**  
+An orphan taken in by the Monastery of Light, Alucard became a demon hunter after the demons destroyed his home.
 
-### Role  
-Fighter / Assassin
+**Role**: Fighter / Assassin  
 
-### Skill & Passive  
-- **Passive – Pursuit**: Deals extra damage after dashing; heals from single-target skills.  
-- **Skill 1 – Groundsplitter**: Jumps and deals damage.  
-- **Skill 2 – Whirling Smash**: AoE slash.  
-- **Ultimate – Fission Wave**: Increases lifesteal and releases energy slash.  
+**Skills & Passive**  
+- **Passive**: Pursuit – Increases damage when targeting a single enemy.  
+- **Skill 1**: Groundsplitter – Leaps to an area and deals AoE damage.  
+- **Skill 2**: Whirling Smash – Spins and deals damage.  
+- **Ultimate**: Fission Wave – Boosts life steal and unleashes a powerful wave.  
 
-### Strengths  
+**Strengths**  
 - High lifesteal  
-- Strong duelist  
-- Easy to use  
+- Strong mobility  
+- Effective in duels  
 
-### Recommended Items  
-- Warrior Boots  
-- War Axe  
-- Endless Battle  
-- Hunter Strike  
-- Blade of Despair  
+**Recommended Items**  
+- War Axe, Tough Boots, Bloodlust Axe, Hunter Strike, Queen’s Wings, Immortality  
 
+---
 
 ## Angela
 
-### Lore  
-Angela is a support puppet created by Dr. Baker. Full of love and compassion, she heals and shields her allies in battle.
+**Lore**  
+Angela is a robotic puppet created by Dr. Baker. She was given a heart and emotions to support allies.
 
-### Role  
-Support
+**Role**: Support  
 
-### Skill & Passive  
-- **Passive – Smart Heart**: Increases movement speed of bonded ally.  
-- **Skill 1 – Love Waves**: Heals allies or damages enemies.  
-- **Skill 2 – Puppet-on-a-String**: Slows and stuns an enemy.  
-- **Ultimate – Heartguard**: Teleports to an ally and provides a large shield.  
+**Skills & Passive**  
+- **Passive**: Smart Heart – Increases movement speed of bonded ally.  
+- **Skill 1**: Love Waves – Heals allies or damages enemies.  
+- **Skill 2**: Puppet-on-a-String – Immobilizes enemies.  
+- **Ultimate**: Heartguard – Enters an ally to provide shields and teleport.  
 
-### Strengths  
-- Excellent sustain  
-- Map-wide support  
-- Strong synergy with aggressive teammates  
+**Strengths**  
+- Great healing support  
+- Strong synergy with fighters/assassins  
+- Map-wide presence  
 
-### Recommended Items  
-- Fleeting Time  
-- Enchanted Talisman  
-- Oracle  
-- Dominance Ice  
-- Immortality  
+**Recommended Items**  
+- Fleeting Time, Demon Shoes, Oracle, Enchanted Talisman, Necklace of Durance, Immortality  
 
+---
 
 ## Argus
 
-### Lore  
-Once a servant of light, Argus fell to darkness for power. With his cursed blade, he now defies death and cuts down enemies relentlessly.
+**Lore**  
+Once a holy knight, Argus fell from grace and was consumed by the dark power of the demon blade.
 
-### Role  
-Fighter
+**Role**: Fighter  
 
-### Skill & Passive  
-- **Passive – Warmonger**: Gains attack speed after several attacks.  
-- **Skill 1 – Demonic Grip**: Pulls himself toward enemies.  
-- **Skill 2 – Meteoric Sword**: Deals AoE damage.  
-- **Ultimate – Eternal Evil**: Becomes unkillable for several seconds.  
+**Skills & Passive**  
+- **Passive**: Warmonger – Basic attacks charge up bonus attacks.  
+- **Skill 1**: Demonic Grip – Dashes and pulls himself to enemies.  
+- **Skill 2**: Meteoric Sword – Deals AoE damage and slows.  
+- **Ultimate**: Eternal Evil – Becomes immune to death for a few seconds.  
 
-### Strengths  
-- Cannot die during ultimate  
+**Strengths**  
+- Ultimate allows clutch survival  
 - Great chaser  
-- Comeback potential  
+- Late-game scaling  
 
-### Recommended Items  
-- Warrior Boots  
-- Endless Battle  
-- Berserker's Fury  
-- Malefic Roar  
-- Immortality  
+**Recommended Items**  
+- Demon Hunter Sword, Swift Boots, Berserker’s Fury, Windtalker, Endless Battle, Immortality  
 
-
-## Atlas
-
-### Lore  
-An ancient sea creature reanimated in a mechanical suit, Atlas roams the land seeking revenge for his lost kin beneath the ocean.
-
-### Role  
-Tank
-
-### Skill & Passive  
-- **Passive – Frigid Breath**: Slows enemies who stay near him.  
-- **Skill 1 – Annihilate**: Slams the ground to deal AoE damage.  
-- **Skill 2 – Perfect Match**: Separates body and mech to stun enemies.  
-- **Ultimate – Fatal Links**: Chains and drags enemies before slamming them.  
-
-### Strengths  
-- Game-changing ultimate  
-- Excellent crowd control  
-- High durability  
-
-### Recommended Items  
-- Tough Boots  
-- Dominance Ice  
-- Athena’s Shield  
-- Immortality  
-- Antique Cuirass  
-
-
-## Aulus
-
-### Lore  
-A dwarf warrior with big ambitions, Aulus seeks strength through his enchanted axe, which grows stronger with every swing.
-
-### Role  
-Fighter
-
-### Skill & Passive  
-- **Passive – Fighting Spirit**: Increases attack power with each basic attack.  
-- **Skill 1 – Aulus, Charge!**: Gains movement speed and attack buff.  
-- **Skill 2 – The Power of Axe**: Deals AoE damage and slows enemies.  
-- **Ultimate – Undying Fury**: Upgrades his axe and empowers skills.  
-
-### Strengths  
-- Scaling damage  
-- Self-buffing fighter  
-- Versatile in team fights  
-
-### Recommended Items  
-- Warrior Boots  
-- War Axe  
-- Bloodlust Axe  
-- Malefic Roar  
-- Immortality  
-
-
-## Aurora
-
-### Lore  
-Aurora is the queen of the cold north, wielding the power of frost to trap and obliterate her enemies.
-
-### Role  
-Mage
-
-### Skill & Passive  
-- **Passive – Pride of Ice**: Every fourth skill freezes the target.  
-- **Skill 1 – Frost Shock**: Launches an ice missile.  
-- **Skill 2 – Bitter Frost**: Slows and deals damage.  
-- **Ultimate – Cold Destruction**: Large AoE explosion that freezes enemies.  
-
-### Strengths  
-- Powerful crowd control  
-- Burst damage  
-- Great for zoning  
-
-### Recommended Items  
-- Arcane Boots  
-- Clock of Destiny  
-- Lightning Truncheon  
-- Holy Crystal  
-- Winter Truncheon  
-
+---
 
 ## Arlott
 
-### Lore  
-Arlott is a cursed soul wielding twin spears, balancing vengeance and justice. With swift strikes and disruption, he thrives in chaotic battles.
+**Lore**  
+A cursed warrior from the Forsaken Lands, Arlott fights using his demonic lance and seeks vengeance.
 
-### Role  
-Fighter / Assassin
+**Role**: Fighter / Assassin  
 
-### Skill & Passive  
-- **Passive – Demon Gaze**: Marks enemies hit by crowd control.  
-- **Skill 1 – Dauntless Strike**: Slows and stuns in a line.  
-- **Skill 2 – Vengeance**: Dashes through marked enemies, dealing critical damage.  
-- **Ultimate – Final Slash**: Sweeps all enemies to one direction.  
+**Skills & Passive**  
+- **Passive**: Demon Gaze – Marks enemies that are crowd-controlled.  
+- **Skill 1**: Dauntless Strike – Slashes forward and stuns.  
+- **Skill 2**: Vengeance – Dashes and deals massive damage.  
+- **Ultimate**: Final Slash – Sweeps enemies to one side.  
 
-### Strengths  
-- Excellent disruption  
-- Combos well with CC  
-- Fast-paced duelist  
+**Strengths**  
+- High burst combo  
+- Great teamfight control  
+- Mobility and CC  
 
-### Recommended Items  
-- Warrior Boots  
-- War Axe  
-- Hunter Strike  
-- Malefic Roar  
-- Immortality  
+**Recommended Items**  
+- Warrior Boots, War Axe, Bloodlust Axe, Hunter Strike, Malefic Roar, Immortality  
 
+---
+
+## Atlas
+
+**Lore**  
+A deep-sea creature encased in a mech suit, Atlas emerged to stop land dwellers from threatening the ocean.
+
+**Role**: Tank  
+
+**Skills & Passive**  
+- **Passive**: Frigid Breath – Slows enemies near him.  
+- **Skill 1**: Annihilate – Deals AoE damage with tentacles.  
+- **Skill 2**: Perfect Match – Merges with his mech to increase mobility and stun enemies.  
+- **Ultimate**: Fatal Links – Chains and slams multiple enemies.  
+
+**Strengths**  
+- Huge initiation potential  
+- Game-changing ultimate  
+- High crowd control  
+
+**Recommended Items**  
+- Courage Mask, Warrior Boots, Dominance Ice, Athena’s Shield, Immortality, Antique Cuirass  
+
+---
+
+## Aulus
+
+**Lore**  
+Aulus is a proud dwarf who believes that strength alone can shape the world. His fiery axe proves it.
+
+**Role**: Fighter  
+
+**Skills & Passive**  
+- **Passive**: Fighting Spirit – Gains attack when moving and attacking.  
+- **Skill 1**: Aulus, Charge! – Dashes forward and increases movement speed.  
+- **Skill 2**: The Power of Axe – Enhances next basic attack.  
+- **Ultimate**: Undying Fury – Empowers weapon in stages.  
+
+**Strengths**  
+- Scales hard with farm  
+- Buff stacking  
+- Versatile build paths  
+
+**Recommended Items**  
+- War Axe, Warrior Boots, Endless Battle, Blade of Despair, Immortality, Malefic Roar  
+
+---
+
+## Aurora
+
+**Lore**  
+Queen of the Northern Vale, Aurora wields the power of frost to punish her enemies.
+
+**Role**: Mage  
+
+**Skills & Passive**  
+- **Passive**: Pride of Ice – Freezes enemies after stacking skills.  
+- **Skill 1**: Frost Shock – Shoots icy projectile.  
+- **Skill 2**: Bitter Frost – Slows and damages enemies.  
+- **Ultimate**: Cold Destruction – Summons a freezing meteor.  
+
+**Strengths**  
+- High CC mage  
+- Great burst combo  
+- Excellent for ambushes  
+
+**Recommended Items**  
+- Clock of Destiny, Arcane Boots, Glowing Wand, Ice Queen Wand, Divine Glaive, Winter Truncheon  
+
+---
 
 ## Badang
 
-### Lore  
-A warrior from the east, Badang earned his power by defeating an ancient beast and now uses his fists to protect his homeland.
+**Lore**  
+Badang is a warrior from the Southern Seas who gained mystical strength after battling a river demon.
 
-### Role  
-Fighter
+**Role**: Fighter  
 
-### Skill & Passive  
-- **Passive – Chivalry Fist**: Every few basic attacks deals bonus AoE damage.  
-- **Skill 1 – Qigong Fist**: Launches energy wave.  
-- **Skill 2 – Fist Break**: Charges forward and knocks enemies back.  
-- **Ultimate – Fist Crack**: Rapid punches with walls that trap enemies.  
+**Skills & Passive**  
+- **Passive**: Chivalry Fist – Every few attacks knocks enemies back.  
+- **Skill 1**: Qigong Fist – Launches a shockwave.  
+- **Skill 2**: Fist Break – Dashes forward and creates a wall.  
+- **Ultimate**: Fist Crack – Unleashes a barrage of punches.  
 
-### Strengths  
-- Strong AoE damage  
-- Wall combo potential  
-- Good burst  
+**Strengths**  
+- Wall combo with stun  
+- AoE burst damage  
+- Good in team fights  
 
-### Recommended Items  
-- Warrior Boots  
-- Blade of Heptaseas  
-- Endless Battle  
-- Blade of Despair  
-- Immortality  
+**Recommended Items**  
+- Warrior Boots, Bloodlust Axe, Endless Battle, Blade of Despair, Immortality, Malefic Roar  
 
+---
 
 ## Balmond
 
-### Lore  
-A savage orc driven by revenge, Balmond wields an axe that thirsts for blood and tears through enemy lines.
+**Lore**  
+A half-demon warrior who turned against his own kind after they destroyed his village.
 
-### Role  
-Fighter / Tank
+**Role**: Fighter / Tank  
 
-### Skill & Passive  
-- **Passive – Bloodthirst**: Restores HP on kill.  
-- **Skill 1 – Soul Lock**: Charges forward and slows enemies.  
-- **Skill 2 – Cyclone Sweep**: Spins to deal damage in an area.  
-- **Ultimate – Lethal Counter**: Executes low-health enemies.  
+**Skills & Passive**  
+- **Passive**: Bloodthirst – Regains HP after killing enemies.  
+- **Skill 1**: Soul Lock – Dashes and slows enemies.  
+- **Skill 2**: Cyclone Sweep – Spins with his axe.  
+- **Ultimate**: Lethal Counter – Slams ground for true damage execute.  
 
-### Strengths  
-- Fast jungle clear  
-- Execution finisher  
-- High sustain  
+**Strengths**  
+- Strong early game  
+- Objective secure with ultimate  
+- Durable frontline  
 
-### Recommended Items  
-- Warrior Boots  
-- Bloodlust Axe  
-- War Axe  
-- Cursed Helmet  
-- Immortality  
+**Recommended Items**  
+- War Axe, Tough Boots, Bloodlust Axe, Guardian Helmet, Antique Cuirass, Immortality  
 
+---
 
 ## Bane
 
-### Lore  
-Once a sea tyrant, Bane was revived by dark powers and now rules the waves as an undead pirate king.
+**Lore**  
+A pirate undead cursed by the sea, Bane combines gunpowder and sea magic in battle.
 
-### Role  
-Fighter / Mage
+**Role**: Fighter / Mage  
 
-### Skill & Passive  
-- **Passive – Shark Bite**: Builds up and releases extra damage.  
-- **Skill 1 – Crab Claw Cannon**: Fires a bouncing cannonball.  
-- **Skill 2 – Ale Wash**: Restores HP and damages enemies.  
-- **Ultimate – Deadly Catch**: Summons sharks to a targeted area.  
+**Skills & Passive**  
+- **Passive**: Shark Bite – Empowers basic attacks after skill use.  
+- **Skill 1**: Crab Claw Cannon – Fires a bouncing cannonball.  
+- **Skill 2**: Ale – Heals Bane and damages enemies.  
+- **Ultimate**: Deadly Catch – Summons a school of sharks.  
 
-### Strengths  
-- Hybrid damage (physical & magic)  
-- Self-healing  
-- Zoning and poke  
+**Strengths**  
+- Hybrid build flexibility  
+- Great poke and sustain  
+- Strong lane clear  
 
-### Recommended Items  
-- Magic Shoes  
-- Clock of Destiny  
-- Lightning Truncheon  
-- Ice Queen Wand  
-- Immortality  
+**Recommended Items**  
+- War Axe, Bloodlust Axe, Ice Queen Wand, Holy Crystal, Concentrated Energy, Immortality  
 
+---
 
 ## Barats
 
-### Lore  
-Barats is a small warrior riding his massive companion Detona. The duo causes mayhem using heavy artillery and stomps.
+**Lore**  
+Barats and his dinosaur partner Detona roam the desert, using their size and chemistry to dominate.
 
-### Role  
-Fighter / Tank
+**Role**: Fighter / Tank  
 
-### Skill & Passive  
-- **Passive – I Am Big!**: Gains size and defense as he deals damage.  
-- **Skill 1 – So-Called Teamwork**: Spits fire and stomps ground.  
-- **Skill 2 – Missile Expert**: Fires missile and knocks back.  
-- **Ultimate – Detona's Welcome**: Swallows and throws enemies.  
+**Skills & Passive**  
+- **Passive**: Big Guy – Gains size and defense when attacking.  
+- **Skill 1**: So-Called Teamwork – Spits acid and taunts enemies.  
+- **Skill 2**: Missile Expert – Pushes enemies with a blast.  
+- **Ultimate**: Detona’s Welcome – Eats and spits out enemies.  
 
-### Strengths  
-- High durability  
-- Strong crowd control  
-- Zone control  
+**Strengths**  
+- Becomes very tanky  
+- Zoning and control  
+- Scales well with farm  
 
-### Recommended Items  
-- Tough Boots  
-- Cursed Helmet  
-- Guardian Helmet  
-- Dominance Ice  
-- Antique Cuirass  
+**Recommended Items**  
+- Tough Boots, Guardian Helmet, Cursed Helmet, Oracle, Antique Cuirass, Immortality  
 
+---
 
 ## Baxia
 
-### Lore  
-A protector with an indestructible shield, Baxia uses his knowledge and skill to nullify magic and protect his team.
+**Lore**  
+A monk who swore to destroy evil with his iron shield, Baxia is a fearless guardian of order.
 
-### Role  
-Tank / Support
+**Role**: Tank  
 
-### Skill & Passive  
-- **Passive – Baxia Mark**: Reduces regen effects of enemies.  
-- **Skill 1 – Shield Unity**: Rolls and stuns enemies.  
-- **Skill 2 – Shield of Spirit**: Throws shield that returns and deals damage.  
-- **Ultimate – Tortoise’s Puissance**: Creates lava trail that damages and slows.  
+**Skills & Passive**  
+- **Passive**: Baxia Mark – Reduces regen of enemies hit.  
+- **Skill 1**: Shield Unity – Rolls to target and stuns.  
+- **Skill 2**: Shield of Spirit – Throws shield for AoE damage.  
+- **Ultimate**: Tortoise’s Puissance – Leaves lava trail, increasing speed.  
 
-### Strengths  
-- Anti-healing  
-- Highly mobile tank  
-- Good sustain and peel  
+**Strengths**  
+- Anti-heal tank  
+- Great mobility  
+- Good at chasing  
 
-### Recommended Items  
-- Tough Boots  
-- Cursed Helmet  
-- Athena’s Shield  
-- Dominance Ice  
-- Immortality  
+**Recommended Items**  
+- Courage Mask, Tough Boots, Radiant Armor, Dominance Ice, Athena’s Shield, Immortality  
 
+---
 
 ## Beatrix
 
-### Lore  
-A genius girl from Eruditio, Beatrix wields four unique weapons, allowing her to adapt to any situation with firepower and finesse.
+**Lore**  
+A young genius who invented multiple firearms, Beatrix can switch between four different weapons.
 
-### Role  
-Marksman
+**Role**: Marksman  
 
-### Skill & Passive  
-- **Passive – Mechanical Genius**: Can swap between two sets of weapons.  
-- **Skill 1 – Masterful Gunner**: Switches weapons.  
-- **Skill 2 – Tactical Reposition**: Dashes and reloads.  
-- **Ultimate – Varies by weapon**: Each gun has its own finisher.  
+**Skills & Passive**  
+- **Passive**: Mechanical Genius – Switches between weapons.  
+- **Skill 1**: Masterful Gunner – Switch loadouts.  
+- **Skill 2**: Tactical Reposition – Dash with reload.  
+- **Ultimate**: Varies depending on weapon type.  
 
-### Strengths  
-- Versatile and flexible  
-- High burst potential  
-- Good in all phases  
+**Strengths**  
+- Extremely high burst  
+- Versatile gunplay  
+- High lane pressure  
 
-### Recommended Items  
-- Swift Boots  
-- Blade of Despair  
-- Malefic Roar  
-- Hunter Strike  
-- Immortality  
+**Recommended Items**  
+- Swift Boots, Blade of Despair, Malefic Roar, Hunter Strike, Haas’ Claws, Immortality  
 
+---
 
 ## Belerick
 
-### Lore  
-Belerick is a guardian of nature, willing to sacrifice himself to protect life in all forms. His body is intertwined with plant energy.
+**Lore**  
+A guardian of the forest who believes in peace, but will fight to protect nature.
 
-### Role  
-Tank / Support
+**Role**: Tank / Support  
 
-### Skill & Passive  
-- **Passive – Deadly Thorns**: Reflects damage taken.  
-- **Skill 1 – Ancient Seed**: Sends roots forward to immobilize.  
-- **Skill 2 – Nature’s Shield**: Boosts movement and heals.  
-- **Ultimate – Wrath of Dryad**: Immobilizes enemies in a large area.  
+**Skills & Passive**  
+- **Passive**: Deadly Thorns – Reflects damage and enhances next attack.  
+- **Skill 1**: Ancient Seed – Sends vines that slow and taunt.  
+- **Skill 2**: Nature’s Shield – Increases defense and regen.  
+- **Ultimate**: Wrath of Dryad – Roots and damages enemies.  
 
-### Strengths  
-- Great sustain and healing  
-- Area control  
-- Strong crowd control  
+**Strengths**  
+- Great sustain and CC  
+- Synergizes with regen-based heroes  
+- Solid frontline  
 
-### Recommended Items  
-- Tough Boots  
-- Oracle  
-- Guardian Helmet  
-- Immortality  
-- Athena’s Shield  
+**Recommended Items**  
+- Cursed Helmet, Tough Boots, Oracle, Athena’s Shield, Dominance Ice, Immortality  
 
+---
 
 ## Benedetta
 
-### Lore  
-A lone warrior haunted by her past, Benedetta moves like a shadow and strikes swiftly with her sword, seeking redemption.
+**Lore**  
+A noble swordswoman with a dark past, Benedetta seeks redemption through battle.
 
-### Role  
-Assassin / Fighter
+**Role**: Assassin  
 
-### Skill & Passive  
-- **Passive – Elapsed Daytime**: Charges sword when holding basic attack.  
-- **Skill 1 – Phantom Slash**: Dashes and slashes forward.  
-- **Skill 2 – An Eye for an Eye**: Blocks and counterattacks.  
-- **Ultimate – Alecto: Final Blow**: Dashes across enemies and slashes rapidly.  
+**Skills & Passive**  
+- **Passive**: Elapsed Daytime – Charges dash by holding basic attack.  
+- **Skill 1**: Phantom Slash – Dashes and slashes in a cone.  
+- **Skill 2**: An Eye for An Eye – Blocks CC and counterattacks.  
+- **Ultimate**: Alecto: Final Blow – Dashes in a straight line and slashes multiple times.  
 
-### Strengths  
-- High mobility  
-- Immune frame on skill 2  
-- Excellent duelist  
+**Strengths**  
+- Excellent mobility  
+- Skill-based outplay potential  
+- High burst  
 
-### Recommended Items  
-- Warrior Boots  
-- Blade of the Heptaseas  
-- Bloodlust Axe  
-- Malefic Roar  
-- Immortality  
-
+**Recommended Items**  
+- War Axe, Tough Boots, Bloodlust Axe, Hunter Strike, Malefic Roar, Immortality  
 
 
