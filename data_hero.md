@@ -939,5 +939,582 @@ Support / Healer
 **Recommended Items**  
 Oracle, Fleeting Time, Dominance Ice, Enchanted Talisman, Tough Boots, Favor Emblem
 
+## Franco
 
+### Lore
+Franco is a terrifying pirate who sails the frozen northern seas, known for pulling enemies to their doom with his deadly hook.
+
+### Role
+Tank, Initiator
+
+### Skill & Passive
+- **Passive:** Wasteland Force – Increases movement speed and HP regen when out of combat.
+- **Skill 1:** Iron Hook – Throws a hook that pulls an enemy to him.
+- **Skill 2:** Fury Shock – Slams the ground, slowing enemies.
+- **Ultimate:** Bloody Hunt – Suppresses and damages the target for a few seconds.
+
+### Strengths
+- Strong crowd control.
+- Game-changing hook grabs.
+- High durability.
+
+### Recommended Items
+- Dominance Ice
+- Antique Cuirass
+- Immortality
+- Athena’s Shield
+- Guardian Helmet
+- Flicker
+
+---
+
+## Fredrinn
+
+### Lore
+Fredrinn is a mysterious warrior who manipulates crystal energy, capable of absorbing damage and turning it into power.
+
+### Role
+Fighter, Tank
+
+### Skill & Passive
+- **Passive:** Crystalline Armor – Converts damage taken into Crystal Energy.
+- **Skill 1:** Piercing Strike – Dashes forward and deals damage.
+- **Skill 2:** Brave Assault – Dashes and enhances the next attack.
+- **Skill 3:** Energy Eruption – Taunts enemies and generates energy.
+- **Ultimate:** Appraiser’s Wrath – Deals massive damage based on Crystal Energy.
+
+### Strengths
+- High durability and sustain.
+- Excellent taunt and control.
+- Scales well with damage taken.
+
+### Recommended Items
+- Cursed Helmet
+- Radiant Armor
+- Immortality
+- Guardian Helmet
+- Oracle
+- Vengeance
+
+---
+
+## Freya
+
+### Lore
+Freya is a Valkyrie warrior chosen by the gods, wielding divine power and a mighty hammer to strike justice upon her foes.
+
+### Role
+Fighter, Durable
+
+### Skill & Passive
+- **Passive:** Power of Einherjar – Basic attacks after skills are enhanced.
+- **Skill 1:** Leap of Faith – Jumps to an area, dealing damage and slowing.
+- **Skill 2:** Spirit Combo – A 3-phase combo that stuns and damages.
+- **Ultimate:** Valkyrie Descent – Enters Valkyrie state, gaining shield and AoE attacks.
+
+### Strengths
+- Strong duelist and sustained fighter.
+- Great shield and mobility.
+- Combo-based burst.
+
+### Recommended Items
+- Corrosion Scythe
+- Demon Hunter Sword
+- Queen’s Wings
+- Windtalker
+- Immortality
+- Inspire
+
+---
+
+## Gatotkaca
+
+### Lore
+A warrior of ancient legends, Gatotkaca possesses the strength of a thousand soldiers and fights to protect the weak.
+
+### Role
+Tank, Crowd Control
+
+### Skill & Passive
+- **Passive:** Steel Bones – Gains physical defense and converts damage taken into HP regen.
+- **Skill 1:** Blast Iron Fist – Area damage and slow.
+- **Skill 2:** Unbreakable – Taunts enemies in front.
+- **Ultimate:** Avatar of the Guardian – Leaps to target area, knocking up enemies.
+
+### Strengths
+- Powerful initiator.
+- High defensive scaling.
+- Disrupts enemy formations.
+
+### Recommended Items
+- Dominance Ice
+- Antique Cuirass
+- Immortality
+- Cursed Helmet
+- Guardian Helmet
+- Flicker
+
+---
+
+## Gloo
+
+### Lore
+Gloo is a curious and mischievous slime creature from the Moniyan Forest who can split and stick to enemies, causing confusion and chaos.
+
+### Role
+Tank, Regen
+
+### Skill & Passive
+- **Passive:** Stick, Stick – Attaching to enemies causes them to take more damage.
+- **Skill 1:** Slam, Slam – Explodes goo in an area.
+- **Skill 2:** Pass, Pass – Dashes and immobilizes enemies.
+- **Ultimate:** Split, Split – Splits into small Gloos and attaches to a target enemy.
+
+### Strengths
+- Extremely tanky.
+- Annoying and sticky in fights.
+- Good sustain and map pressure.
+
+### Recommended Items
+- Guardian Helmet
+- Cursed Helmet
+- Dominance Ice
+- Immortality
+- Radiant Armor
+- Vengeance
+
+---
+
+## Gord
+
+### Lore
+Gord is a genius mage who combines mystic energy with technology, unleashing devastating magic beams upon his foes.
+
+### Role
+Mage, Poke
+
+### Skill & Passive
+- **Passive:** Mystic Favor – Deals bonus true damage.
+- **Skill 1:** Mystic Projectile – A magic orb that stuns and explodes.
+- **Skill 2:** Mystic Injunction – AoE damage over time.
+- **Ultimate:** Mystic Gush – Channels a powerful energy beam.
+
+### Strengths
+- High poke and AoE.
+- Long-range burst.
+- Easy to zone enemies.
+
+### Recommended Items
+- Lightning Truncheon
+- Clock of Destiny
+- Holy Crystal
+- Divine Glaive
+- Arcane Boots
+- Flicker
+
+---
+
+## Granger
+
+### Lore
+A cold and calculated musician-turned-hunter, Granger uses music and bullets to execute enemies with deadly precision.
+
+### Role
+Marksman, Burst
+
+### Skill & Passive
+- **Passive:** Caprice – Has six bullets, with the sixth dealing extra damage.
+- **Skill 1:** Rhapsody – Fires bullets in a line.
+- **Skill 2:** Rondo – Dashes and empowers next attack.
+- **Ultimate:** Death Sonata – Fires explosive long-range shots.
+
+### Strengths
+- Very high burst damage.
+- Safe long-range ultimate.
+- Strong early game.
+
+### Recommended Items
+- Blade of Despair
+- Endless Battle
+- Malefic Roar
+- Swift Boots
+- Berserker’s Fury
+- Retribution
+
+---
+
+## Grock
+
+### Lore
+Grock is an ancient rock titan awakened from his slumber, defending nature and the Land of Dawn with immense might.
+
+### Role
+Tank, Roamer
+
+### Skill & Passive
+- **Passive:** Ancestral Gift – Increases movement speed and defense near walls.
+- **Skill 1:** Power of Nature – Charges and slams, dealing AoE damage.
+- **Skill 2:** Guardian’s Barrier – Creates a wall to block paths.
+- **Ultimate:** Wild Charge – Charges forward and knocks back enemies.
+
+### Strengths
+- Very tanky.
+- Wall can block enemies.
+- Great zoning and initiation.
+
+### Recommended Items
+- Cursed Helmet
+- Radiant Armor
+- Dominance Ice
+- Immortality
+- Athena’s Shield
+- Flicker
+
+---
+
+## Guinevere
+
+### Lore
+A noble with psychic powers, Guinevere combines elegant magic with martial arts to control and eliminate her foes.
+
+### Role
+Fighter, Mage
+
+### Skill & Passive
+- **Passive:** Super Magic – Boosts damage and grants cooldown reset.
+- **Skill 1:** Energy Wave – Magic projectile that slows.
+- **Skill 2:** Spatial Migration – Dashes and leaves a clone.
+- **Ultimate:** Violet Requiem – Magic AoE burst when target is airborne.
+
+### Strengths
+- Burst combo potential.
+- Great mobility and baiting.
+- Strong duelist.
+
+### Recommended Items
+- Genius Wand
+- Clock of Destiny
+- Concentrated Energy
+- Holy Crystal
+- Arcane Boots
+- Petrify
+
+---
+
+## Gusion
+
+### Lore
+A prodigy of the Paxley family, Gusion wields light-infused daggers to deal precise and devastating strikes.
+
+### Role
+Assassin, Burst
+
+### Skill & Passive
+- **Passive:** Dagger Specialist – Basic attack deals bonus damage after skill use.
+- **Skill 1:** Sword Spike – Throws dagger and dashes to it.
+- **Skill 2:** Shadowblade Slaughter – Throws daggers and recalls them.
+- **Ultimate:** Incandescence – Resets skills and dashes.
+
+### Strengths
+- High burst assassin.
+- Quick combo execution.
+- Great mobility.
+
+### Recommended Items
+- Calamity Reaper
+- Genius Wand
+- Divine Glaive
+- Holy Crystal
+- Arcane Boots
+- Retribution
+
+---
+
+## Hanabi
+
+### Lore
+Hanabi is a scarlet ninja who unleashes deadly demon petals with every strike, seeking revenge against betrayal.
+
+### Role
+Marksman, AoE
+
+### Skill & Passive
+- **Passive:** Ninjutsu: Petal Barrage – Basic attacks bounce and deal AoE.
+- **Skill 1:** Ninjutsu: Equinox – Converts damage to shield when full HP.
+- **Skill 2:** Ninjutsu: Soul Scroll – Throws scroll that slows enemies.
+- **Ultimate:** Forbidden Jutsu: Higanbana – Immobilizes enemy and spreads.
+
+### Strengths
+- Great AoE damage.
+- Good self-sustain with shield.
+- Crowd control ultimate.
+
+### Recommended Items
+- Demon Hunter Sword
+- Corrosion Scythe
+- Golden Staff
+- Wind of Nature
+- Swift Boots
+- Inspire
+
+---
+
+## Hanzo
+
+### Lore
+Hanzo is a dark assassin who consumes the souls of his enemies, splitting into a demonic form to hunt targets.
+
+### Role
+Assassin, Split Pusher
+
+### Skill & Passive
+- **Passive:** Ame no Habakiri – Devours enemy minions to gain energy.
+- **Skill 1:** Ninjutsu: Demon Feast – Devours enemy in front.
+- **Skill 2:** Ninjutsu: Soul Reap – AoE damage with slow.
+- **Ultimate:** Kinjutsu: Pinnacle Ninja – Splits into shadow form to attack from afar.
+
+### Strengths
+- High map pressure.
+- Remote engagement.
+- Good poke and pick potential.
+
+### Recommended Items
+- Blade of Heptaseas
+- Hunter Strike
+- Malefic Roar
+- Endless Battle
+- Tough Boots
+- Retribution
+
+---
+
+## Harith
+
+### Lore
+Harith is a time-traveling genius who manipulates time to control battles and outmaneuver opponents.
+
+### Role
+Mage, Mobility
+
+### Skill & Passive
+- **Passive:** Key Insight – Reduces CC duration and gains shield.
+- **Skill 1:** Synchro Fission – Deals damage twice in a line.
+- **Skill 2:** Chrono Dash – Dashes and enhances attack.
+- **Ultimate:** Zaman Force – Reduces skill cooldown inside field.
+
+### Strengths
+- Extremely mobile.
+- High DPS mage.
+- Hard to catch.
+
+### Recommended Items
+- Calamity Reaper
+- Feather of Heaven
+- Holy Crystal
+- Concentrated Energy
+- Arcane Boots
+- Purify
+
+---
+
+## Harley
+
+### Lore
+A mischievous young magician, Harley uses cards and firepower to confuse and eliminate his foes.
+
+### Role
+Mage, Assassin
+
+### Skill & Passive
+- **Passive:** Magic Master – Basic attacks after skills deal extra magic damage.
+- **Skill 1:** Poker Trick – Fires cards in a cone.
+- **Skill 2:** Space Escape – Blinks forward and leaves a portal.
+- **Ultimate:** Deadly Magic – Locks target with a ring and detonates.
+
+### Strengths
+- High single-target burst.
+- Great escape and re-engage tools.
+- Fast jungle clear.
+
+### Recommended Items
+- Genius Wand
+- Clock of Destiny
+- Lightning Truncheon
+- Divine Glaive
+- Arcane Boots
+- Retribution
+
+---
+
+## Hayabusa
+
+### Lore
+A silent ninja master, Hayabusa excels at single-target assassination, swiftly eliminating enemies from the shadows.
+
+### Role
+Assassin, Mobility
+
+### Skill & Passive
+- **Passive:** Ninjutsu: Trace of Shadow – Marked enemies take more damage.
+- **Skill 1:** Phantom Shuriken – Throws three shurikens that return.
+- **Skill 2:** Ninjutsu: Quad Shadow – Teleports to one of four shadows.
+- **Ultimate:** Ougi: Shadow Kill – Becomes untargetable and slashes target.
+
+### Strengths
+- High mobility and burst.
+- Excellent split pusher.
+- Hard to lock down.
+
+### Recommended Items
+- Blade of the Heptaseas
+- Endless Battle
+- Malefic Roar
+- Hunter Strike
+- Tough Boots
+- Retribution
+
+---
+
+## Helcurt
+
+### Lore
+Helcurt is a deadly shadow demon who silences his prey and strikes when they least expect it.
+
+### Role
+Assassin, Silencer
+
+### Skill & Passive
+- **Passive:** Race Advantage – Silences enemies who use CC on him.
+- **Skill 1:** Shadow Transition – Blinks and deals damage.
+- **Skill 2:** Deadly Stinger – Ranged attack based on stinger count.
+- **Ultimate:** Dark Night Falls – Reduces vision and boosts self.
+
+### Strengths
+- Silences enemies.
+- Excellent ganker.
+- Can escape or chase easily.
+
+### Recommended Items
+- Blade of Heptaseas
+- Malefic Roar
+- Hunter Strike
+- Endless Battle
+- Tough Boots
+- Retribution
+
+---
+
+## Hilda
+
+### Lore
+Hilda is a fierce warrior from the wastelands who charges into battle with unrelenting force and regeneration.
+
+### Role
+Fighter, Tank
+
+### Skill & Passive
+- **Passive:** Blessing of Wilderness – HP regen in bush and shield.
+- **Skill 1:** Combat Ritual – Dash and empowered attack.
+- **Skill 2:** Art of Hunting – 3 quick attacks with gap-close.
+- **Ultimate:** Power of Wildness – Executes enemies with stacks.
+
+### Strengths
+- High early-game aggression.
+- Sustainable in lanes.
+- Strong bush ambushes.
+
+### Recommended Items
+- Cursed Helmet
+- Radiant Armor
+- Dominance Ice
+- Oracle
+- Immortality
+- Vengeance
+
+---
+
+## Hylos
+
+### Lore
+Hylos is a centaur guardian of nature, sacrificing his life force to protect the balance of the world.
+
+### Role
+Tank, Sustain
+
+### Skill & Passive
+- **Passive:** Thickened Blood – Uses HP for skills if Mana is low.
+- **Skill 1:** Law and Order – Single-target stun.
+- **Skill 2:** Ring of Punishment – AoE damage and slow.
+- **Ultimate:** Glorious Pathway – Speeds allies and slows enemies.
+
+### Strengths
+- Strong frontliner.
+- Zone control and mobility boost.
+- Great sustain.
+
+### Recommended Items
+- Guardian Helmet
+- Radiant Armor
+- Cursed Helmet
+- Dominance Ice
+- Immortality
+- Flicker
+
+---
+
+## Irithel
+
+### Lore
+Raised by a jungle beast, Irithel rides her companion Leo into battle, firing arrows even while moving.
+
+### Role
+Marksman, AoE
+
+### Skill & Passive
+- **Passive:** Jungle Heart – Can attack while moving.
+- **Skill 1:** Strafe – AoE damage and defense reduction.
+- **Skill 2:** Force of the Queen – Slows enemies.
+- **Ultimate:** Heavy Crossbow – Enhances basic attacks.
+
+### Strengths
+- AoE basic attacks.
+- Good mobility.
+- Excellent scaling.
+
+### Recommended Items
+- Demon Hunter Sword
+- Windtalker
+- Scarlet Phantom
+- Berserker’s Fury
+- Swift Boots
+- Inspire
+
+---
+
+## Ixia
+
+### Lore
+A futuristic energy cannon wielder, Ixia controls the battlefield with her devastating beam attacks and traps.
+
+### Role
+Marksman, Burst
+
+### Skill & Passive
+- **Passive:** Siphon Starlium – Enhances her basic attacks periodically.
+- **Skill 1:** Dual Beam – Fires twin energy blasts.
+- **Skill 2:** Arc Sentry – Summons a cannon to zone enemies.
+- **Ultimate:** Full Barrage – AoE beam attack that deals massive burst.
+
+### Strengths
+- High burst from range.
+- AoE control.
+- Effective in teamfights.
+
+### Recommended Items
+- Wind of Nature
+- Blade of Despair
+- Malefic Roar
+- Swift Boots
+- Hunter Strike
+- Inspire
 
