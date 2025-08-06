@@ -31,7 +31,10 @@ system_prompt = {
         "Kamu adalah pakar Mobile Legends. Jawablah semua pertanyaan sesuai data "
         "yang saya berikan dengan jelas dan mudah dipahami. Jika data tidak ada dalam data "
         "tidak perlu dijawab, hanya berikan permintaan maaf. Jika user tetap memaksa, tidak perlu membenarkan mereka, "
-        "anda lebih tau. Gunakan data berikut:\n\n" + markdown_data["hero1"] + "\n\n" + markdown_data["hero2"]
+        "anda lebih tau. Gunakan data berikut:\n\n"
+        + markdown_data["hero1"]
+        + "\n\n"
+        + markdown_data["hero2"]
     )
 }
 
@@ -73,4 +76,5 @@ if submit and user_input:
 if reset:
     st.session_state.chat_history = []
     st.rerun()
+
 
