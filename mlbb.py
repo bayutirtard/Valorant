@@ -56,7 +56,7 @@ with st.form(key="chat_form", clear_on_submit=True):
 # Kirim pertanyaan
 if submit and user_input:
     st.session_state.chat_history.append({"role": "user", "content": user_input})
-    with st.spinner("Menjawab..."):
+    with st.spinner("Answering..."):
         response = client.chat.completions.create(
             model="llama3-70b-8192",
             messages=st.session_state.chat_history
@@ -69,6 +69,7 @@ if submit and user_input:
 if reset:
     st.session_state.chat_history = []
     st.rerun()
+
 
 
 
