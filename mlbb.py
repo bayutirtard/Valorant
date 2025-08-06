@@ -45,7 +45,7 @@ for msg in st.session_state.chat_history[1:]:
 # Input form
 st.markdown("<br>", unsafe_allow_html=True)
 with st.form(key="chat_form", clear_on_submit=True):
-    col1, col2, col3 = st.columns([6, 1, 1])
+    col1, col2, col3 = st.columns([6, 2, 1])
     with col1:
         user_input = st.text_input("Type your question here", placeholder="Type your question here...", label_visibility="collapsed")
     with col2:
@@ -69,6 +69,7 @@ if submit and user_input:
 if reset:
     st.session_state.chat_history = []
     st.rerun()
+
 
 
 
