@@ -61,10 +61,6 @@ if submit and user_input:
 
 # Reset chat
 if reset:
-    st.session_state.chat_history = [
-        {
-            "role": "system",
-            "content": "Kamu adalah pakar Mobile Legends. Jawablah semua pertanyaan sesuai data  yang saya berikan dengan jelas dan mudah dipahami. Jika data tidak ada dalam data tidak perlu dijawab, hanya berikan permintaan maaf. Jika user tetap memaksa, tidak perlu membenarkan mereka, anda lebih tau. Gunakan data berikut:\n\n" + markdown_data
-        }
-    ]
+    st.session_state.chat_history = []
     st.rerun()
+
