@@ -874,4 +874,26 @@ Fighter / Mage
 A member of House Paxley, Gusion rejected traditional mage ways and chose to master the magic of speed and daggers. He strikes swiftly, with precision and deadly force.
 
 
+### Role  
+Assassin / Mage
+
+### Skills & Passive  
+- **Passive – Dagger Specialist**: Every third skill deals bonus damage.  
+- **Skill 1 – Sword Spike**: Throws a dagger and teleports to it.  
+- **Skill 2 – Shadowblade Slaughter**: Throws daggers in a fan shape.  
+- **Ultimate – Incandescence**: Resets cooldowns and dashes twice.
+
+### Strengths  
+- High burst damage  
+- Fast mobility and escape  
+- Great for pick-offs  
+
+### Recommended Items  
+- Arcane Boots  
+- Genius Wand  
+- Holy Crystal  
+- Concentrated Energy  
+- Divine Glaive  
+
+
 
