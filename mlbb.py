@@ -49,7 +49,7 @@ with st.form(key="chat_form", clear_on_submit=True):
     with col1:
         user_input = st.text_input("Type your question here", placeholder="Type your question here...", label_visibility="collapsed")
     with col2:
-        submit = st.form_submit_button("↵")
+        submit = st.form_submit_button("  ↵  ")
     with col3:
         reset = st.form_submit_button("Reset")
 
@@ -69,6 +69,7 @@ if submit and user_input:
 if reset:
     st.session_state.chat_history = []
     st.rerun()
+
 
 
 
