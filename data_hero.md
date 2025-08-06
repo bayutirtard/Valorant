@@ -1,438 +1,283 @@
 # Mobile Legends – Hero Guide
 
-## Singkatan
+# 
 - MM = Marksman
 
-## 1. Aamon – Duke of Shards (Assassin)
+## Aamon
 
-### Statistik Dasar
-- HP: 2578 → 5739
-- Physical Attack: 118 → 248
-- Movement Speed: 250
+### Lore
+Aamon is the eldest son of House Paxley, a noble family known for magic and power. Calm and composed, he secretly operates as a deadly assassin after inheriting the family title. He is also the older brother of Gusion.
 
-### Skill
-- Passive – Invisible Armor: Masuk mode kamuflase saat keluar dari pertarungan.
-- Skill 1 – Soul Shards: Lempar pecahan ke musuh, damage bertingkat.
-- Skill 2 – Slayer Shards: Dash ke musuh, ambil shard, reset skill.
-- Ultimate – Endless Shards: Kirim hujan shard ke musuh, scaling berdasarkan stack.
+### Role
+Assassin
 
-### Tips dan Build
-- Spell: Execute / Retribution
-- Emblem: Assassin / Mage
-- Build: Arcane Boots, Genius Wand, Holy Crystal, Divine Glaive
-- Combo: Skill 1 → Skill 2 → Basic → Ultimate
+### Skills & Passive
+- **Passive – Invisible Armor**: After casting a skill, Aamon enters camouflage and strengthens his next attack.
+- **Skill 1 – Soul Shards**: Throws magic shards at enemies, dealing damage and marking them.
+- **Skill 2 – Slayer Blades**: Releases blades toward the target for multi-hit damage.
+- **Ultimate – Endless Shards**: Launches a flurry of blades toward a marked enemy, dealing burst damage.
 
----
+### Strengths
+- High burst damage  
+- Camouflage allows sneaky plays  
+- Good mobility and sustain  
 
-## 2. Akai – Panda Warrior (Tank)
-
-### Statistik Dasar
-- HP: 2769 → 6671
-- Physical Defense: 21 → 95
-- Movement Speed: 260
-
-### Skill
-- Passive – Tai Chi: Shield aktif setelah skill.
-- Skill 1 – Headbutt: Dash + slow musuh.
-- Skill 2 – Body Slam: AoE + slow.
-- Ultimate – Hurricane Dance: Putaran dorong lawan, bisa dikontrol arah.
-
-### Tips dan Build
-- Spell: Flicker / Petrify
-- Build: Cursed Helmet, Radiant Armor, Guardian Helmet, Immortality
-- Gunakan Ultimate untuk dorong musuh ke turret
+### Recommended Items
+- Arcane Boots  
+- Genius Wand  
+- Glowing Wand  
+- Divine Glaive  
+- Holy Crystal  
 
 ---
 
-## 3. Aldous – Soul Contractor (Fighter)
+## Akai
 
-### Statistik Dasar
-- HP: 2719 → 5892
-- Physical Attack: 123 → 288
+### Lore
+Akai is a clumsy but determined panda warrior from a small village. Often underestimated, he trained hard to become a mighty guardian, armed with his massive bamboo staff and a heart full of courage.
 
-### Skill
-- Passive – Contract: Transform: Dapatkan soul stack dari minion/hero.
-- Skill 1 – Soul Steal: Dash dengan damage berdasarkan stack.
-- Skill 2 – Explosion: Shield aktif dan meledak.
-- Ultimate – Chase Fate: Lacak dan dash ke hero musuh mana pun.
+### Role
+Tank / Roamer
 
-### Tips dan Build
-- Build: Tough Boots, Endless Battle, Malefic Roar, Immortality
-- Fokus stack Skill 1 di early game
+### Skills & Passive
+- **Passive – Tai Chi**: Grants shield after using a skill.
+- **Skill 1 – Headbutt**: Charges forward, knocking enemies back.
+- **Skill 2 – Body Slam**: Slams the ground, dealing AoE damage and slowing enemies.
+- **Ultimate – Hurricane Dance**: Spins rapidly, knocking enemies back while becoming immune to crowd control.
 
----
+### Strengths
+- Strong crowd control  
+- Excellent initiator  
+- Can disrupt enemy formation  
 
-## 4. Alice – Queen of the Apocalypse (Mage/Tank)
-
-### Statistik Dasar
-- HP: 2550 → 6028
-- Mana: 500 → 1200
-- Movement Speed: 250
-
-### Skill
-- Passive – Blood Ancestry: Ambil orb HP dari minion.
-- Skill 1 – Flowing Blood: Tembak dan teleport ke lokasi skill.
-- Skill 2 – Blood Awe: AoE stun.
-- Ultimate – Blood Ode: AoE lifesteal terus-menerus.
-
-### Tips dan Build
-- Build: Demon Shoes, Clock of Destiny, Enchanted Talisman, Winter Truncheon
+### Recommended Items
+- Tough Boots  
+- Cursed Helmet  
+- Guardian Helmet  
+- Dominance Ice  
+- Immortality  
 
 ---
 
-## 5. Alpha – Ultimate Weapon (Fighter)
+## Aldous
 
-### Skill
-- Passive – Beta, Advance!: Serangan dibantu drone Beta.
-- Skill 1 – Rotary Impact: AoE lurus + slow.
-- Skill 2 – Force Swing: AoE besar + heal.
-- Ultimate – Spear of Alpha: Dash + airborne.
+### Lore
+Aldous was a guardian of the Minoan Labyrinth, blessed by the gods with a powerful arm. After surviving a catastrophic explosion, he gained overwhelming strength capable of destroying anything in a single strike.
 
-### Tips dan Build
-- Build: Warrior Boots, Bloodlust Axe, Hunter Strike, Oracle, Immortality
+### Role
+Fighter
 
----
+### Skills & Passive
+- **Passive – Contract: Transform**: Every two basic attacks enhance his next attack.
+- **Skill 1 – Contract: Soul Steal**: Dashes toward enemies and gathers stackable soul power.
+- **Skill 2 – Contract: Explosion**: Gains a shield and explodes after a delay.
+- **Ultimate – Contract: Chase Fate**: Locks onto an enemy anywhere on the map and charges at them.
 
-## 6. Alucard – Demon Hunter (Fighter/Assassin)
+### Strengths
+- Scales extremely well into late game  
+- Can pick off squishy targets globally  
+- Great in 1v1 combat  
 
-### Skill
-- Passive – Pursuit: Lifesteal aktif setelah dash.
-- Skill 1 – Groundsplitter: Lompat ke depan.
-- Skill 2 – Whirling Smash: AoE serang.
-- Ultimate – Fission Wave: Tambah lifesteal dan tembak energy wave.
-
-### Tips dan Build
-- Build: Tough Boots, War Axe, Hunter Strike, Blade of Despair, Immortality
-
----
-
-## 7. Angela – Bunnylove (Support)
-
-### Skill
-- Passive – Smart Heart: Tambah movement speed ke teman.
-- Skill 1 – Love Waves: Heal teman / damage musuh.
-- Skill 2 – Puppet-on-a-String: Slow → stun.
-- Ultimate – Heartguard: Masuk ke tubuh teman dan beri shield.
-
-### Tips dan Build
-- Build: Enchanted Talisman, Oracle, Necklace of Durance, Immortality
+### Recommended Items
+- Tough Boots  
+- Endless Battle  
+- Blade of Despair  
+- Athena’s Shield  
+- Malefic Roar  
 
 ---
 
-## 8. Argus – Dark Angel (Fighter)
+## Alice
 
-### Skill
-- Passive – Warmonger: Hit ke-3 = crit.
-- Skill 1 – Demonic Grip: Tarik ke musuh, slash.
-- Skill 2 – Meteoric Blade: AoE serangan.
-- Ultimate – Eternal Evil: Kebal mati 5 detik.
+### Lore
+Alice is the Queen of Blood, a demoness who thrives on the life energy of others. She returns to the battlefield to drain the souls of her enemies and grow even stronger.
 
-### Tips dan Build
-- Build: Tough Boots, Endless Battle, Berserker’s Fury, Hunter Strike
+### Role
+Mage / Tank
 
----
+### Skills & Passive
+- **Passive – Blood Ancestry**: Collects blood orbs to permanently increase max HP.
+- **Skill 1 – Flowing Blood**: Shoots a blood orb that she can teleport to.
+- **Skill 2 – Blood Awe**: Immobilizes nearby enemies briefly.
+- **Ultimate – Blood Ode**: Continuously drains HP from nearby enemies.
 
-## 9. Arlott – Lone Spear (Fighter)
+### Strengths
+- High sustain in fights  
+- Great mobility with teleport  
+- Becomes tankier over time  
 
-### Skill
-- Passive – Demon Gaze: Skill reset jika musuh terkena stun.
-- Skill 1 – Dauntless Strike: Stun musuh di depan.
-- Skill 2 – Vengeance: Dash ke musuh, lifesteal aktif.
-- Ultimate – Final Slash: Tarik semua musuh dalam garis lurus.
-
-### Tips dan Build
-- Build: Warrior Boots, Bloodlust Axe, Hunter Strike, Dominance Ice
-
----
-
-## 10. Beatrix – Dawnbreak Soldier (Marksman)
-
-### Skill
-- Passive – Mechanical Genius: Bisa ganti senjata (4 tipe).
-- Skill 1 – Masterful Gunner: Ganti senjata aktif.
-- Skill 2 – Tactical Reposition: Blink pendek + reload.
-- Ultimate:
-  - Renner’s Apathy: Sniper.
-  - Wesker’s Elation: Shotgun.
-  - Nibiru’s Passion: Rapid fire.
-  - Bennet’s Rage: AoE artillery.
-
-### Tips dan Build
-- Build: Swift Boots, Blade of Despair, Malefic Roar, DHS, Wind of Nature
+### Recommended Items
+- Demon Shoes  
+- Clock of Destiny  
+- Lightning Truncheon  
+- Winter Truncheon  
+- Blood Wings  
 
 ---
 
-## 11. Benedetta – Shadow Ranger (Assassin)
+## Alpha
 
-### Statistik Dasar
-- HP: 2526 → 5525
-- Physical Attack: 119 → 256
-- Movement Speed: 265
+### Lore
+Alpha is a cybernetic fighter created by Lab 1718. Along with his drone partner Beta, he uses his mechanical body and advanced weapons to eliminate all threats.
 
-### Skill
-- Passive – Elapsed Daytime: Charge dash gratis jika bar penuh.
-- Skill 1 – Phantom Slash: Slash cepat, memberikan burst damage.
-- Skill 2 – An Eye for An Eye: Blink + immune terhadap CC.
-- Ultimate – Alecto: Final Blow: Dash besar, tebas semua musuh di jalur.
+### Role
+Fighter
 
-### Tips dan Build
-- Emblem: Assassin
-- Spell: Retribution / Execute
-- Build: Warrior Boots, Blade of Heptaseas, Hunter Strike, Malefic Roar
+### Skills & Passive
+- **Passive – Beta, Advance!**: Beta assists in attacks, dealing extra damage.
+- **Skill 1 – Rotary Impact**: Slashes forward and calls Beta for added damage.
+- **Skill 2 – Force Swing**: Charges up a slash and heals slightly after hitting.
+- **Ultimate – Spear of Alpha**: Charges and knocks an enemy airborne while Beta bombards the target.
 
----
+### Strengths
+- Consistent damage with Beta  
+- Good sustain  
+- Strong in 1v1 combat  
 
-## 12. Bane – Lord of the Seven Seas (Fighter/Mage)
-
-### Skill
-- Passive – Shark Bite: Basic attack meningkatkan damage AoE.
-- Skill 1 – Crab Claw Cannon: Tembak meriam + knockback.
-- Skill 2 – Ale Wash: Heal diri + magic splash.
-- Ultimate – Deadly Catch: Kapal-kapal menyerang area luas.
-
-### Tips dan Build
-- Build Mage: Enchanted Talisman, Clock of Destiny, Lightning Truncheon
-- Build Physical: War Axe, Bloodlust Axe, Blade of Despair
+### Recommended Items
+- Warrior Boots  
+- Bloodlust Axe  
+- Blade of Despair  
+- Queen's Wings  
+- Hunter Strike  
 
 ---
 
-## 13. Barats – Dino Rider (Tank/Fighter)
+## Alucard
 
-### Skill
-- Passive – I Am Big!: Semakin banyak stack, semakin besar ukuran dan defense.
-- Skill 1 – So-Called Teamwork: Semprotkan api + stomp Beta.
-- Skill 2 – Missile Expert: Lempar misil, menarik musuh.
-- Ultimate – Detona’s Welcome: Telan musuh → muntahkan ke arah lain.
+### Lore
+Alucard is a demon hunter whose family was killed by demons. He was raised by the Moniyan Empire and trained to destroy evil with his dual blades.
 
-### Tips dan Build
-- Build: Tough Boots, Cursed Helmet, Guardian Helmet, Antique Cuirass
+### Role
+Fighter / Assassin
 
----
+### Skills & Passive
+- **Passive – Pursuit**: Deals more damage and dashes to enemies after skills.
+- **Skill 1 – Groundsplitter**: Leaps forward and deals AoE damage.
+- **Skill 2 – Whirling Smash**: Spins and slashes nearby enemies.
+- **Ultimate – Fission Wave**: Increases life steal and releases a shockwave.
 
-## 14. Baxia – Mystic Tortoise (Tank)
+### Strengths
+- Strong life steal  
+- Good mobility and chase potential  
+- Scales well with items  
 
-### Skill
-- Passive – Baxia Mark: Kurangi regen musuh.
-- Skill 1 – Shield Unity: Berguling cepat, tabrak dan stun.
-- Skill 2 – Shield of Spirit: Lempar perisai, bounce kembali.
-- Ultimate – Tortoise’s Puissance: Meningkatkan speed + efek lava di belakangnya.
-
-### Tips dan Build
-- Build: Warrior Boots, Dominance Ice, Radiant Armor, Immortality
-- Cocok melawan hero dengan lifesteal tinggi
-
----
-
-## 15. Belerick – Guard of Nature (Tank)
-
-### Skill
-- Passive – Deadly Thorns: Saat terkena damage, memantulkan ke sekitar.
-- Skill 1 – Ancient Seed: Tanam akar, slow + taunt.
-- Skill 2 – Nature’s Strike: Tambah speed + regen.
-- Ultimate – Wrath of Dryad: CC massal, akar dan slow besar.
-
-### Tips dan Build
-- Build: Cursed Helmet, Oracle, Immortality, Antique Cuirass
-- Posisi baik untuk inisiasi team fight
+### Recommended Items
+- Warrior Boots  
+- Endless Battle  
+- Blade of Despair  
+- Queen’s Wings  
+- Immortality  
 
 ---
 
-## 16. Benedetta – Shadow Ranger (Assassin)  
-(*Sudah dijelaskan di Hero 11 – tidak diulang.*)
+## Angela
+
+### Lore
+Angela is a mechanical puppet created by Dr. Baker. Fueled by emotion and equipped with healing magic, she travels the world to spread love and protection.
+
+### Role
+Support
+
+### Skills & Passive
+- **Passive – Smart Heart**: Increases movement speed after using a skill.
+- **Skill 1 – Love Waves**: Sends waves that heal allies and damage enemies.
+- **Skill 2 – Puppet-on-a-String**: Links to enemies and immobilizes after a delay.
+- **Ultimate – Heartguard**: Attaches to an ally, giving them a shield and full control of her movement.
+
+### Strengths
+- Great sustain for team  
+- Game-changing ultimate  
+- Slows and immobilizes enemies  
+
+### Recommended Items
+- Fleeting Time  
+- Enchanted Talisman  
+- Dominance Ice  
+- Oracle  
+- Immortality  
 
 ---
 
-## 17. Bruno – The Protector (Marksman)
+## Argus
 
-### Skill
-- Passive – Mecha Legs: Setiap skill meningkatkan crit rate.
-- Skill 1 – Volley Shot: Tembakan kuat, memantul.
-- Skill 2 – Flying Tackle: Slide pendek + slow.
-- Ultimate – Wave of the World: Bola membentur banyak musuh.
+### Lore
+Argus was once an archangel corrupted by dark power. He now seeks redemption through battle, wielding a cursed blade that feeds on pain and rage.
 
-### Tips dan Build
-- Build: Swift Boots, Endless Battle, Berserker's Fury, DHS, Wind of Nature
-- Ideal di mid-late game, jarak aman
+### Role
+Fighter
 
----
+### Skills & Passive
+- **Passive – Warmonger**: Basic attacks increase movement speed.
+- **Skill 1 – Demonic Grip**: Pulls himself to a target and slashes.
+- **Skill 2 – Meteoric Sword**: Enhances attacks and movement speed.
+- **Ultimate – Eternal Evil**: Becomes immune to death temporarily, converting damage taken into HP.
 
-## 18. Brody – Lone Star (Marksman)
+### Strengths
+- Cannot die during ultimate  
+- High mobility  
+- Snowballs in extended fights  
 
-### Skill
-- Passive – Abyss Corrosion: Serangan lambat, tapi memberi mark burst.
-- Skill 1 – Abyss Impact: Skill AoE panjang, debuff bertumpuk.
-- Skill 2 – Corrosive Strike: Dash ke musuh, stun.
-- Ultimate – Torn-Apart Memory: Aktifkan semua mark → burst besar.
-
-### Tips dan Build
-- Build: Warrior Boots, Blade of Despair, Malefic Roar, Wind of Nature
-- Serangan lambat tapi sangat sakit
-
----
-
-## 19. Carmilla – Shadow of Twilight (Support/Tank)
-
-### Skill
-- Passive – Vampire Pact: Share damage ke musuh sekitar.
-- Skill 1 – Crimson Flower: AoE lifesteal.
-- Skill 2 – Bloodbath: Lompat + stun.
-- Ultimate – Curse of Blood: Hubungkan 3 musuh, semua menerima damage bersama.
-
-### Tips dan Build
-- Build: Enchanted Talisman, Dominance Ice, Athena’s Shield, Immortality
-- Cocok untuk combo dengan Cecilion
+### Recommended Items
+- Tough Boots  
+- Bloodlust Axe  
+- Demon Hunter Sword  
+- Queen’s Wings  
+- Immortality  
 
 ---
 
-## 20. Chang'e – Moon Palace Immortal (Mage)
+## Atlas
 
-### Skill
-- Passive – Trouble Maker: Tambah Movement Speed setelah damage.
-- Skill 1 – Starmoon Shockwave: Bola energi lurus.
-- Skill 2 – Crescent Moon: Tambah Movement Speed + shield.
-- Ultimate – Meteor Shower: Hujan meteor besar, AoE.
+### Lore
+Atlas is a deep-sea creature bound in a mechanical suit. He emerged from the ocean trenches to protect the world from threats both above and below.
 
-### Tips dan Build
-- Build: Arcane Boots, Ice Queen Wand, Glowing Wand, Divine Glaive
-- Kuat sebagai poke/mage jarak jauh
+### Role
+Tank
 
-# Mobile Legends – Hero Guide (Batch 3: Chou hingga Edith)
+### Skills & Passive
+- **Passive – Frigid Breath**: Slows enemies who stay near him.
+- **Skill 1 – Annihilate**: Smashes the ground with tentacles.
+- **Skill 2 – Perfect Match**: Separates body and mech for mobility and stun.
+- **Ultimate – Fatal Links**: Links to enemies and slams them down after a delay.
 
-## 21. Chou – Kung Fu Boy (Fighter/Tank)
+### Strengths
+- Game-changing initiation  
+- Durable and disruptive  
+- Great for teamfights  
 
-### Skill
-- Passive – Only Fast: Basic attack setelah skill memberikan bonus damage.
-- Skill 1 – Jeet Kune Do: Dash 3x, yang ketiga knock-up.
-- Skill 2 – Shunpo: Blink + shield + ignore CC.
-- Ultimate – The Way of Dragon: Tendangan ke musuh, dapat menendang ulang ke arah tertentu.
-
-### Tips & Build
-- Build: Tough Boots, Blade of Heptaseas, Radiant Armor, Antique Cuirass
-- Cocok sebagai inisiator pick-off. Flicker + Ult jadi combo klasik.
-
----
-
-## 22. Claude – Blazing Duet (Marksman)
-
-### Skill
-- Passive – Battle Side-by-Side: Serangan disertai Dexter.
-- Skill 1 – Art of Thievery: Serangan AoE + steal movement/attack speed.
-- Skill 2 – Battle Mirror Image: Panggil Dexter bayangan, bisa tukar posisi.
-- Ultimate – Blazing Duet: AoE burst DPS dari Dexter + Claude.
-
-### Tips & Build
-- Build: Demon Hunter Sword, Golden Staff, Wind of Nature, Malefic Roar
-- Rotasi cepat dan masuk timfight dari sisi belakang.
+### Recommended Items
+- Tough Boots  
+- Dominance Ice  
+- Antique Cuirass  
+- Athena’s Shield  
+- Immortality  
 
 ---
 
-## 23. Clint – West Justice (Marksman)
+## Aulus
 
-### Skill
-- Passive – Double Shot: Setelah pakai skill, basic attack selanjutnya menembak dua peluru.
-- Skill 1 – Quick Draw: Tembakan cepat lurus.
-- Skill 2 – Trapping Recoil: Dash mundur + pasang trap.
-- Ultimate – Grenade Bombardment: Lempar granat tiga kali ke depan.
+### Lore
+Aulus is a small but mighty dwarf with a giant axe. Despite his size, he dreams of being the strongest warrior in the land.
 
-### Tips & Build
-- Build: Endless Battle, Blade of Despair, Berserker’s Fury
-- Jaga jarak, maksimalkan passive burst.
+### Role
+Fighter
 
----
+### Skills & Passive
+- **Passive – Fighting Spirit**: Each basic attack boosts his attack stat.
+- **Skill 1 – Aulus, Charge!**: Dashes and empowers next basic attack.
+- **Skill 2 – The Power of Axe**: Strikes and slows enemies.
+- **Ultimate – Undying Fury**: Empowers his axe with permanent buffs.
 
-## 24. Cyclops – Starsoul Magician (Mage)
+### Strengths
+- Gets stronger over time  
+- High damage and durability  
+- Good in both solo and team fights  
 
-### Skill
-- Passive – Starlit Hourglass: Cooldown semua skill berkurang tiap skill kena target.
-- Skill 1 – Stardust Shock: Tembak dua energi ke depan.
-- Skill 2 – Planets Attack: Orbit bola mini mengelilingi dirinya.
-- Ultimate – Star Power Lockdown: Bola besar mengejar musuh + immobilize.
-
-### Tips & Build
-- Build: Arcane Boots, Clock of Destiny, Lightning Truncheon, Divine Glaive
-- Cocok lawan assassin lincah.
-
----
-
-## 25. Diggie – Timekeeper (Support)
-
-### Skill
-- Passive – Young Again: Jadi telur saat mati, bisa bergerak (tidak bisa serang).
-- Skill 1 – Auto Alarm Bomb: Bom waktu yang mengejar musuh.
-- Skill 2 – Reverse Time: Tarik musuh kembali setelah delay.
-- Ultimate – Time Journey: Immunity dari crowd control + shield.
-
-### Tips & Build
-- Build: Favor Roam, Fleeting Time, Enchanted Talisman
-- Counter terbaik untuk combo CC seperti Tigreal/Khufra.
-
----
-
-## 26. Dyrroth – Prince of the Abyss (Fighter)
-
-### Skill
-- Passive – Wrath of the Abyss: Basic ke-3 beri AoE damage.
-- Skill 1 – Burst Strike: Serangan AoE + slow.
-- Skill 2 – Spectre Step: Dash → skill ulang untuk slash AoE.
-- Ultimate – Abysm Strike: Dash + AoE true damage berdasarkan HP musuh.
-
-### Tips & Build
-- Build: Warrior Boots, Bloodlust Axe, Blade of Despair
-- Cocok sebagai anti-tank/initiator burst.
-
----
-
-## 27. Esmeralda – Astrologer (Mage/Tank)
-
-### Skill
-- Passive – Starmoon Casket: Menyerap shield dan menjadikannya HP.
-- Skill 1 – Frostmoon Shield: Dapatkan shield + speed.
-- Skill 2 – Stardust Dance: AoE damage + cooldown reset.
-- Ultimate – Falling Starmoon: Lompat → AoE slow besar.
-
-### Tips & Build
-- Build: Enchanted Talisman, Oracle, Brute Force Breastplate
-- Kuat di lane dan sustain teamfight.
-
----
-
-## 28. Estes – Moon Elf King (Support)
-
-### Skill
-- Passive – Scripture of the Moon Elf: Serangan memperkuat heal.
-- Skill 1 – Moonlight Immersion: Heal instan dan berkelanjutan.
-- Skill 2 – Domain of Moon Goddess: AoE slow + reveal.
-- Ultimate – Blessing of Moon Goddess: Heal massal semua rekan sekitar.
-
-### Tips & Build
-- Build: Favor Roam, Fleeting Time, Oracle
-- Sangat efektif untuk strategi teamfight sustain.
-
----
-
-## 29. Eudora – Lightning Sorceress (Mage)
-
-### Skill
-- Passive – Superconductor: Skill yang terkena efek ini akan diperkuat.
-- Skill 1 – Forked Lightning: AoE damage depan.
-- Skill 2 – Ball Lightning: Stun musuh.
-- Ultimate – Thunder's Wrath: Burst magic damage sangat besar.
-
-### Tips & Build
-- Build: Clock of Destiny, Lightning Truncheon, Holy Crystal, Divine Glaive
-- Kombo cepat: Skill 2 → 1 → Ultimate
-
----
-
-## 30. Edith – Ancient Guard (Tank/Marksman)
-
-### Skill
-- Passive – Overload: Setelah skill, basic attack berisi petir AoE.
-- Skill 1 – Earth Shatter: AoE knock-up.
-- Skill 2 – Onward: Dash + lempar musuh ke belakang.
-- Ultimate – Primal Wrath: Mode tank → berubah jadi Marksman (Phylax).
-
-### Tips & Build
-- Build: Tough Boots, Radiant Armor, Blade of Despair, Immortality
-- Hybrid playstyle, bisa buka war lalu berubah jadi DPS jarak jauh.
+### Recommended Items
+- Warrior Boots  
+- War Axe  
+- Bloodlust Axe  
+- Brute Force Breastplate  
+- Immortality  
 
