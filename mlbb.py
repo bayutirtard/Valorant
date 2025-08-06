@@ -3,7 +3,7 @@ from groq import Groq
 from PIL import Image
 
 # Konfigurasi halaman
-st.set_page_config(page_title="Chatbot MLBB", page_icon="M")
+st.set_page_config(page_title="Chatbot MLBB", page_icon="🎮")
 st.title("Chatbot AI Mobile Legends")
 
 # Inisialisasi Groq client
@@ -69,6 +69,7 @@ if submit and user_input:
 if reset:
     st.session_state.chat_history = []
     st.rerun()
+
 
 
 
