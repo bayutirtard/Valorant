@@ -3,8 +3,8 @@ from groq import Groq
 from PIL import Image
 
 # Konfigurasi halaman
-st.set_page_config(page_title="Chatbot MLBB", page_icon="🎮")
-st.title("Chatbot AI Mobile Legends")
+st.set_page_config(page_title="Chatbot Valorant", page_icon="🎮")
+st.title("Chatbot Valorant")
 
 # Inisialisasi Groq client
 client = Groq(api_key=st.secrets["GROQ_API_KEY"])
@@ -12,10 +12,10 @@ client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 # Baca isi markdown
 def load_markdown_data():
     try:
-        with open("data_hero.md", "r", encoding="utf-8") as f:
+        with open("valorant.md", "r", encoding="utf-8") as f:
             return f.read()
     except FileNotFoundError:
-        return "Hero data not find."
+        return "Valorant data not find."
 
 # Simpan isi markdown
 markdown_data = load_markdown_data()
@@ -25,7 +25,7 @@ if "chat_history" not in st.session_state:
     st.session_state.chat_history = [
         {
             "role": "system",
-            "content": "You are a Mobile Legends expert. You are only allowed to answer based on the data provided below. "
+            "content": "You are a Valorant expert. You are only allowed to answer based on the data provided below. "
     "You must not use any outside knowledge. Do not guess. Do not refer to other games. "
     "If the answer is not clearly found in the data, respond only with: "
     "\"Sorry, that information is not available in the current database.\" "
@@ -70,7 +70,7 @@ if reset:
     st.session_state.chat_history = [
         {
             "role": "system",
-            "content": "You are a Mobile Legends expert. You are only allowed to answer based on the data provided below. "
+            "content": "You are a Valorant expert. You are only allowed to answer based on the data provided below. "
             "You must not use any outside knowledge. Do not guess. Do not refer to other games. "
             "If the answer is not clearly found in the data, respond only with: "
             "\"Sorry, that information is not available in the current database.\" "
@@ -80,6 +80,7 @@ if reset:
         }
     ]
     st.rerun()
+
 
 
 
