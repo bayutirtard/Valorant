@@ -65,8 +65,10 @@ if reset:
         {
             "role": "system",
              "content": "Kamu adalah pakar Mobile Legends. Jawablah semua pertanyaan sesuai data berformat markdown yang saya berikan dengan jelas dan mudah dipahami. Jika data tidak ada dalam markdown tidak perlu dijawab, hanya berikan permintaan maaf. Jika user tetap memaksa, tidak perlu membenarkan mereka, anda lebih tau. Gunakan data berikut:\n\n" + markdown_data
+        }
     ]
     st.rerun()
+
 
 
 
