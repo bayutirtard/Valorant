@@ -38,7 +38,7 @@ if "chat_history" not in st.session_state:
 # Tampilkan obrolan sebelumnya
 for msg in st.session_state.chat_history[1:]:
     if msg["role"] == "user":
-        st.markdown(f"**Kamu:** {msg['content']}")
+        st.markdown(f"**You:** {msg['content']}")
     elif msg["role"] == "assistant":
         st.markdown(f"**Bot:** {msg['content']}")
 
@@ -47,9 +47,9 @@ st.markdown("<br>", unsafe_allow_html=True)
 with st.form(key="chat_form", clear_on_submit=True):
     col1, col2, col3 = st.columns([6, 1, 1])
     with col1:
-        user_input = st.text_input("Ketik pertanyaan kamu", placeholder="Ketik pertanyaanmu disini", label_visibility="collapsed")
+        user_input = st.text_input("placeholder="Write your question here...", label_visibility="collapsed")
     with col2:
-        submit = st.form_submit_button("Kirim")
+        submit = st.form_submit_button("↵")
     with col3:
         reset = st.form_submit_button("Reset")
 
@@ -69,6 +69,7 @@ if submit and user_input:
 if reset:
     st.session_state.chat_history = []
     st.rerun()
+
 
 
 
