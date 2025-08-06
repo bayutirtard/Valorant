@@ -58,7 +58,7 @@ if submit and user_input:
     st.session_state.chat_history.append({"role": "user", "content": user_input})
     with st.spinner("Answering..."):
         response = client.chat.completions.create(
-            model="mistral‑saba‑24b",
+            model="meta-llama/llama-4-scout-17b-16e-instruct",
             messages=st.session_state.chat_history
         )
         answer = response.choices[0].message.content
@@ -80,6 +80,7 @@ if reset:
         }
     ]
     st.rerun()
+
 
 
 
