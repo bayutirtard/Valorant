@@ -25,7 +25,7 @@ if "chat_history" not in st.session_state:
     st.session_state.chat_history = [
         {
             "role": "system",
-            "content": "You're a Mobile Legends expert. Don't answer any other question. Answer all questions based on the data I provide, clearly and easily understood. If the data isn't in the database, don't answer; just apologize. If the user persists, don't justify it; you know better. Use the following data:\n\n" + markdown_data
+            "content": "You're a Mobile Legends expert. Don't answer any other question. Answer questions based on the data I provide, clearly and easily understood. If the data isn't in the database, don't answer, just apologize. If the user persists, don't justify it, you know better. Use the following data:\n\n" + markdown_data
         }
     ]
 
@@ -63,6 +63,7 @@ if submit and user_input:
 if reset:
     st.session_state.chat_history = []
     st.rerun()
+
 
 
 
