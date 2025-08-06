@@ -25,8 +25,7 @@ if "chat_history" not in st.session_state:
     st.session_state.chat_history = [
         {
             "role": "system",
-            "content": "Kamu adalah pakar Mobile Legends. Jawablah semua pertanyaan pengguna hanya dalam bahasa Indonesia, "
-        "dengan jelas dan mudah dipahami. Gunakan data berikut sebagai referensi:\n\n" + markdown_data
+            "content": "Kamu adalah pakar Mobile Legends. Jawablah semua pertanyaan sesuai data berformat markdown yang saya berikan dengan jelas dan mudah dipahami. Gunakan data berikut sebagai referensi:\n\n" + markdown_data
         }
     ]
 
@@ -65,7 +64,8 @@ if reset:
     st.session_state.chat_history = [
         {
             "role": "system",
-            "content": "Kamu adalah pakar Mobile Legends. Jawablah berdasarkan informasi berikut:\n\n" + markdown_data
+             "content": "Kamu adalah pakar Mobile Legends. Jawablah semua pertanyaan sesuai data berformat markdown yang saya berikan dengan jelas dan mudah dipahami. Gunakan data berikut sebagai referensi:\n\n" + markdown_data
         }
     ]
     st.rerun()
+
