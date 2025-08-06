@@ -67,8 +67,20 @@ if submit and user_input:
 
 # Reset chat
 if reset:
-    st.session_state.chat_history = []
+      st.session_state.chat_history = [
+        {
+            "role": "system",
+            "content": "You are a Mobile Legends expert. You are only allowed to answer based on the data provided below. "
+    "You must not use any outside knowledge. Do not guess. Do not refer to other games. "
+    "If the answer is not clearly found in the data, respond only with: "
+    "\"Sorry, that information is not available in the current database.\" "
+    "Even if the question seems obvious or easy, do not use general knowledge. "
+    "Use ONLY the following data as your source:\n\n"
+    + markdown_data
+        }
+    ]
     st.rerun()
+
 
 
 
