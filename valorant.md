@@ -856,19 +856,42 @@ Representing her home country of South Korea, Jett's agile and evasive fighting 
 
 ## Ascent
 ![Ascent](https://media.valorant-api.com/maps/7eaecc1b-4337-bbf6-6ab9-04b8f06b3319/splash.png)
+
 - **Coordinates**: 45°26'BF'N,12°20'Q'E
+
+**Callouts**:
+- **A**: Garden, Lobby, Main, Rafters, Site, Tree, Window, Wine
+- **Attacker Side**: Spawn
+- **B**: Boat House, Lobby, Main, Site
+- **Mid**: Bottom, Catwalk, Courtyard, Cubby, Link, Market, Pizza, Top
+- **Defender Side**: Spawn
 
 ---
 
 ## Split
 ![Split](https://media.valorant-api.com/maps/d960549e-485c-e861-8d71-aa9d1aed12a2/splash.png)
+
 - **Coordinates**: 35°41'CD'N,139°41'WX'E
+
+**Callouts**:
+- **A**: Back, Lobby, Main, Rafters, Ramps, Screens, Sewer, Site, Tower
+- **Attacker Side**: Spawn
+- **B**: Alley, Back, Garage, Link, Lobby, Rafters, Site, Stairs, Tower
+- **Defender Side**: Spawn
+- **Mid**: Bottom, Mail, Top, Vent
 
 ---
 
 ## Fracture
 ![Fracture](https://media.valorant-api.com/maps/b529448b-4d60-346e-e89e-00a4c527a405/splash.png)
+
 - **Coordinates**: 35°48'BI"N 106°08'YQ"W
+
+**Callouts**:
+- **Attacker Side**: Bridge, Spawn
+- **B**: Arcade, Bench, Canteen, Generator, Link, Main, Site, Tower, Tree, Tunnel
+- **A**: Dish, Door, Drop, Gate, Hall, Link, Main, Rope, Site
+- **Defender Side**: Spawn
 
 ---
 
@@ -876,9 +899,12 @@ Representing her home country of South Korea, Jett's agile and evasive fighting 
 ![Bind](https://media.valorant-api.com/maps/2c9d57ec-4431-9c5e-2939-8f9ef6dd5cba/splash.png)
 
 - **Coordinates**: 34°2'A'N,6°51'Z'W
-- **Map URL**: /Game/Maps/Duality/Duality
-- **Asset Path**: `ShooterGame/Content/Maps/Duality/Duality_PrimaryAsset`
-- **UUID**: `2c9d57ec-4431-9c5e-2939-8f9ef6dd5cba`
+
+**Callouts**:
+- **A**: Bath, Cubby, Exit, Lamps, Link, Lobby, Short, Site, Teleporter, Tower
+- **Attacker Side**: Cave, Spawn
+- **B**: Elbow, Exit, Fountain, Garden, Hall, Link, Long, Short, Site, Teleporter, Window
+- **Defender Side**: Spawn
 
 ---
 
@@ -886,40 +912,69 @@ Representing her home country of South Korea, Jett's agile and evasive fighting 
 ![Breeze](https://media.valorant-api.com/maps/2fb9a4fd-47b8-4e7d-a969-74b4046ebd53/splash.png)
 
 - **Coordinates**: 26°11'AG"N 71°10'WY"W
-- **Map URL**: /Game/Maps/Foxtrot/Foxtrot
-- **Asset Path**: `ShooterGame/Content/Maps/Foxtrot/Foxtrot_PrimaryAsset`
-- **UUID**: `2fb9a4fd-47b8-4e7d-a969-74b4046ebd53`
+
+**Callouts**:
+- **A**: Bridge, Hall, Lobby, Metal Doors, Pyramids, Rope, Shop, Site, Switch
+- **Defender Side**: Arches, Spawn
+- **Mid**: Bottom, Cannon, Chute, Nest, Pillar, Top, Wood Doors
+- **B**: Back, Elbow, Main, Site, Tunnel, Wall, Window
+- **Attacker Side**: Snake, Spawn
 
 ---
 
 ## Abyss
 ![Abyss](https://media.valorant-api.com/maps/224b0a95-48b9-f703-1bd8-67aca101a61f/splash.png)
+
 - **Coordinates**: 70° 50' AJ" N, 9° 00' VX" W
+
+**Callouts**:
+- **A**: Bridge, Link, Lobby, Main, Secret, Security, Site, Tower, Vent
+- **Attacker Side**: Spawn
+- **Mid**: Bend, Bottom, Catwalk, Library, Top
+- **B**: Danger, Link, Lobby, Main, Nest, Site, Tower
+- **Defender Side**: Spawn
 
 ---
 
 ## Lotus
 ![Lotus](https://media.valorant-api.com/maps/2fe4ed3a-450a-948b-6d6b-e89a78e680a9/splash.png)
+
 - **Coordinates**: 14°07'AD.4"N8 74°53'XY"E8
+
+**Callouts**:
+- **A**: Door, Drop, Hut, Link, Lobby, Main, Root, Rubble, Site, Stairs, Top, Tree
+- **C**: Bend, Door, Gravel, Hall, Link, Lobby, Main, Mound, Site, Waterfall
+- **B**: Main, Pillars, Site, Upper
+- **Defender Side**: Spawn
+- **Attacker Side**: Spawn
 
 ---
 
 ## Sunset
 ![Sunset](https://media.valorant-api.com/maps/92584fbe-486a-b1b2-9faa-39b0f486b498/splash.png)
+
 - **Coordinates**: 34° 2′ C″ N, 118° 12′ YT″ W
 
-
----
-
-## Basic Training
-![Basic Training](https://media.valorant-api.com/maps/1f10dab3-4294-3827-fa35-c2aa00213cf3/splash.png)
-- **Coordinates**: None
+**Callouts**:
+- **B**: Boba, Lobby, Main, Market, Site
+- **Mid**: Bottom, Courtyard, Tiles, Top
+- **A**: Alley, Elbow, Link, Lobby, Main, Site
+- **Defender Side**: Spawn
+- **Attacker Side**: Spawn
 
 ---
 
 ## Pearl
 ![Pearl](https://media.valorant-api.com/maps/fd267378-4d1d-484f-ff52-77821ed10dc2/splash.png)
+
 - **Coordinates**: 38°42'ED"N8 9°08'XS"W8
+
+**Callouts**:
+- **B**: Club, Hall, Link, Main, Ramp, Screen, Site, Tower, Tunnel
+- **Mid**: Connector, Doors, Plaza, Shops, Top
+- **Defender Side**: Records, Spawn, Water
+- **A**: Art, Dugout, Flowers, Link, Main, Restaurant, Secret, Site
+- **Attacker Side**: Spawn
 
 ---
 
@@ -927,9 +982,13 @@ Representing her home country of South Korea, Jett's agile and evasive fighting 
 ![Icebox](https://media.valorant-api.com/maps/e2ad5c54-4114-a870-9641-8ea21279579a/splash.png)
 
 - **Coordinates**: 76°44' A"N 149°30' Z"E
-- **Map URL**: /Game/Maps/Port/Port
-- **Asset Path**: `ShooterGame/Content/Maps/Port/Port_PrimaryAsset`
-- **UUID**: `e2ad5c54-4114-a870-9641-8ea21279579a`
+
+**Callouts**:
+- **B**: Back, Cubby, Fence, Garage, Green, Hall, Hut, Kitchen, Orange, Site, Snow Pile, Snowman, Tube, Yellow
+- **A**: Belt, Nest, Pipes, Rafters, Screen, Site
+- **Attacker Side**: Spawn
+- **Defender Side**: Spawn
+- **Mid**: Blue, Boiler, Pallet
 
 ---
 
@@ -938,18 +997,35 @@ Representing her home country of South Korea, Jett's agile and evasive fighting 
 
 - **Coordinates**: 45°26'FF'N,12°20'Q'E
 
+
 ---
 
 ## Corrode
 ![Corrode](https://media.valorant-api.com/maps/1c18ab1f-420d-0d8b-71d0-77ad3c439115/splash.png)
+
 - **Coordinates**: 48° 38' FH" N8, 1° 33' YV" W8
+
+**Callouts**:
+- **A**: Crane, Elbow, Link, Lobby, Main, Pocket, Site, Yard
+- **Attacker Side**: Spawn
+- **B**: Arch, Elbow, Link, Lobby, Main, Site, Tower
+- **Mid**: Bottom, Stairs, Top, Window
+- **Defender Side**: Spawn
 
 ---
 
 ## Haven
 ![Haven](https://media.valorant-api.com/maps/2bee0dc9-4ffe-519b-1cbd-7fbe763a6047/splash.png)
+
 - **Coordinates**: 27°28'A'N,89°38'WZ'E
 
----
+**Callouts**:
+- **A**: Garden, Link, Lobby, Long, Sewer, Site, Tower
+- **Attacker Side**: Spawn
+- **B**: Back, Site
+- **C**: Cubby, Garage, Link, Lobby, Long, Site, Window
+- **Defender Side**: Spawn
+- **Mid**: Courtyard, Doors, Window
 
+---
 
