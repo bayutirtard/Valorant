@@ -64,7 +64,11 @@ def render_chat(role, content):
         # Tampilkan sisa teks setelah gambar terakhir
         if last_end < len(content):
             st.markdown(content[last_end:])
-            
+
+# Tampilkan riwayat chat
+for msg in st.session_state.chat_history[1:]:
+    render_chat(msg["role"], msg["content"])
+                
 # Input form
 st.markdown("<br>", unsafe_allow_html=True)
 with st.form(key="chat_form", clear_on_submit=True):
@@ -103,16 +107,3 @@ if reset:
         }
     ]
     st.rerun()
-
-
-
-
-
-
-
-
-
-
-
-
-
