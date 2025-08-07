@@ -35,12 +35,40 @@ if "chat_history" not in st.session_state:
         }
     ]
 
-# Tampilkan obrolan sebelumnya
-for msg in st.session_state.chat_history[1:]:
-    if msg["role"] == "user":
-        st.markdown(f"**You:** {msg['content']}")
-    elif msg["role"] == "assistant":
-        st.markdown(f"**Bot:** {msg['content']}")
+import re
+import time
+
+# Fungsi untuk keyboard-typing effect
+def typing_effect(text, placeholder):
+    for char in text:
+        placeholder.write(char)
+        time.sleep(0.007)
+    placeholder.markdown("")  # clear placeholder
+
+# Fungsi render markdown & gambar dengan styling
+def render_chat(role, content):
+    if role == "user":
+        st.markdown(f"""
+        <div style="background-color:#e6f0ff; padding:10px; border-radius:10px; margin-bottom:10px">
+            <b>You:</b> {content}
+        </div>
+        """, unsafe_allow_html=True)
+    elif role == "assistant":
+        st.markdown(f"""
+        <div style="background-color:#f0f0f0; padding:10px; border-radius:10px; margin-bottom:10px">
+            <b>Bot 🎮 :</b>
+        </div>
+        """, unsafe_allow_html=True)
+        placeholder = st.empty()
+        typing_effect("", placeholder)  # clear initial
+        # pisah teks dan gambar
+        parts = re.split(r'!\[.*?\]\((.*?)\)', content)
+        for i, part in enumerate(parts):
+            if i % 2 == 0:
+                if part.strip():
+                    st.markdown(part.strip(), unsafe_allow_html=True)
+            else:
+                st.image(part.strip(), use_column_width=True)
 
 # Input form
 st.markdown("<br>", unsafe_allow_html=True)
@@ -65,6 +93,9 @@ if submit and user_input:
         st.session_state.chat_history.append({"role": "assistant", "content": answer})
     st.rerun()
 
+for msg in st.session_state.chat_history[1:]:
+    render_chat(msg["role"], msg["content"])
+
 # Reset chat
 if reset:
     st.session_state.chat_history = [
@@ -80,6 +111,7 @@ if reset:
         }
     ]
     st.rerun()
+
 
 
 
