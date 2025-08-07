@@ -940,22 +940,15 @@ Representing her home country of South Korea, Jett's agile and evasive fighting 
 
 ---
 
-## The Range
-![The Range](https://media.valorant-api.com/maps/5914d1e0-40c4-cfdd-6b88-eba06347686c/splash.png)
-- **Coordinates**: 45°26'FF'N,12°20'Q'E
-
-
 ## Corrode
 ![Corrode](https://media.valorant-api.com/maps/1c18ab1f-420d-0d8b-71d0-77ad3c439115/splash.png)
 - **Coordinates**: 48° 38' FH" N8, 1° 33' YV" W8
-
 
 ---
 
 ## Haven
 ![Haven](https://media.valorant-api.com/maps/2bee0dc9-4ffe-519b-1cbd-7fbe763a6047/splash.png)
 - **Coordinates**: 27°28'A'N,89°38'WZ'E
-
 
 ---
 
