@@ -1,8 +1,6 @@
 import streamlit as st
 from groq import Groq
-from PIL import Image
 import re
-import time
 
 # Konfigurasi halaman
 st.set_page_config(page_title="Chatbot Valorant", page_icon="🎮")
@@ -52,14 +50,20 @@ def render_chat(role, content):
         </div>
         """, unsafe_allow_html=True)
 
-        # Pisahkan teks dan gambar
-        parts = re.split(r'!\[.*?\]\((.*?)\)', content)
-        for i, part in enumerate(parts):
-            if i % 2 == 0:
-                if part.strip():
-                    st.markdown(part.strip())  # Biarkan markdown tampil normal
-            else:
-                st.image(part.strip(), use_container_width=True)
+        # Deteksi markdown gambar dan tampilkan
+        pattern = r'!\[.*?\]\((.*?)\)'
+        last_end = 0
+        for match in re.finditer(pattern, content):
+            # Tampilkan teks sebelum gambar
+            if match.start() > last_end:
+                st.markdown(content[last_end:match.start()])
+            # Tampilkan gambar
+            img_url = match.group(1)
+            st.image(img_url, use_container_width=True)
+            last_end = match.end()
+        # Tampilkan sisa teks setelah gambar terakhir
+        if last_end < len(content):
+            st.markdown(content[last_end:])
 
 # Tampilkan riwayat chat
 for msg in st.session_state.chat_history[1:]:
@@ -103,6 +107,7 @@ if reset:
         }
     ]
     st.rerun()
+
 
 
 
