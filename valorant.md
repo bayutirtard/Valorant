@@ -856,31 +856,19 @@ Representing her home country of South Korea, Jett's agile and evasive fighting 
 
 ## Ascent
 ![Ascent](https://media.valorant-api.com/maps/7eaecc1b-4337-bbf6-6ab9-04b8f06b3319/splash.png)
-
 - **Coordinates**: 45°26'BF'N,12°20'Q'E
-- **Map URL**: /Game/Maps/Ascent/Ascent
-- **Asset Path**: `ShooterGame/Content/Maps/Ascent/Ascent_PrimaryAsset`
-- **UUID**: `7eaecc1b-4337-bbf6-6ab9-04b8f06b3319`
 
 ---
 
 ## Split
 ![Split](https://media.valorant-api.com/maps/d960549e-485c-e861-8d71-aa9d1aed12a2/splash.png)
-
 - **Coordinates**: 35°41'CD'N,139°41'WX'E
-- **Map URL**: /Game/Maps/Bonsai/Bonsai
-- **Asset Path**: `ShooterGame/Content/Maps/Bonsai/Bonsai_PrimaryAsset`
-- **UUID**: `d960549e-485c-e861-8d71-aa9d1aed12a2`
 
 ---
 
 ## Fracture
 ![Fracture](https://media.valorant-api.com/maps/b529448b-4d60-346e-e89e-00a4c527a405/splash.png)
-
 - **Coordinates**: 35°48'BI"N 106°08'YQ"W
-- **Map URL**: /Game/Maps/Canyon/Canyon
-- **Asset Path**: `ShooterGame/Content/Maps/Canyon/Canyon_PrimaryAsset`
-- **UUID**: `b529448b-4d60-346e-e89e-00a4c527a405`
 
 ---
 
@@ -904,103 +892,34 @@ Representing her home country of South Korea, Jett's agile and evasive fighting 
 
 ---
 
-## District
-![District](https://media.valorant-api.com/maps/690b3ed2-4dff-945b-8223-6da834e30d24/splash.png)
-
-- **Coordinates**: None
-- **Map URL**: /Game/Maps/HURM/HURM_Alley/HURM_Alley
-- **Asset Path**: `ShooterGame/Content/Maps/HURM/HURM_Alley/HURM_Alley_PrimaryAsset`
-- **UUID**: `690b3ed2-4dff-945b-8223-6da834e30d24`
-
----
-
-## Kasbah
-![Kasbah](https://media.valorant-api.com/maps/12452a9d-48c3-0b02-e7eb-0381c3520404/splash.png)
-
-- **Coordinates**: None
-- **Map URL**: /Game/Maps/HURM/HURM_Bowl/HURM_Bowl
-- **Asset Path**: `ShooterGame/Content/Maps/HURM/HURM_Bowl/HURM_Bowl_PrimaryAsset`
-- **UUID**: `12452a9d-48c3-0b02-e7eb-0381c3520404`
-
----
-
-## Drift
-![Drift](https://media.valorant-api.com/maps/2c09d728-42d5-30d8-43dc-96a05cc7ee9d/splash.png)
-
-- **Coordinates**: None
-- **Map URL**: /Game/Maps/HURM/HURM_Helix/HURM_Helix
-- **Asset Path**: `ShooterGame/Content/Maps/HURM/HURM_Helix/HURM_Helix_PrimaryAsset`
-- **UUID**: `2c09d728-42d5-30d8-43dc-96a05cc7ee9d`
-
----
-
-## Glitch
-![Glitch](https://media.valorant-api.com/maps/d6336a5a-428f-c591-98db-c8a291159134/splash.png)
-
-- **Coordinates**: None
-- **Map URL**: /Game/Maps/HURM/HURM_HighTide/HURM_HighTide
-- **Asset Path**: `ShooterGame/Content/Maps/HURM/HURM_HighTide/HURM_HighTide_PrimaryAsset`
-- **UUID**: `d6336a5a-428f-c591-98db-c8a291159134`
-
----
-
-## Piazza
-![Piazza](https://media.valorant-api.com/maps/de28aa9b-4cbe-1003-320e-6cb3ec309557/splash.png)
-
-- **Coordinates**: None
-- **Map URL**: /Game/Maps/HURM/HURM_Yard/HURM_Yard
-- **Asset Path**: `ShooterGame/Content/Maps/HURM/HURM_Yard/HURM_Yard_PrimaryAsset`
-- **UUID**: `de28aa9b-4cbe-1003-320e-6cb3ec309557`
-
----
-
 ## Abyss
 ![Abyss](https://media.valorant-api.com/maps/224b0a95-48b9-f703-1bd8-67aca101a61f/splash.png)
-
 - **Coordinates**: 70° 50' AJ" N, 9° 00' VX" W
-- **Map URL**: /Game/Maps/Infinity/Infinity
-- **Asset Path**: `ShooterGame/Content/Maps/Infinity/Infinity_PrimaryAsset`
-- **UUID**: `224b0a95-48b9-f703-1bd8-67aca101a61f`
 
 ---
 
 ## Lotus
 ![Lotus](https://media.valorant-api.com/maps/2fe4ed3a-450a-948b-6d6b-e89a78e680a9/splash.png)
-
 - **Coordinates**: 14°07'AD.4"N8 74°53'XY"E8
-- **Map URL**: /Game/Maps/Jam/Jam
-- **Asset Path**: `ShooterGame/Content/Maps/Jam/Jam_PrimaryAsset`
-- **UUID**: `2fe4ed3a-450a-948b-6d6b-e89a78e680a9`
 
 ---
 
 ## Sunset
 ![Sunset](https://media.valorant-api.com/maps/92584fbe-486a-b1b2-9faa-39b0f486b498/splash.png)
-
 - **Coordinates**: 34° 2′ C″ N, 118° 12′ YT″ W
-- **Map URL**: /Game/Maps/Juliett/Juliett
-- **Asset Path**: `ShooterGame/Content/Maps/Juliett/Juliett_PrimaryAsset`
-- **UUID**: `92584fbe-486a-b1b2-9faa-39b0f486b498`
+
 
 ---
 
 ## Basic Training
 ![Basic Training](https://media.valorant-api.com/maps/1f10dab3-4294-3827-fa35-c2aa00213cf3/splash.png)
-
 - **Coordinates**: None
-- **Map URL**: /Game/Maps/NPEV2/NPEV2
-- **Asset Path**: `ShooterGame/Content/Maps/NPEV2/NPEV2_PrimaryAsset`
-- **UUID**: `1f10dab3-4294-3827-fa35-c2aa00213cf3`
 
 ---
 
 ## Pearl
 ![Pearl](https://media.valorant-api.com/maps/fd267378-4d1d-484f-ff52-77821ed10dc2/splash.png)
-
 - **Coordinates**: 38°42'ED"N8 9°08'XS"W8
-- **Map URL**: /Game/Maps/Pitt/Pitt
-- **Asset Path**: `ShooterGame/Content/Maps/Pitt/Pitt_PrimaryAsset`
-- **UUID**: `fd267378-4d1d-484f-ff52-77821ed10dc2`
 
 ---
 
@@ -1018,39 +937,25 @@ Representing her home country of South Korea, Jett's agile and evasive fighting 
 ![The Range](https://media.valorant-api.com/maps/ee613ee9-28b7-4beb-9666-08db13bb2244/splash.png)
 
 - **Coordinates**: 45°26'FF'N,12°20'Q'E
-- **Map URL**: /Game/Maps/Poveglia/Range
-- **Asset Path**: `ShooterGame/Content/Maps/Poveglia/Poveglia_PrimaryAsset`
-- **UUID**: `ee613ee9-28b7-4beb-9666-08db13bb2244`
 
 ---
 
 ## The Range
 ![The Range](https://media.valorant-api.com/maps/5914d1e0-40c4-cfdd-6b88-eba06347686c/splash.png)
-
 - **Coordinates**: 45°26'FF'N,12°20'Q'E
-- **Map URL**: /Game/Maps/PovegliaV2/RangeV2
-- **Asset Path**: `ShooterGame/Content/Maps/PovegliaV2/PovegliaV2_PrimaryAsset`
-- **UUID**: `5914d1e0-40c4-cfdd-6b88-eba06347686c`
 
----
 
 ## Corrode
 ![Corrode](https://media.valorant-api.com/maps/1c18ab1f-420d-0d8b-71d0-77ad3c439115/splash.png)
-
 - **Coordinates**: 48° 38' FH" N8, 1° 33' YV" W8
-- **Map URL**: /Game/Maps/Rook/Rook
-- **Asset Path**: `ShooterGame/Content/Maps/Rook/Rook_PrimaryAsset`
-- **UUID**: `1c18ab1f-420d-0d8b-71d0-77ad3c439115`
+
 
 ---
 
 ## Haven
 ![Haven](https://media.valorant-api.com/maps/2bee0dc9-4ffe-519b-1cbd-7fbe763a6047/splash.png)
-
 - **Coordinates**: 27°28'A'N,89°38'WZ'E
-- **Map URL**: /Game/Maps/Triad/Triad
-- **Asset Path**: `ShooterGame/Content/Maps/Triad/Triad_PrimaryAsset`
-- **UUID**: `2bee0dc9-4ffe-519b-1cbd-7fbe763a6047`
+
 
 ---
 
