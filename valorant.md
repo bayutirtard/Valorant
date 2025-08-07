@@ -937,7 +937,7 @@ Representing her home country of South Korea, Jett's agile and evasive fighting 
 ---
 
 ## Lotus
-![Lotus](https://media.valorant-api.com/maps/2fe4ed3a-450a-948b-6d6b-e89a78e680a9/splash.png)
+![Lotus]([https://media.valorant-api.com/maps/2fe4ed3a-450a-948b-6d6b-e89a78e680a9/splash.png](https://d1tgyzt3mf06m9.cloudfront.net/v3-staging/2023/01/lotus-coverfba27968-9d20-4ea7-8fb3-f345d90ceb16.png))
 
 - **Coordinates**: 14°07'AD.4"N8 74°53'XY"E8
 
