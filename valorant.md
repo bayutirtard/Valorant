@@ -463,3 +463,391 @@ Representing her home country of South Korea, Jett's agile and evasive fighting 
 
 ---
 
+# Valorant Weapons
+
+## Odin
+![Odin](https://media.valorant-api.com/weapons/63e6c2b6-4a8e-869c-3d4c-e38355226584/displayicon.png)
+
+**Category**: Heavy
+
+**Cost**: 3200
+
+**Stats**
+- Fire Rate: 12
+- Magazine Size: 100
+- Reload Time: 5s
+- Equip Time: 1.25s
+- First Bullet Accuracy: 0.8
+- Wall Penetration: High
+
+**Damage Ranges**
+- 0–30m: Head: 95, Body: 38, Leg: 32.3
+- 30–50m: Head: 77.5, Body: 31, Leg: 26.35
+
+---
+
+## Ares
+![Ares](https://media.valorant-api.com/weapons/55d8a0f4-4274-ca67-fe2c-06ab45efdf58/displayicon.png)
+
+**Category**: Heavy
+
+**Cost**: 1600
+
+**Stats**
+- Fire Rate: 13
+- Magazine Size: 50
+- Reload Time: 3.25s
+- Equip Time: 1.25s
+- First Bullet Accuracy: 1
+- Wall Penetration: High
+
+**Damage Ranges**
+- 0–30m: Head: 75, Body: 30, Leg: 25.5
+- 30–50m: Head: 70, Body: 28, Leg: 23.800001
+
+---
+
+## Vandal
+![Vandal](https://media.valorant-api.com/weapons/9c82e19d-4575-0200-1a81-3eacf00cf872/displayicon.png)
+
+**Category**: Rifle
+
+**Cost**: 2900
+
+**Stats**
+- Fire Rate: 9.75
+- Magazine Size: 25
+- Reload Time: 2.5s
+- Equip Time: 1s
+- First Bullet Accuracy: 0.25
+- Wall Penetration: Medium
+
+**Damage Ranges**
+- 0–50m: Head: 160, Body: 40, Leg: 34
+
+---
+
+## Bulldog
+![Bulldog](https://media.valorant-api.com/weapons/ae3de142-4d85-2547-dd26-4e90bed35cf7/displayicon.png)
+
+**Category**: Rifle
+
+**Cost**: 2050
+
+**Stats**
+- Fire Rate: 10
+- Magazine Size: 24
+- Reload Time: 2.5s
+- Equip Time: 1s
+- First Bullet Accuracy: 0.3
+- Wall Penetration: Medium
+
+**Damage Ranges**
+- 0–50m: Head: 115.5, Body: 35, Leg: 29.75
+
+---
+
+## Phantom
+![Phantom](https://media.valorant-api.com/weapons/ee8e8d15-496b-07ac-e5f6-8fae5d4c7b1a/displayicon.png)
+
+**Category**: Rifle
+
+**Cost**: 2900
+
+**Stats**
+- Fire Rate: 11
+- Magazine Size: 30
+- Reload Time: 2.5s
+- Equip Time: 1s
+- First Bullet Accuracy: 0.2
+- Wall Penetration: Medium
+
+**Damage Ranges**
+- 0–20m: Head: 156, Body: 39, Leg: 33.15
+- 20–50m: Head: 140, Body: 35, Leg: 29.75
+
+---
+
+## Judge
+![Judge](https://media.valorant-api.com/weapons/ec845bf4-4f79-ddda-a3da-0db3774b2794/displayicon.png)
+
+**Category**: Shotgun
+
+**Cost**: 1850
+
+**Stats**
+- Fire Rate: 3.5
+- Magazine Size: 5
+- Reload Time: 2.2s
+- Equip Time: 1s
+- First Bullet Accuracy: 2.25
+- Wall Penetration: Low
+
+**Damage Ranges**
+- 0–10m: Head: 34, Body: 17, Leg: 14.450001
+- 10–15m: Head: 20, Body: 10, Leg: 8.5
+- 15–50m: Head: 14, Body: 7, Leg: 5.9500003
+
+---
+
+## Bucky
+![Bucky](https://media.valorant-api.com/weapons/910be174-449b-c412-ab22-d0873436b21b/displayicon.png)
+
+**Category**: Shotgun
+
+**Cost**: 850
+
+**Stats**
+- Fire Rate: 1.1
+- Magazine Size: 5
+- Reload Time: 2.5s
+- Equip Time: 1s
+- First Bullet Accuracy: 2.6
+- Wall Penetration: Low
+
+**Damage Ranges**
+- 0–8m: Head: 40, Body: 20, Leg: 17
+- 8–12m: Head: 26, Body: 13, Leg: 11.05
+- 12–50m: Head: 18, Body: 9, Leg: 7.65
+
+---
+
+## Frenzy
+![Frenzy](https://media.valorant-api.com/weapons/44d4e95c-4157-0037-81b2-17841bf2e8e3/displayicon.png)
+
+**Category**: Sidearm
+
+**Cost**: 450
+
+**Stats**
+- Fire Rate: 10
+- Magazine Size: 15
+- Reload Time: 1.5s
+- Equip Time: 1s
+- First Bullet Accuracy: 0.65
+- Wall Penetration: Low
+
+**Damage Ranges**
+- 0–20m: Head: 78, Body: 26, Leg: 22.1
+- 20–50m: Head: 63, Body: 21, Leg: 17.85
+
+---
+
+## Classic
+![Classic](https://media.valorant-api.com/weapons/29a0cfab-485b-f5d5-779a-b59f85e204a8/displayicon.png)
+
+**Category**: Sidearm
+
+**Cost**: 0
+
+**Stats**
+- Fire Rate: 6.75
+- Magazine Size: 12
+- Reload Time: 1.75s
+- Equip Time: 0.75s
+- First Bullet Accuracy: 0.4
+- Wall Penetration: Low
+
+**Damage Ranges**
+- 0–30m: Head: 78, Body: 26, Leg: 22.1
+- 30–50m: Head: 66, Body: 22, Leg: 18.7
+
+---
+
+## Ghost
+![Ghost](https://media.valorant-api.com/weapons/1baa85b4-4c70-1284-64bb-6481dfc3bb4e/displayicon.png)
+
+**Category**: Sidearm
+
+**Cost**: 500
+
+**Stats**
+- Fire Rate: 6.75
+- Magazine Size: 13
+- Reload Time: 1.5s
+- Equip Time: 0.75s
+- First Bullet Accuracy: 0.3
+- Wall Penetration: Medium
+
+**Damage Ranges**
+- 0–30m: Head: 105, Body: 30, Leg: 25.5
+- 30–50m: Head: 87.5, Body: 25, Leg: 21.25
+
+---
+
+## Sheriff
+![Sheriff](https://media.valorant-api.com/weapons/e336c6b8-418d-9340-d77f-7a9e4cfe0702/displayicon.png)
+
+**Category**: Sidearm
+
+**Cost**: 800
+
+**Stats**
+- Fire Rate: 4
+- Magazine Size: 6
+- Reload Time: 2.25s
+- Equip Time: 1s
+- First Bullet Accuracy: 0.25
+- Wall Penetration: High
+
+**Damage Ranges**
+- 0–30m: Head: 159.5, Body: 55, Leg: 46.75
+- 30–50m: Head: 145, Body: 50, Leg: 42.5
+
+---
+
+## Shorty
+![Shorty](https://media.valorant-api.com/weapons/42da8ccc-40d5-affc-beec-15aa47b42eda/displayicon.png)
+
+**Category**: Sidearm
+
+**Cost**: 300
+
+**Stats**
+- Fire Rate: 3.33
+- Magazine Size: 2
+- Reload Time: 1.75s
+- Equip Time: 0.75s
+- First Bullet Accuracy: 4
+- Wall Penetration: Low
+
+**Damage Ranges**
+- 0–7m: Head: 22, Body: 11, Leg: 9.35
+- 7–15m: Head: 12, Body: 6, Leg: 5.1
+- 15–50m: Head: 6, Body: 3, Leg: 2.5500002
+
+---
+
+## Operator
+![Operator](https://media.valorant-api.com/weapons/a03b24d3-4319-996d-0f8c-94bbfba1dfc7/displayicon.png)
+
+**Category**: Sniper
+
+**Cost**: 4700
+
+**Stats**
+- Fire Rate: 0.6
+- Magazine Size: 5
+- Reload Time: 3.7s
+- Equip Time: 1.5s
+- First Bullet Accuracy: 5
+- Wall Penetration: High
+
+**Damage Ranges**
+- 0–50m: Head: 255, Body: 150, Leg: 120
+
+---
+
+## Guardian
+![Guardian](https://media.valorant-api.com/weapons/4ade7faa-4cf1-8376-95ef-39884480959b/displayicon.png)
+
+**Category**: Rifle
+
+**Cost**: 2250
+
+**Stats**
+- Fire Rate: 5.25
+- Magazine Size: 12
+- Reload Time: 2.5s
+- Equip Time: 1s
+- First Bullet Accuracy: 0.1
+- Wall Penetration: High
+
+**Damage Ranges**
+- 0–50m: Head: 195, Body: 65, Leg: 48.75
+
+---
+
+## Outlaw
+![Outlaw](https://media.valorant-api.com/weapons/5f0aaf7a-4289-3998-d5ff-eb9a5cf7ef5c/displayicon.png)
+
+**Category**: Sniper
+
+**Cost**: 2400
+
+**Stats**
+- Fire Rate: 2.75
+- Magazine Size: 2
+- Reload Time: 3.8s
+- Equip Time: 1.25s
+- First Bullet Accuracy: 3.5
+- Wall Penetration: High
+
+**Damage Ranges**
+- 0–50m: Head: 238, Body: 140, Leg: 119
+
+---
+
+## Marshal
+![Marshal](https://media.valorant-api.com/weapons/c4883e50-4494-202c-3ec3-6b8a9284f00b/displayicon.png)
+
+**Category**: Sniper
+
+**Cost**: 950
+
+**Stats**
+- Fire Rate: 1.5
+- Magazine Size: 5
+- Reload Time: 2.5s
+- Equip Time: 1.25s
+- First Bullet Accuracy: 1
+- Wall Penetration: Medium
+
+**Damage Ranges**
+- 0–50m: Head: 202, Body: 101, Leg: 85.850006
+
+---
+
+## Spectre
+![Spectre](https://media.valorant-api.com/weapons/462080d1-4035-2937-7c09-27aa2a5c27a7/displayicon.png)
+
+**Category**: Smg
+
+**Cost**: 1600
+
+**Stats**
+- Fire Rate: 13.333
+- Magazine Size: 30
+- Reload Time: 2.25s
+- Equip Time: 0.75s
+- First Bullet Accuracy: 0.4
+- Wall Penetration: Low
+
+**Damage Ranges**
+- 0–15m: Head: 78, Body: 26, Leg: 22.1
+- 15–30m: Head: 66, Body: 22, Leg: 18.7
+- 30–50m: Head: 60, Body: 20, Leg: 17
+
+---
+
+## Stinger
+![Stinger](https://media.valorant-api.com/weapons/f7e1b454-4ad4-1063-ec0a-159e56b58941/displayicon.png)
+
+**Category**: Smg
+
+**Cost**: 1100
+
+**Stats**
+- Fire Rate: 16
+- Magazine Size: 20
+- Reload Time: 2.25s
+- Equip Time: 0.75s
+- First Bullet Accuracy: 0.65
+- Wall Penetration: Low
+
+**Damage Ranges**
+- 0–15m: Head: 67.5, Body: 27, Leg: 22.95
+- 15–50m: Head: 57, Body: 23, Leg: 19
+
+---
+
+## Melee
+![Melee](https://media.valorant-api.com/weapons/2f59173c-4bed-b6c3-2191-dea9b58be9c7/displayicon.png)
+
+**Category**: Melee
+
+**Cost**: 0
+
+
+---
+
