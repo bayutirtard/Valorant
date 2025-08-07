@@ -40,9 +40,11 @@ if "chat_history" not in st.session_state:
 def render_chat(role, content):
     if role == "user":
         st.markdown(f"**You:** {content}")
+
     elif role == "assistant":
         st.markdown("**Bot:**")
         st.markdown(content)
+
 
 # Tampilkan riwayat chat (skip sistem message)
 for msg in st.session_state.chat_history[1:]:
@@ -75,6 +77,7 @@ if submit and user_input:
 if reset:
     st.session_state.chat_history = [system_prompt]
     st.rerun()
+
 
 
 
