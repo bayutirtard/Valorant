@@ -46,7 +46,7 @@ def render_chat(role, content):
     elif role == "assistant":
         st.markdown(f"""
         <div style="background-color:#2a2a2a; padding:10px; border-radius:10px; margin-bottom:10px; color:white;">
-            <b>Bot :</b>
+            <b>Bot 🎮:</b>
         </div>
         """, unsafe_allow_html=True)
 
@@ -64,7 +64,7 @@ def render_chat(role, content):
         # Tampilkan sisa teks setelah gambar terakhir
         if last_end < len(content):
             st.markdown(content[last_end:])
-   
+            
 # Input form
 st.markdown("<br>", unsafe_allow_html=True)
 with st.form(key="chat_form", clear_on_submit=True):
@@ -103,6 +103,7 @@ if reset:
         }
     ]
     st.rerun()
+
 
 
 
