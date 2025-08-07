@@ -1,6 +1,9 @@
 import streamlit as st
 from groq import Groq
 from PIL import Image
+import markdown
+import re
+import time
 
 # Konfigurasi halaman
 st.set_page_config(page_title="Chatbot Valorant", page_icon="🎮")
@@ -35,9 +38,6 @@ if "chat_history" not in st.session_state:
         }
     ]
 
-import re
-import time
-
 # Fungsi untuk keyboard-typing effect
 def typing_effect(text, placeholder):
     for char in text:
@@ -66,6 +66,7 @@ def render_chat(role, content):
         for i, part in enumerate(parts):
             if i % 2 == 0:
                 if part.strip():
+                    html = markdown.markdown(part.strip())
                     st.markdown(f"<div style='color:white'>{part.strip()}</div>", unsafe_allow_html=True)
             else:
                 st.image(part.strip(), use_container_width=True) 
@@ -111,6 +112,7 @@ if reset:
         }
     ]
     st.rerun()
+
 
 
 
