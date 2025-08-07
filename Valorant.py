@@ -50,9 +50,8 @@ def render_chat(role, content):
         </div>
         """, unsafe_allow_html=True)
 
-        # Tampilkan markdown full dengan gambar
-        with st.container():
-            st.markdown(content, unsafe_allow_html=True)
+        # Langsung render markdown — gambar akan otomatis ditampilkan jika markdown valid
+        st.markdown(content, unsafe_allow_html=True)
 
         # Deteksi markdown gambar dan tampilkan
         pattern = r'!\[.*?\]\((.*?)\)'
@@ -111,5 +110,6 @@ if reset:
         }
     ]
     st.rerun()
+
 
 
