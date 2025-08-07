@@ -5,17 +5,6 @@ from groq import Groq
 st.set_page_config(page_title="Chatbot Valorant", page_icon="🎮")
 st.title("Chatbot Valorant")
 
-# CSS untuk dark theme dan gambar responsif
-st.markdown("""
-<style>
-    img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 8px;
-    }
-</style>
-""", unsafe_allow_html=True)
-
 # Inisialisasi Groq client
 client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 
@@ -97,5 +86,6 @@ if submit and user_input:
 if reset:
     st.session_state.chat_history = [system_prompt]
     st.rerun()
+
 
 
