@@ -82,7 +82,7 @@ if st.session_state.get("confirm_reset", False):
     with st.container():
         st.markdown("---")
         st.error("⚠️ Are you sure you want to reset the entire conversation?")
-        col1, col2 = st.columns(1)
+        col1, col2 = st.columns(2)
         with col1:
             if st.button("Yes, reset", key="confirm_yes"):
                 st.session_state.chat_history = [system_prompt]
@@ -92,6 +92,7 @@ if st.session_state.get("confirm_reset", False):
             if st.button("Cancel", key="confirm_no"):
                 st.session_state.confirm_reset = False
                 st.rerun()
+
 
 
 
