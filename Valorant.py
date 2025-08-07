@@ -35,29 +35,35 @@ if "chat_history" not in st.session_state:
         }
     ]
 
-
 def render_chat(role, content):
     if role == "user":
         st.markdown(f"""
         <div style="background-color:#1e1e1e; padding:10px; border-radius:10px; margin-bottom:10px; color:white;">
-            <b>You:</b><br>{content}
+            <b>You:</b> {content}
         </div>
         """, unsafe_allow_html=True)
 
     elif role == "assistant":
-        # Tampilkan bubble bot
         st.markdown(f"""
-        <div style="background-color:#2a2a2a; padding:15px; border-radius:10px; margin-bottom:10px; color:white;">
-            <b>Bot 🎮:</b>
+        <div style="background-color:#2a2a2a; padding:10px; border-radius:10px; margin-bottom:10px; color:white;">
+            <b>Bot :</b>
         </div>
         """, unsafe_allow_html=True)
 
-        # Tampilkan konten markdown langsung, termasuk gambar dan bold
-        st.markdown(content, unsafe_allow_html=False)
-
-# Tampilkan seluruh riwayat chat (kecuali system prompt)
-for msg in st.session_state.chat_history[1:]:
-    render_chat(msg["role"], msg["content"])
+        # Deteksi markdown gambar dan tampilkan
+        pattern = r'!\[.*?\]\((.*?)\)'
+        last_end = 0
+        for match in re.finditer(pattern, content):
+            # Tampilkan teks sebelum gambar
+            if match.start() > last_end:
+                st.markdown(content[last_end:match.start()])
+            # Tampilkan gambar
+            img_url = match.group(1)
+            st.image(img_url, use_container_width=True)
+            last_end = match.end()
+        # Tampilkan sisa teks setelah gambar terakhir
+        if last_end < len(content):
+            st.markdown(content[last_end:])
    
 # Input form
 st.markdown("<br>", unsafe_allow_html=True)
@@ -97,6 +103,7 @@ if reset:
         }
     ]
     st.rerun()
+
 
 
 
