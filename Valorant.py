@@ -68,7 +68,8 @@ def render_chat(role, content):
                 if part.strip():
                     st.markdown(part.strip(), unsafe_allow_html=True)
             else:
-                st.image(part.strip(), use_column_width=True)
+                st.image(image_url, use_container_width=True)
+
 
 # Input form
 st.markdown("<br>", unsafe_allow_html=True)
@@ -111,6 +112,7 @@ if reset:
         }
     ]
     st.rerun()
+
 
 
 
