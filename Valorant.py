@@ -62,8 +62,9 @@ def render_chat(role, content):
             <b>Bot 🎮:</b>
         </div>
         """, unsafe_allow_html=True)
-        # Render jawaban langsung (markdown + gambar)
-        st.markdown(content, unsafe_allow_html=True)
+
+        # Gunakan markdown normal (tanpa HTML)
+        st.markdown(content)  # Jangan pakai unsafe_allow_html!
 
 # Tampilkan riwayat chat (skip sistem message)
 for msg in st.session_state.chat_history[1:]:
@@ -109,3 +110,4 @@ if reset:
         }
     ]
     st.rerun()
+
