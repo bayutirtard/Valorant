@@ -44,15 +44,15 @@ def render_chat(role, content):
         """, unsafe_allow_html=True)
 
     elif role == "assistant":
-        # Bot bubble
         st.markdown(f"""
-        <div style="background-color:#2a2a2a; padding:10px; border-radius:10px; margin-bottom:10px; color:white;">
+        <div style="background-color:#2a2a2a; padding:10px; border-radius:10px; margin-bottom:0px; color:white;">
             <b>Bot 🎮:</b>
         </div>
         """, unsafe_allow_html=True)
 
-        # Tampilkan markdown secara utuh (biarkan gambar ditampilkan otomatis)
-        st.markdown(content, unsafe_allow_html=False)
+        # Tampilkan markdown full dengan gambar
+        with st.container():
+            st.markdown(content, unsafe_allow_html=True)
 
         # Deteksi markdown gambar dan tampilkan
         pattern = r'!\[.*?\]\((.*?)\)'
@@ -111,4 +111,5 @@ if reset:
         }
     ]
     st.rerun()
+
 
