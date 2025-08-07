@@ -41,25 +41,40 @@ if "chat_history" not in st.session_state:
 def render_chat(role, content):
     if role == "user":
         st.markdown(f"""
-        <div style="background-color:#1e1e1e; padding:10px; border-radius:10px; margin-bottom:10px; color:white;">
+        <div style="
+            background-color:#1e1e1e;
+            padding:10px;
+            border-radius:10px;
+            margin-bottom:10px;
+            color:white;
+        ">
             <b>You:</b> {content}
         </div>
         """, unsafe_allow_html=True)
+
     elif role == "assistant":
         st.markdown(f"""
-        <div style="background-color:#2a2a2a; padding:10px; border-radius:10px; margin-bottom:10px; color:white;">
-            <b>Bot 🎮:</b>
+        <div style="
+            background-color:#2b2b2b;
+            padding:10px;
+            border-radius:10px;
+            margin-bottom:10px;
+            color:white;
+        ">
+            <b>Bot 🎮 :</b>
         </div>
         """, unsafe_allow_html=True)
-        placeholder = st.empty()
-        typing_effect("", placeholder)
-        # Pisahkan teks dan gambar
+
+        # Split markdown content by images ![alt](url)
         parts = re.split(r'!\[.*?\]\((.*?)\)', content)
+
         for i, part in enumerate(parts):
             if i % 2 == 0:
+                # Text parts (even indices)
                 if part.strip():
-                    st.markdown(f"<div style='color:white'>{part.strip()}</div>", unsafe_allow_html=True)
+                    st.markdown(part.strip())  # Use markdown renderer (supports **bold**, lists, etc)
             else:
+                # Image parts (odd indices)
                 st.image(part.strip(), use_container_width=True)
                 
 # Input form
@@ -103,6 +118,7 @@ if reset:
         }
     ]
     st.rerun()
+
 
 
 
