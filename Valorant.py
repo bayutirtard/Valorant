@@ -56,7 +56,7 @@ def render_chat(role, content):
         </div>
         """, unsafe_allow_html=True)
 
-   elif role == "assistant":
+elif role == "assistant":
     st.markdown(f"""
     <div style="background-color:#2a2a2a; padding:10px; border-radius:10px; margin-bottom:10px; color:white;">
         <b>Bot 🎮:</b><br>{content}
@@ -107,4 +107,5 @@ if reset:
         }
     ]
     st.rerun()
+
 
