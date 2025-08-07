@@ -44,15 +44,16 @@ def render_chat(role, content):
             <b>You:</b> {content}
         </div>
         """, unsafe_allow_html=True)
-  elif role == "assistant":
-    st.markdown(f"""
-    <div style="background-color:#2a2a2a; padding:10px; border-radius:10px; margin-bottom:10px; color:white;">
-        <b>Bot 🎮:</b>
-    </div>
-    """, unsafe_allow_html=True)
 
-    # Pisahkan teks dan gambar
-    parts = re.split(r'!\[.*?\]\((.*?)\)', content)
+    elif role == "assistant":
+        st.markdown(f"""
+        <div style="background-color:#2a2a2a; padding:10px; border-radius:10px; margin-bottom:10px; color:white;">
+            <b>Bot 🎮:</b>
+        </div>
+        """, unsafe_allow_html=True)
+
+        # Pisahkan teks dan gambar
+        parts = re.split(r'!\[.*?\]\((.*?)\)', content)
         for i, part in enumerate(parts):
             if i % 2 == 0:
                 if part.strip():
@@ -102,5 +103,6 @@ if reset:
         }
     ]
     st.rerun()
+
 
 
