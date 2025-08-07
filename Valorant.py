@@ -41,41 +41,36 @@ if "chat_history" not in st.session_state:
 def render_chat(role, content):
     if role == "user":
         st.markdown(f"""
-        <div style="
-            background-color:#1e1e1e;
-            padding:10px;
-            border-radius:10px;
-            margin-bottom:10px;
-            color:white;
-        ">
-            <b>You:</b> {content}
+        <div style="background-color:#e6f0ff; padding:10px; border-radius:10px; margin-bottom:10px">
+            <b>You:</b><br>{content}
         </div>
         """, unsafe_allow_html=True)
-
     elif role == "assistant":
         st.markdown(f"""
-        <div style="
-            background-color:#2b2b2b;
-            padding:10px;
-            border-radius:10px;
-            margin-bottom:10px;
-            color:white;
-        ">
-            <b>Bot 🎮 :</b>
+        <div style="background-color:#f9f9f9; padding:10px; border-radius:10px; margin-bottom:10px">
+            <b>Bot:</b>
         </div>
         """, unsafe_allow_html=True)
+        render_markdown_with_images(content)
 
-        # Split markdown content by images ![alt](url)
-        parts = re.split(r'!\[.*?\]\((.*?)\)', content)
+# Fungsi untuk deteksi dan tampilkan markdown dengan gambar
+def render_markdown_with_images(markdown_text):
+    # Regex untuk gambar ![Alt](URL)
+    img_pattern = r'!\[.*?\]\((.*?)\)'
+    parts = re.split(img_pattern, markdown_text)
+    
+    for i, part in enumerate(parts):
+        if i % 2 == 0:
+            # Teks markdown
+            if part.strip():
+                st.markdown(part.strip(), unsafe_allow_html=True)
+        else:
+            # Gambar markdown
+            st.image(part.strip(), use_column_width=True)
 
-        for i, part in enumerate(parts):
-            if i % 2 == 0:
-                # Text parts (even indices)
-                if part.strip():
-                    st.markdown(part.strip())  # Use markdown renderer (supports **bold**, lists, etc)
-            else:
-                # Image parts (odd indices)
-                st.image(part.strip(), use_container_width=True)
+# Tampilkan riwayat chat
+for msg in st.session_state.chat_history[1:]:
+    render_chat(msg["role"], msg["content"])
                 
 # Input form
 st.markdown("<br>", unsafe_allow_html=True)
@@ -118,6 +113,7 @@ if reset:
         }
     ]
     st.rerun()
+
 
 
 
