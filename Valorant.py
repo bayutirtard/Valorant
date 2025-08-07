@@ -57,7 +57,7 @@ def render_chat(role, content):
         for i, part in enumerate(parts):
             if i % 2 == 0:
                 if part.strip():
-                    st.markdown(f"<div style='color:white'>{part.strip()}</div>", unsafe_allow_html=True)
+                    st.markdown(part.strip())  # Biarkan markdown tampil normal
             else:
                 st.image(part.strip(), use_container_width=True)
 
@@ -103,6 +103,7 @@ if reset:
         }
     ]
     st.rerun()
+
 
 
 
