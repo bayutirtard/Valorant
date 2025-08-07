@@ -74,9 +74,13 @@ if submit and user_input:
     st.rerun()
 
 # Tombol reset
+# === 11. RESET CHAT DENGAN KONFIRMASI ===
 if reset:
-    st.session_state.chat_history = [system_prompt]
-    st.rerun()
+    st.warning("This will reset the entire conversation.")
+    if st.checkbox("Yes, I'm sure I want to reset."):
+        st.session_state.chat_history = [system_prompt]
+        st.rerun()
+
 
 
 
