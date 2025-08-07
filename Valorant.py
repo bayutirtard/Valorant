@@ -56,12 +56,12 @@ def render_chat(role, content):
         </div>
         """, unsafe_allow_html=True)
 
-elif role == "assistant":
-    st.markdown(f"""
-    <div style="background-color:#2a2a2a; padding:10px; border-radius:10px; margin-bottom:10px; color:white;">
-        <b>Bot 🎮:</b><br>{content}
-    </div>
-    """, unsafe_allow_html=True)
+    elif role == "assistant":
+        st.markdown(f"""
+        <div style="background-color:#2a2a2a; padding:10px; border-radius:10px; margin-bottom:10px; color:white;">
+            <b>Bot 🎮:</b><br>{content}
+        </div>
+        """, unsafe_allow_html=True)
 
 # Tampilkan riwayat chat (skip sistem message)
 for msg in st.session_state.chat_history[1:]:
@@ -107,5 +107,6 @@ if reset:
         }
     ]
     st.rerun()
+
 
 
