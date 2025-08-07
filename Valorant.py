@@ -39,16 +39,21 @@ def render_chat(role, content):
     if role == "user":
         st.markdown(f"""
         <div style="background-color:#1e1e1e; padding:10px; border-radius:10px; margin-bottom:10px; color:white;">
-            <b>You:</b> {content}
+            <b>You:</b><br>{content}
         </div>
         """, unsafe_allow_html=True)
 
     elif role == "assistant":
+        # Bot response: gunakan markdown dan izinkan render gambar
         st.markdown(f"""
-        <div style="background-color:#2a2a2a; padding:10px; border-radius:10px; margin-bottom:10px; color:white;">
-            <b>Bot :</b>
+        <div style="background-color:#2a2a2a; padding:15px; border-radius:10px; margin-bottom:10px; color:white;">
+            <b>Bot 🎮:</b><br><br>
         </div>
         """, unsafe_allow_html=True)
+
+        # Render markdown asli (berisi teks dan gambar)
+        st.markdown(content, unsafe_allow_html=False)
+
 
         # Deteksi markdown gambar dan tampilkan
         pattern = r'!\[.*?\]\((.*?)\)'
@@ -107,6 +112,7 @@ if reset:
         }
     ]
     st.rerun()
+
 
 
 
