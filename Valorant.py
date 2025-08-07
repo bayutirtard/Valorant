@@ -23,6 +23,7 @@ system_prompt = {
     "role": "system",
     "content": (
         "You are a Valorant expert. You are only allowed to answer based on the data provided below. "
+        "Show the picture of the agents, arsenal and others. "
         "You must not use any outside knowledge. Do not guess. Do not refer to other games. "
         "If the answer is not clearly found in the data, respond only with: "
         "\"Sorry, that information is not available in the current database.\" "
@@ -92,6 +93,7 @@ if st.session_state.get("confirm_reset", False):
             if st.button("Cancel", key="confirm_no"):
                 st.session_state.confirm_reset = False
                 st.rerun()
+
 
 
 
