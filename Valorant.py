@@ -17,7 +17,7 @@ def load_markdown_data():
         with open("valorant.md", "r", encoding="utf-8") as f:
             return f.read()
     except FileNotFoundError:
-        return "Valorant data not find."
+        return "Valorant data not found."
 
 # Simpan isi markdown
 markdown_data = load_markdown_data()
@@ -27,16 +27,19 @@ if "chat_history" not in st.session_state:
     st.session_state.chat_history = [
         {
             "role": "system",
-            "content": "You are a Valorant expert. You are only allowed to answer based on the data provided below. "
-    "You must not use any outside knowledge. Do not guess. Do not refer to other games. "
-    "If the answer is not clearly found in the data, respond only with: "
-    "\"Sorry, that information is not available in the current database.\" "
-    "Even if the question seems obvious or easy, do not use general knowledge. "
-    "Use ONLY the following data as your source:\n\n"
-    + markdown_data
+            "content": (
+                "You are a Valorant expert. You are only allowed to answer based on the data provided below. "
+                "You must not use any outside knowledge. Do not guess. Do not refer to other games. "
+                "If the answer is not clearly found in the data, respond only with: "
+                "\"Sorry, that information is not available in the current database.\" "
+                "Even if the question seems obvious or easy, do not use general knowledge. "
+                "Use ONLY the following data as your source:\n\n"
+                + markdown_data
+            )
         }
     ]
 
+# Fungsi untuk render chat dengan dark theme
 def render_chat(role, content):
     if role == "user":
         st.markdown(f"""
@@ -53,40 +56,38 @@ def render_chat(role, content):
         """, unsafe_allow_html=True)
 
     elif role == "assistant":
-        # Split markdown by images
+        # Split markdown content by images
         parts = re.split(r'!\[.*?\]\((.*?)\)', content)
 
-        with st.container():  # Kotak penuh bot
-            st.markdown(f"""
-            <div style="
-                background-color:#2b2b2b;
-                padding:10px;
-                border-radius:10px;
-                margin-bottom:10px;
-                color:white;
-            ">
-                <b>Bot 🎮 :</b><br><br>
-            """, unsafe_allow_html=True)
+        st.markdown(f"""
+        <div style="
+            background-color:#2b2b2b;
+            padding:10px;
+            border-radius:10px;
+            margin-bottom:10px;
+            color:white;
+        ">
+            <b>Bot 🎮 :</b><br><br>
+        """, unsafe_allow_html=True)
 
-            for i, part in enumerate(parts):
-                if i % 2 == 0:
-                    if part.strip():
-                        st.markdown(part.strip())  # markdown teks
-                else:
-                    st.image(part.strip(), use_container_width=True)  # gambar
+        for i, part in enumerate(parts):
+            if i % 2 == 0:
+                if part.strip():
+                    st.markdown(part.strip(), unsafe_allow_html=True)
+            else:
+                try:
+                    st.image(part.strip(), use_column_width=True)
+                except:
+                    st.markdown(f"[Image not found]({part.strip()})", unsafe_allow_html=True)
 
-            st.markdown("</div>", unsafe_allow_html=True)
+        st.markdown("</div>", unsafe_allow_html=True)
 
-# Tampilkan riwayat chat
-for msg in st.session_state.chat_history[1:]:
-    render_chat(msg["role"], msg["content"])
-                
-# Input form
+# Form input
 st.markdown("<br>", unsafe_allow_html=True)
 with st.form(key="chat_form", clear_on_submit=True):
     col1, col2, col3 = st.columns([6, 1, 1])
     with col1:
-        user_input = st.text_input("Type your question here", placeholder="Type your question here...", label_visibility="collapsed")
+        user_input = st.text_input("Type your question here", placeholder="Ask about agents, skills, or roles...", label_visibility="collapsed")
     with col2:
         submit = st.form_submit_button("Send")
     with col3:
@@ -104,6 +105,7 @@ if submit and user_input:
         st.session_state.chat_history.append({"role": "assistant", "content": answer})
     st.rerun()
 
+# Tampilkan chat
 for msg in st.session_state.chat_history[1:]:
     render_chat(msg["role"], msg["content"])
 
@@ -112,56 +114,15 @@ if reset:
     st.session_state.chat_history = [
         {
             "role": "system",
-            "content": "You are a Valorant expert. You are only allowed to answer based on the data provided below. "
-            "You must not use any outside knowledge. Do not guess. Do not refer to other games. "
-            "If the answer is not clearly found in the data, respond only with: "
-            "\"Sorry, that information is not available in the current database.\" "
-            "Even if the question seems obvious or easy, do not use general knowledge. "
-            "Use ONLY the following data as your source:\n\n"
-            + markdown_data
+            "content": (
+                "You are a Valorant expert. You are only allowed to answer based on the data provided below. "
+                "You must not use any outside knowledge. Do not guess. Do not refer to other games. "
+                "If the answer is not clearly found in the data, respond only with: "
+                "\"Sorry, that information is not available in the current database.\" "
+                "Even if the question seems obvious or easy, do not use general knowledge. "
+                "Use ONLY the following data as your source:\n\n"
+                + markdown_data
+            )
         }
     ]
     st.rerun()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
