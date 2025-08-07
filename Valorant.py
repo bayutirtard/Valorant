@@ -44,26 +44,35 @@ def render_chat(role, content):
         """, unsafe_allow_html=True)
 
     elif role == "assistant":
-        st.markdown(f"""
+        # Buat HTML wrapper
+        html = f"""
         <div style="background-color:#2a2a2a; padding:10px; border-radius:10px; margin-bottom:10px; color:white;">
-            <b>Bot 🎮:</b>
-        </div>
-        """, unsafe_allow_html=True)
+            <b>Bot 🎮:</b><br>
+        """
 
-        # Deteksi markdown gambar dan tampilkan
+        # Gabungkan teks dan gambar
         pattern = r'!\[.*?\]\((.*?)\)'
         last_end = 0
         for match in re.finditer(pattern, content):
-            # Tampilkan teks sebelum gambar
+            # Tambahkan teks sebelum gambar
             if match.start() > last_end:
-                st.markdown(content[last_end:match.start()])
-            # Tampilkan gambar
+                text_before = content[last_end:match.start()].strip().replace("\n", "<br>")
+                html += f"{text_before}<br>"
+
+            # Tambahkan gambar sebagai tag HTML <img>
             img_url = match.group(1)
-            st.image(img_url, use_container_width=True)
+            html += f"<img src='{img_url}' style='max-width:100%; border-radius:10px; margin-top:10px; margin-bottom:10px;'><br>"
             last_end = match.end()
-        # Tampilkan sisa teks setelah gambar terakhir
+
+        # Tambahkan sisa teks setelah gambar terakhir
         if last_end < len(content):
-            st.markdown(content[last_end:])
+            text_after = content[last_end:].strip().replace("\n", "<br>")
+            html += f"{text_after}"
+
+        html += "</div>"
+
+        st.markdown(html, unsafe_allow_html=True)
+
 
 # Tampilkan riwayat chat
 for msg in st.session_state.chat_history[1:]:
@@ -107,6 +116,7 @@ if reset:
         }
     ]
     st.rerun()
+
 
 
 
