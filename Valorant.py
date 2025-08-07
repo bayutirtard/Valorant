@@ -30,22 +30,22 @@ def load_markdown_data():
 # Simpan isi markdown ke variabel
 markdown_data = load_markdown_data()
 
+system_prompt = {
+    "role": "system",
+    "content": (
+        "You are a Valorant expert. You are only allowed to answer based on the data provided below. "
+        "You must not use any outside knowledge. Do not guess. Do not refer to other games. "
+        "If the answer is not clearly found in the data, respond only with: "
+        "\"Sorry, that information is not available in the current database.\" "
+        "Even if the question seems obvious or easy, do not use general knowledge. "
+        "Use ONLY the following data as your source:\n\n"
+        + markdown_data
+    )
+}
+
 # Inisialisasi riwayat chat jika belum ada
 if "chat_history" not in st.session_state:
-    st.session_state.chat_history = [
-        {
-            "role": "system",
-            "content": (
-                "You are a Valorant expert. You are only allowed to answer based on the data provided below. "
-                "You must not use any outside knowledge. Do not guess. Do not refer to other games. "
-                "If the answer is not clearly found in the data, respond only with: "
-                "\"Sorry, that information is not available in the current database.\" "
-                "Even if the question seems obvious or easy, do not use general knowledge. "
-                "Use ONLY the following data as your source:\n\n"
-                + markdown_data
-            )
-        }
-    ]
+    st.session_state.chat_history = [system_prompt]
 
 # Fungsi render chat
 def render_chat(role, content):
@@ -95,21 +95,9 @@ if submit and user_input:
 
 # Tombol reset
 if reset:
-    st.session_state.chat_history = [
-        {
-            "role": "system",
-            "content": (
-                "You are a Valorant expert. You are only allowed to answer based on the data provided below. "
-                "You must not use any outside knowledge. Do not guess. Do not refer to other games. "
-                "If the answer is not clearly found in the data, respond only with: "
-                "\"Sorry, that information is not available in the current database.\" "
-                "Even if the question seems obvious or easy, do not use general knowledge. "
-                "Use ONLY the following data as your source:\n\n"
-                + markdown_data
-            )
-        }
-    ]
+    st.session_state.chat_history = [system_prompt]
     st.rerun()
+
 
 
 
