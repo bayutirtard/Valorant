@@ -45,29 +45,46 @@ def typing_effect(text, placeholder):
     placeholder.markdown("")  # clear placeholder
 
 # Fungsi render markdown & gambar dengan styling
+
 def render_chat(role, content):
     if role == "user":
         st.markdown(f"""
-        <div style="background-color:#1e1e1e; padding:10px; border-radius:10px; margin-bottom:10px; color:white;">
-            <b>You:</b> {content}
+        <div style="
+            background-color:#1e1e1e;
+            padding:10px;
+            border-radius:10px;
+            margin-bottom:10px;
+            color:white;
+        ">
+            <b>You:</b><br>
+            {content}
         </div>
         """, unsafe_allow_html=True)
+
     elif role == "assistant":
-        st.markdown(f"""
-        <div style="background-color:#2a2a2a; padding:10px; border-radius:10px; margin-bottom:10px; color:white;">
-            <b>Bot 🎮:</b>
-        </div>
-        """, unsafe_allow_html=True)
-        placeholder = st.empty()
-        typing_effect("", placeholder)
-        # Pisahkan teks dan gambar
+        # Split markdown by images
         parts = re.split(r'!\[.*?\]\((.*?)\)', content)
-        for i, part in enumerate(parts):
-            if i % 2 == 0:
-                if part.strip():
-                    st.markdown(part.strip())  # Biarkan markdown merender seperti biasa
-            else:
-                st.image(part.strip(), use_container_width=True) 
+
+        with st.container():  # Kotak penuh bot
+            st.markdown(f"""
+            <div style="
+                background-color:#2b2b2b;
+                padding:10px;
+                border-radius:10px;
+                margin-bottom:10px;
+                color:white;
+            ">
+                <b>Bot 🎮 :</b><br><br>
+            """, unsafe_allow_html=True)
+
+            for i, part in enumerate(parts):
+                if i % 2 == 0:
+                    if part.strip():
+                        st.markdown(part.strip())  # markdown teks
+                else:
+                    st.image(part.strip(), use_container_width=True)  # gambar
+
+            st.markdown("</div>", unsafe_allow_html=True)
                 
 # Input form
 st.markdown("<br>", unsafe_allow_html=True)
@@ -110,6 +127,7 @@ if reset:
         }
     ]
     st.rerun()
+
 
 
 
