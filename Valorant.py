@@ -35,82 +35,51 @@ system_prompt = {
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = [system_prompt]
 
-# ---- Fungsi Copy + Like/Dislike Satu Baris, Dempet Kiri ----
-def copy_like_dislike_buttons(text, idx):
+# ---- Fungsi Copy Button (HTML/JS tetap stylish)
+def copy_to_clipboard_button(text, idx):
     st.components.v1.html(f"""
-    <div style="display: flex; align-items: center; gap: 6px; margin: 3px 0 7px 0; justify-content: flex-start;">
-        <button id="copyBtn{idx}" style="
-            padding:3px 12px;
-            border-radius:8px;
-            border:none;
-            background:#262730;
-            color:#FFD700;
-            font-weight:bold;
-            font-size:15px;
-            box-shadow:0 2px 8px #0002;
-            cursor:pointer;">
-            📋
-        </button>
-        <button id="likeBtn{idx}" style="
-            padding:3px 10px;
-            border-radius:8px;
-            border:none;
-            background:#262730;
-            color:#FFD700;
-            font-size:17px;
-            cursor:pointer;">
-            👍
-        </button>
-        <button id="dislikeBtn{idx}" style="
-            padding:3px 10px;
-            border-radius:8px;
-            border:none;
-            background:#262730;
-            color:#FFD700;
-            font-size:17px;
-            cursor:pointer;">
-            👎
-        </button>
-        <span id="copiedMsg{idx}" style="color:#32CD32; margin-left:8px; display:none; font-size:12px;">Copied!</span>
-        <span id="likedMsg{idx}" style="color:#32CD32; margin-left:7px; display:none; font-size:12px;">Thanks for the rating!</span>
-        <span id="dislikedMsg{idx}" style="color:#e04a3c; margin-left:7px; display:none; font-size:12px;">Thanks for the feedback!</span>
-    </div>
+    <button id="copyBtn{idx}" style="
+        margin:2px 8px 2px 0;
+        padding:5px 14px;
+        border-radius:7px;
+        border:1.5px solid #FFD700;
+        background:#393a41;
+        color:#FFD700;
+        font-weight:bold;
+        font-size:16px;
+        box-shadow:0 2px 8px #0002;
+        cursor:pointer;">
+        📋 Copy
+    </button>
+    <span id="copiedMsg{idx}" style="color:#32CD32; margin-left:7px; display:none; font-size:13px;">Copied!</span>
     <script>
-    const btnCopy = document.getElementById('copyBtn{idx}');
-    const btnLike = document.getElementById('likeBtn{idx}');
-    const btnDislike = document.getElementById('dislikeBtn{idx}');
-    const msgCopied = document.getElementById('copiedMsg{idx}');
-    const msgLiked = document.getElementById('likedMsg{idx}');
-    const msgDisliked = document.getElementById('dislikedMsg{idx}');
-    if(btnCopy) {{
-        btnCopy.onclick = function() {{
+    const btn = document.getElementById('copyBtn{idx}');
+    const msg = document.getElementById('copiedMsg{idx}');
+    if(btn) {{
+        btn.onclick = function() {{
             navigator.clipboard.writeText(`{text.replace("`", "\\`")}`);
-            if(msgCopied) {{
-                msgCopied.style.display = "inline";
-                setTimeout(function(){{msgCopied.style.display="none"}}, 900);
-            }}
-        }};
-    }}
-    if(btnLike) {{
-        btnLike.onclick = function() {{
-            if(msgLiked) {{
-                msgLiked.style.display = "inline";
-                setTimeout(function(){{msgLiked.style.display="none"}}, 900);
-            }}
-        }};
-    }}
-    if(btnDislike) {{
-        btnDislike.onclick = function() {{
-            if(msgDisliked) {{
-                msgDisliked.style.display = "inline";
-                setTimeout(function(){{msgDisliked.style.display="none"}}, 900);
+            if(msg) {{
+                msg.style.display = "inline";
+                setTimeout(function(){{msg.style.display="none"}}, 1000);
             }}
         }};
     }}
     </script>
-    """, height=38)
+    """, height=36)
 
-# --- Render chat seperti biasa
+# ---- Fungsi Streamlit Rating Button
+def rating_buttons(idx):
+    col1, col2 = st.columns([1,1])
+    with col1:
+        if st.button("👍", key=f"up_{idx}"):
+            st.session_state[f"rate_{idx}"] = "up"
+            st.success("Terima kasih atas ratingnya!")
+    with col2:
+        if st.button("👎", key=f"down_{idx}"):
+            st.session_state[f"rate_{idx}"] = "down"
+            st.info("Terima kasih atas feedbacknya!")
+
+# ---- Render chat
 def render_chat(role, content):
     if role == "user":
         st.markdown(f"**You:** {content}")
@@ -144,7 +113,7 @@ if submit and st.session_state.get("input_text", ""):
             messages=st.session_state.chat_history
         )
         answer = response.choices[0].message.content
-        # raw_markdown untuk copy (biar format markdown tetap ikut)
+        # raw_markdown untuk copy
         st.session_state.chat_history.append({
             "role": "assistant",
             "content": answer,
@@ -157,11 +126,19 @@ if reset:
     st.session_state.chat_history = [system_prompt]
     st.rerun()
 
-# --- Tampilkan chat + tombol Copy/Like/Dislike di bawah jawaban bot
+# --- Tampilkan chat + tombol Copy/Like/Dislike
 for idx, msg in enumerate(st.session_state.chat_history[1:]):  # skip system prompt
     render_chat(msg["role"], msg["content"])
     if msg["role"] == "assistant":
-        copy_like_dislike_buttons(msg.get("raw_markdown", msg["content"]), idx)
+        col1, col2 = st.columns([2, 3])
+        with col1:
+            copy_to_clipboard_button(msg.get("raw_markdown", msg["content"]), idx)
+        with col2:
+            rating_buttons(idx)
     st.markdown("---")
 
+# ---- Statistik total Like/Dislike
+n_like = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "up")
+n_dislike = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "down")
+st.markdown(f"### Statistik Feedback Sesi Ini:  \n👍 **{n_like}** &nbsp;&nbsp;&nbsp; 👎 **{n_dislike}**")
 
