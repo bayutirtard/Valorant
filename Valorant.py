@@ -3,18 +3,21 @@ from groq import Groq
 import gspread
 from google.oauth2.service_account import Credentials
 from datetime import datetime
+import json
 
-# Fungsi simpan log ke Google Sheets
+# --- Fungsi simpan log ke Google Sheets
 def save_feedback_to_gsheet(user_q, bot_a, feedback):
-    creds = Credentials.from_service_account_file(
-        "gspread_cred.json", scopes=["https://www.googleapis.com/auth/spreadsheets"]
+    # Untuk Streamlit Cloud: load credential dari secrets
+    creds = Credentials.from_service_account_info(
+        json.loads(st.secrets["GS_CRED_JSON"]),
+        scopes=["https://www.googleapis.com/auth/spreadsheets"]
     )
     gc = gspread.authorize(creds)
     sh = gc.open_by_url("https://docs.google.com/spreadsheets/d/1Nlis6U5BCx7afjdulH2pRKvJmZG0PpwpBFpoMTN1L4s/edit?usp=sharing")
     ws = sh.sheet1
     ws.append_row([str(datetime.now()), user_q, bot_a, feedback])
 
-# Streamlit config
+# --- Streamlit config
 st.set_page_config(page_title="Chatbot Valorant", page_icon="🎮")
 st.title("Chatbot Valorant")
 
@@ -76,7 +79,7 @@ def rating_buttons(idx):
             if user_msg and bot_msg:
                 save_feedback_to_gsheet(user_msg, bot_msg, "down")
 
-# Tampilkan chat & rating
+# --- Tampilkan chat & rating
 for idx in range(0, (len(st.session_state.chat_history)-1)//2):
     msg_user = st.session_state.chat_history[1:][idx*2]
     msg_bot = st.session_state.chat_history[1:][idx*2+1]
@@ -85,7 +88,7 @@ for idx in range(0, (len(st.session_state.chat_history)-1)//2):
     rating_buttons(idx)
     st.markdown("---")
 
-# Input form
+# --- Input form
 st.markdown("<br>", unsafe_allow_html=True)
 with st.form(key="chat_form", clear_on_submit=True):
     col1, col2, col3 = st.columns([6, 1, 1])
@@ -110,9 +113,10 @@ if submit and user_input:
         )
         answer = response.choices[0].message.content
         st.session_state.chat_history.append({"role": "assistant", "content": answer})
-        save_feedback_to_gsheet(user_input, answer, "") 
+        save_feedback_to_gsheet(user_input, answer, "")   # log QnA tanpa feedback
     st.rerun()
 
+# --- RESET dengan popup konfirmasi & hapus feedback
 if reset:
     st.session_state.confirm_reset = True
     st.rerun()
@@ -134,9 +138,7 @@ if st.session_state.get("confirm_reset", False):
             st.session_state.confirm_reset = False
             st.rerun()
 
-# Statistics
+# --- Statistik feedback
 n_like = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "up")
 n_dislike = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "down")
-st.markdown(f"### Feedback Statistics This Session:  \n👍 **{n_like}** &nbsp;&nbsp;&nbsp; 👎 **{n_dislike}**")
-
-
+st.markdown(f"### Statistik Feedback Sesi Ini:  \n👍 **{n_like}** &nbsp;&nbsp;&nbsp; 👎 **{n_dislike}**")
