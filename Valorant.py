@@ -37,10 +37,37 @@ if "chat_history" not in st.session_state:
     st.session_state.chat_history = [system_prompt]
 
 # --- Fungsi Copy ke Clipboard
-def copy_to_clipboard_button(text):
+def copy_to_clipboard_button(text, idx):
     st.components.v1.html(f"""
-    <button onclick="navigator.clipboard.writeText(`{text}`)" style="margin-top:6px;padding:6px 18px;border-radius:6px;">Copy</button>
-    """, height=36)
+    <button id="copyBtn{idx}" style="
+        margin-top:10px;
+        padding:6px 24px;
+        border-radius:8px;
+        border:none;
+        background:#262730;
+        color:#FFD700;
+        font-weight:bold;
+        font-size:16px;
+        box-shadow:0 2px 8px #0002;
+        cursor:pointer;
+        transition: background 0.2s;">
+        📋 Copy
+    </button>
+    <span id="copiedMsg{idx}" style="color:#32CD32; margin-left:12px; display:none; font-size:14px;">Copied!</span>
+    <script>
+    const btn = document.getElementById('copyBtn{idx}');
+    const msg = document.getElementById('copiedMsg{idx}');
+    if (btn) {{
+        btn.onclick = function() {{
+            navigator.clipboard.writeText(`{text.replace("`", "\\`")}`);
+            if(msg) {{
+                msg.style.display = "inline";
+                setTimeout(function(){{msg.style.display="none"}}, 1200);
+            }}
+        }};
+    }}
+    </script>
+    """, height=44)
 
 # --- Fungsi Rating
 def rating_buttons(idx):
@@ -103,3 +130,4 @@ for idx, msg in enumerate(st.session_state.chat_history[1:]):  # skip system pro
         copy_to_clipboard_button(msg["content"])
         rating_buttons(idx)
     st.markdown("---")
+
