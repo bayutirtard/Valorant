@@ -134,8 +134,9 @@ if st.session_state.get("confirm_reset", False):
             st.session_state.confirm_reset = False
             st.rerun()
 
-# --- Statistik feedback
+# Statistics
 n_like = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "up")
 n_dislike = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "down")
-st.markdown(f"### Feedback Statistic This Session:  \n👍 **{n_like}** &nbsp;&nbsp;&nbsp; 👎 **{n_dislike}**")
+st.markdown(f"### Feedback Statistics This Session:  \n👍 **{n_like}** &nbsp;&nbsp;&nbsp; 👎 **{n_dislike}**")
+
 
