@@ -4,8 +4,10 @@ import csv
 import os
 from datetime import datetime
 
-# === Logging ke CSV ===
-def log_interaction(user_msg, bot_msg, feedback=None, filename="chat_feedback_log.csv"):
+# === Logging ke logs/chat_feedback_log.csv (otomatis buat folder logs/) ===
+def log_interaction(user_msg, bot_msg, feedback=None, filename="logs/chat_feedback_log.csv"):
+    # Pastikan folder logs/ ada
+    os.makedirs(os.path.dirname(filename), exist_ok=True)
     file_exists = os.path.isfile(filename)
     with open(filename, mode='a', newline='', encoding='utf-8') as f:
         writer = csv.writer(f)
@@ -73,14 +75,14 @@ def rating_buttons(idx):
         if st.button("👍", key=f"up_{idx}"):
             st.session_state[f"rate_{idx}"] = "up"
             st.success("Terima kasih atas ratingnya!")
-            # Simpan feedback ke CSV (feedback=up)
+            # Simpan feedback ke logs/
             if user_msg and bot_msg:
                 log_interaction(user_msg, bot_msg, feedback="up")
     with col2:
         if st.button("👎", key=f"down_{idx}"):
             st.session_state[f"rate_{idx}"] = "down"
             st.info("Terima kasih atas feedbacknya!")
-            # Simpan feedback ke CSV (feedback=down)
+            # Simpan feedback ke logs/
             if user_msg and bot_msg:
                 log_interaction(user_msg, bot_msg, feedback="down")
 
@@ -110,7 +112,7 @@ with st.form(key="chat_form", clear_on_submit=True):
     with col3:
         reset = st.form_submit_button("Reset")
 
-# --- Proses input user (dan log chat ke CSV)
+# --- Proses input user (dan log chat ke logs/)
 if submit and user_input:
     st.session_state.chat_history.append({"role": "user", "content": user_input})
     with st.spinner("Answering..."):
