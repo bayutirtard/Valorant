@@ -1,18 +1,22 @@
 import streamlit as st
 from groq import Groq
 
-# --- Streamlit config & title
+# Konfigurasi halaman
 st.set_page_config(page_title="Chatbot Valorant", page_icon="🎮")
 st.title("Chatbot Valorant")
 
+# Inisialisasi Groq client
 client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 
+# Baca isi markdown valorant.md
 def load_markdown_data():
     try:
         with open("valorant.md", "r", encoding="utf-8") as f:
             return f.read()
     except FileNotFoundError:
         return "Valorant data not found."
+
+# Simpan isi markdown ke variabel
 markdown_data = load_markdown_data()
 
 system_prompt = {
@@ -29,60 +33,25 @@ system_prompt = {
     )
 }
 
+# Inisialisasi riwayat chat jika belum ada
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = [system_prompt]
 
-# --- COPY BUTTON HTML/JS ---
-def copy_and_rating_inline(text, idx):
-    cols = st.columns([0.26, 0.1, 0.1, 0.54]) 
-    with cols[0]:
-        st.components.v1.html(f"""
-        <button id="copyBtn{idx}" style="
-            margin:0;
-            padding:4px 13px;
-            border-radius:7px;
-            border:1.5px solid #FFD700;
-            background:#393a41;
-            color:#FFD700;
-            font-weight:bold;
-            font-size:15px;
-            box-shadow:0 1px 5px #0002;
-            cursor:pointer;
-            display:inline-block;
-            vertical-align:middle;">
-            📋
-        </button>
-        <span id="copiedMsg{idx}" style="color:#32CD32; margin-left:7px; display:none; font-size:13px;">Copied!</span>
-        <script>
-        const btn = document.getElementById('copyBtn{idx}');
-        const msg = document.getElementById('copiedMsg{idx}');
-        if(btn) {{
-            btn.onclick = function() {{
-                navigator.clipboard.writeText(`{text.replace("`", "\\`")}`);
-                if(msg) {{
-                    msg.style.display = "inline";
-                    setTimeout(function(){{msg.style.display="none"}}, 1000);
-                }}
-            }};
-        }}
-        </script>
-        """, height=36)
-    with cols[1]:
-        if st.button("👍", key=f"up_{idx}"):
-            st.session_state[f"rate_{idx}"] = "up"
-    with cols[2]:
-        if st.button("👎", key=f"down_{idx}"):
-            st.session_state[f"rate_{idx}"] = "down"
-
-# --- Render chat
+# Fungsi render chat
 def render_chat(role, content):
     if role == "user":
         st.markdown(f"**You:** {content}")
+
     elif role == "assistant":
         st.markdown("**Bot:**")
         st.markdown(content)
 
-# --- Form input chat
+
+# Tampilkan riwayat chat (skip sistem message)
+for msg in st.session_state.chat_history[1:]:
+    render_chat(msg["role"], msg["content"])
+
+# Input form
 st.markdown("<br>", unsafe_allow_html=True)
 with st.form(key="chat_form", clear_on_submit=True):
     col1, col2, col3 = st.columns([6, 1, 1])
@@ -98,8 +67,9 @@ with st.form(key="chat_form", clear_on_submit=True):
     with col3:
         reset = st.form_submit_button("Reset")
 
-if submit and st.session_state.get("input_text", ""):
-    user_input = st.session_state["input_text"]
+
+# Proses input user
+if submit and user_input:
     st.session_state.chat_history.append({"role": "user", "content": user_input})
     with st.spinner("Answering..."):
         response = client.chat.completions.create(
@@ -107,27 +77,25 @@ if submit and st.session_state.get("input_text", ""):
             messages=st.session_state.chat_history
         )
         answer = response.choices[0].message.content
-        st.session_state.chat_history.append({
-            "role": "assistant",
-            "content": answer,
-            "raw_markdown": answer
-        })
+        st.session_state.chat_history.append({"role": "assistant", "content": answer})
     st.rerun()
 
+# === 11. RESET CHAT DENGAN SIMULASI POPUP ===
 if reset:
-    st.session_state.chat_history = [system_prompt]
-    st.rerun()
+    st.session_state.confirm_reset = True
 
-# --- Tampilkan chat dan tombol horizontal rapat
-for idx, msg in enumerate(st.session_state.chat_history[1:]):
-    render_chat(msg["role"], msg["content"])
-    if msg["role"] == "assistant":
-        copy_and_rating_inline(msg.get("raw_markdown", msg["content"]), idx)
-    st.markdown("---")
-
-# --- Statistik total Like/Dislike
-n_like = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "up")
-n_dislike = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "down")
-st.markdown(f"### Statistik Feedback Sesi Ini:  \n👍 **{n_like}** &nbsp;&nbsp;&nbsp; 👎 **{n_dislike}**")
-
-
+# Tampilkan "popup" konfirmasi jika diminta
+if st.session_state.get("confirm_reset", False):
+    with st.container():
+        st.markdown("---")
+        st.error("⚠️ Are you sure you want to reset the entire conversation?")
+        col1, col2 = st.columns(2)
+        with col1:
+            if st.button("Yes, reset", key="confirm_yes"):
+                st.session_state.chat_history = [system_prompt]
+                st.session_state.confirm_reset = False
+                st.rerun()
+        with col2:
+            if st.button("Cancel", key="confirm_no"):
+                st.session_state.confirm_reset = False
+                st.rerun()
