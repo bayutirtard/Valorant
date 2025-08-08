@@ -57,57 +57,59 @@ with st.form(key="chat_form", clear_on_submit=True):
     col1, col2, col3 = st.columns([6, 1, 1])
     with col1:
         user_input = st.text_input(
-        "Type your question here",
-        key="input_text",
-        placeholder="Type your question here...",
-        label_visibility="collapsed"
-    )
+            "Type your question here",
+            key="input_text",
+            placeholder="Type your question here...",
+            label_visibility="collapsed"
+        )
 
-    st.components.v1.html("""
-        <div style="display:flex;align-items:center;">
-            <button id="dictateBtn"
-                style="margin-top:6px;padding:3px 12px 3px 5px;border-radius:6px;border:1px solid #ccc;background:#1e232b;color:#fff;cursor:pointer;font-size:15px;">
-                🎤 Dictate
-            </button>
-            <span id="listeningStatus" style="margin-left:12px;color:#f5222d;font-weight:bold;display:none;">
-                🔴 Listening...
-            </span>
-        </div>
-        <script>
-        const inputBox = window.parent.document.querySelector('input[data-testid="stTextInput"][id^="input_text"]');
-        const btn = document.getElementById('dictateBtn');
-        const status = document.getElementById('listeningStatus');
-        if (btn && inputBox) {
-            btn.onclick = function() {
-                var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-                if (!SpeechRecognition) {
-                    alert('Browser tidak support speech recognition!');
-                    return;
+        # Dictate button + "Listening..." status + JS
+        st.components.v1.html("""
+            <div style="display:flex;align-items:center;">
+                <button id="dictateBtn"
+                    style="margin-top:6px;padding:3px 12px 3px 5px;border-radius:6px;border:1px solid #ccc;background:#1e232b;color:#fff;cursor:pointer;font-size:15px;">
+                    🎤 Dictate
+                </button>
+                <span id="listeningStatus" style="margin-left:12px;color:#f5222d;font-weight:bold;display:none;">
+                    🔴 Listening...
+                </span>
+            </div>
+            <script>
+            // Cari input text dengan atribut testid sesuai key
+            const inputBox = window.parent.document.querySelector('input[data-testid="stTextInput"][id^="input_text"]');
+            const btn = document.getElementById('dictateBtn');
+            const status = document.getElementById('listeningStatus');
+            if (btn && inputBox) {
+                btn.onclick = function() {
+                    var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                    if (!SpeechRecognition) {
+                        alert('Browser tidak support speech recognition!');
+                        return;
+                    }
+                    var recognition = new SpeechRecognition();
+                    recognition.lang = "id-ID"; // Ubah ke "en-US" kalau ingin English
+                    recognition.onstart = function() {
+                        btn.textContent = "🎤 Listening...";
+                        status.style.display = "inline";
+                    };
+                    recognition.onend = function() {
+                        btn.textContent = "🎤 Dictate";
+                        status.style.display = "none";
+                    };
+                    recognition.onresult = function(event) {
+                        inputBox.value = event.results[0][0].transcript;
+                        inputBox.dispatchEvent(new Event('input', { bubbles: true }));
+                    };
+                    recognition.start();
                 }
-                var recognition = new SpeechRecognition();
-                recognition.lang = "id-ID";
-                recognition.onstart = function() {
-                    btn.textContent = "🎤 Listening...";
-                    status.style.display = "inline";
-                };
-                recognition.onend = function() {
-                    btn.textContent = "🎤 Dictate";
-                    status.style.display = "none";
-                };
-                recognition.onresult = function(event) {
-                    inputBox.value = event.results[0][0].transcript;
-                    inputBox.dispatchEvent(new Event('input', { bubbles: true }));
-                };
-                recognition.start();
             }
-        }
-        </script>
-    """, height=38)
-
+            </script>
+        """, height=38)
     with col2:
         submit = st.form_submit_button("Send")
     with col3:
         reset = st.form_submit_button("Reset")
+
 
 # Proses input user
 if submit and user_input:
@@ -140,6 +142,7 @@ if st.session_state.get("confirm_reset", False):
             if st.button("Cancel", key="confirm_no"):
                 st.session_state.confirm_reset = False
                 st.rerun()
+
 
 
 
