@@ -113,18 +113,6 @@ def copy_like_dislike_buttons(text, idx):
     </script>
     """, height=54)
 
-# --- Fungsi Rating
-def rating_buttons(idx):
-    col1, col2 = st.columns(2)
-    with col1:
-        if st.button("👍", key=f"up_{idx}"):
-            st.session_state[f"rate_{idx}"] = "up"
-            st.success("Terima kasih atas ratingnya!")
-    with col2:
-        if st.button("👎", key=f"down_{idx}"):
-            st.session_state[f"rate_{idx}"] = "down"
-            st.info("Terima kasih atas feedbacknya!")
-
 # --- Render chat (sama seperti sebelumnya)
 def render_chat(role, content):
     if role == "user":
@@ -174,6 +162,7 @@ for idx, msg in enumerate(st.session_state.chat_history[1:]):  # skip system pro
         copy_like_dislike_buttons(msg.get("raw_markdown", msg["content"]), idx)
         rating_buttons(idx)
     st.markdown("---")
+
 
 
 
