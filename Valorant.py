@@ -41,14 +41,14 @@ def copy_to_clipboard_button(text, idx):
     st.components.v1.html(f"""
     <button id="copyBtn{idx}" style="
         margin-top:0px;
-        margin-bottom:15px;
+        margin-bottom:0px;
         padding:5px 16px;
         border-radius:8px;
         border:none;
         background:#262730;
         color:#FFD700;
         font-weight:bold;
-        font-size:12px;
+        font-size:14px;
         box-shadow:0 2px 8px #0002;
         cursor:pointer;
         transition: background 0.2s;">
@@ -131,6 +131,7 @@ for idx, msg in enumerate(st.session_state.chat_history[1:]):  # skip system pro
         copy_to_clipboard_button(msg["content"], idx)
         rating_buttons(idx)
     st.markdown("---")
+
 
 
 
