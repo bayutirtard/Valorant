@@ -33,50 +33,44 @@ if "chat_history" not in st.session_state:
     st.session_state.chat_history = [system_prompt]
 
 # --- COPY BUTTON HTML/JS ---
-def copy_to_clipboard_button(text, idx):
-    st.components.v1.html(f"""
-    <button id="copyBtn{idx}" style="
-        margin:0 6px 0 0;
-        padding:4px 13px;
-        border-radius:7px;
-        border:1.5px solid #FFD700;
-        background:#393a41;
-        color:#FFD700;
-        font-weight:bold;
-        font-size:15px;
-        box-shadow:0 1px 5px #0002;
-        cursor:pointer;
-        display:inline-block;
-        vertical-align:middle;
-    ">
-        📋
-    </button>
-    <span id="copiedMsg{idx}" style="color:#32CD32; margin-left:7px; display:none; font-size:13px;">Copied!</span>
-    <script>
-    const btn = document.getElementById('copyBtn{idx}');
-    const msg = document.getElementById('copiedMsg{idx}');
-    if(btn) {{
-        btn.onclick = function() {{
-            navigator.clipboard.writeText(`{text.replace("`", "\\`")}`);
-            if(msg) {{
-                msg.style.display = "inline";
-                setTimeout(function(){{msg.style.display="none"}}, 1000);
-            }}
-        }};
-    }}
-    </script>
-    """, height=36)
-
-# --- RATING BUTTONS (STREAMLIT, Statistik-ready, horizontal inline)
 def copy_and_rating_inline(text, idx):
-    # Layout: Copy, Like, Dislike dalam satu baris rapat
-    col1, col2, col3 = st.columns([0.22, 0.13, 0.13])
-    with col1:
-        copy_to_clipboard_button(text, idx)
-    with col2:
+    cols = st.columns([0.26, 0.1, 0.1, 0.54])  # Copy, 👍, 👎, spacer agar tetap dempet
+    with cols[0]:
+        st.components.v1.html(f"""
+        <button id="copyBtn{idx}" style="
+            margin:0;
+            padding:4px 13px;
+            border-radius:7px;
+            border:1.5px solid #FFD700;
+            background:#393a41;
+            color:#FFD700;
+            font-weight:bold;
+            font-size:15px;
+            box-shadow:0 1px 5px #0002;
+            cursor:pointer;
+            display:inline-block;
+            vertical-align:middle;">
+            📋 Copy
+        </button>
+        <span id="copiedMsg{idx}" style="color:#32CD32; margin-left:7px; display:none; font-size:13px;">Copied!</span>
+        <script>
+        const btn = document.getElementById('copyBtn{idx}');
+        const msg = document.getElementById('copiedMsg{idx}');
+        if(btn) {{
+            btn.onclick = function() {{
+                navigator.clipboard.writeText(`{text.replace("`", "\\`")}`);
+                if(msg) {{
+                    msg.style.display = "inline";
+                    setTimeout(function(){{msg.style.display="none"}}, 1000);
+                }}
+            }};
+        }}
+        </script>
+        """, height=36)
+    with cols[1]:
         if st.button("👍", key=f"up_{idx}"):
             st.session_state[f"rate_{idx}"] = "up"
-    with col3:
+    with cols[2]:
         if st.button("👎", key=f"down_{idx}"):
             st.session_state[f"rate_{idx}"] = "down"
 
@@ -135,3 +129,4 @@ for idx, msg in enumerate(st.session_state.chat_history[1:]):
 n_like = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "up")
 n_dislike = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "down")
 st.markdown(f"### Statistik Feedback Sesi Ini:  \n👍 **{n_like}** &nbsp;&nbsp;&nbsp; 👎 **{n_dislike}**")
+
