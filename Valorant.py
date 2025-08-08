@@ -5,17 +5,14 @@ from groq import Groq
 st.set_page_config(page_title="Chatbot Valorant", page_icon="🎮")
 st.title("Chatbot Valorant")
 
-# --- Init Groq client
 client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 
-# --- Load markdown (dummy)
 def load_markdown_data():
     try:
         with open("valorant.md", "r", encoding="utf-8") as f:
             return f.read()
     except FileNotFoundError:
         return "Valorant data not found."
-
 markdown_data = load_markdown_data()
 
 system_prompt = {
@@ -35,20 +32,23 @@ system_prompt = {
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = [system_prompt]
 
-# ---- Fungsi Copy Button (HTML/JS tetap stylish)
+# --- COPY BUTTON HTML/JS ---
 def copy_to_clipboard_button(text, idx):
     st.components.v1.html(f"""
     <button id="copyBtn{idx}" style="
-        margin:2px 8px 2px 0;
-        padding:5px 14px;
+        margin:0 6px 0 0;
+        padding:4px 13px;
         border-radius:7px;
         border:1.5px solid #FFD700;
         background:#393a41;
         color:#FFD700;
         font-weight:bold;
-        font-size:14px;
-        box-shadow:0 2px 8px #0002;
-        cursor:pointer;">
+        font-size:15px;
+        box-shadow:0 1px 5px #0002;
+        cursor:pointer;
+        display:inline-block;
+        vertical-align:middle;
+    ">
         📋
     </button>
     <span id="copiedMsg{idx}" style="color:#32CD32; margin-left:7px; display:none; font-size:13px;">Copied!</span>
@@ -67,19 +67,20 @@ def copy_to_clipboard_button(text, idx):
     </script>
     """, height=36)
 
-# ---- Fungsi Streamlit Rating Button
-def rating_buttons(idx):
-    col1, col2 = st.columns([1,1])
+# --- RATING BUTTONS (STREAMLIT, Statistik-ready, horizontal inline)
+def copy_and_rating_inline(text, idx):
+    # Layout: Copy, Like, Dislike dalam satu baris rapat
+    col1, col2, col3 = st.columns([0.22, 0.13, 0.13])
     with col1:
+        copy_to_clipboard_button(text, idx)
+    with col2:
         if st.button("👍", key=f"up_{idx}"):
             st.session_state[f"rate_{idx}"] = "up"
-            st.success("Terima kasih atas ratingnya!")
-    with col2:
+    with col3:
         if st.button("👎", key=f"down_{idx}"):
             st.session_state[f"rate_{idx}"] = "down"
-            st.info("Terima kasih atas feedbacknya!")
 
-# ---- Render chat
+# --- Render chat
 def render_chat(role, content):
     if role == "user":
         st.markdown(f"**You:** {content}")
@@ -103,7 +104,6 @@ with st.form(key="chat_form", clear_on_submit=True):
     with col3:
         reset = st.form_submit_button("Reset")
 
-# --- Proses kirim chat
 if submit and st.session_state.get("input_text", ""):
     user_input = st.session_state["input_text"]
     st.session_state.chat_history.append({"role": "user", "content": user_input})
@@ -113,7 +113,6 @@ if submit and st.session_state.get("input_text", ""):
             messages=st.session_state.chat_history
         )
         answer = response.choices[0].message.content
-        # raw_markdown untuk copy
         st.session_state.chat_history.append({
             "role": "assistant",
             "content": answer,
@@ -121,26 +120,18 @@ if submit and st.session_state.get("input_text", ""):
         })
     st.rerun()
 
-# --- Reset chat
 if reset:
     st.session_state.chat_history = [system_prompt]
     st.rerun()
 
-# --- Tampilkan chat + tombol Copy/Like/Dislike
-for idx, msg in enumerate(st.session_state.chat_history[1:]):  # skip system prompt
+# --- Tampilkan chat dan tombol horizontal rapat
+for idx, msg in enumerate(st.session_state.chat_history[1:]):
     render_chat(msg["role"], msg["content"])
     if msg["role"] == "assistant":
-        col1, col2 = st.columns([2, 3])
-        with col1:
-            copy_to_clipboard_button(msg.get("raw_markdown", msg["content"]), idx)
-        with col2:
-            rating_buttons(idx)
+        copy_and_rating_inline(msg.get("raw_markdown", msg["content"]), idx)
     st.markdown("---")
 
-# ---- Statistik total Like/Dislike
+# --- Statistik total Like/Dislike
 n_like = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "up")
 n_dislike = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "down")
 st.markdown(f"### Statistik Feedback Sesi Ini:  \n👍 **{n_like}** &nbsp;&nbsp;&nbsp; 👎 **{n_dislike}**")
-
-
-
