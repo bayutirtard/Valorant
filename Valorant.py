@@ -67,7 +67,7 @@ if submit and user_input:
     st.session_state.chat_history.append({"role": "user", "content": user_input})
     with st.spinner("Answering..."):
         response = client.chat.completions.create(
-            model="deepseek-r1-distill-llama-70b",
+            model="meta-llama/llama-4-scout-17b-16e-instruct",
             messages=st.session_state.chat_history
         )
         answer = response.choices[0].message.content
@@ -93,5 +93,6 @@ if st.session_state.get("confirm_reset", False):
             if st.button("Cancel", key="confirm_no"):
                 st.session_state.confirm_reset = False
                 st.rerun()
+
 
 
