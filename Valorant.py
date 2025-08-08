@@ -127,7 +127,8 @@ if reset:
 for idx, msg in enumerate(st.session_state.chat_history[1:]):  # skip system prompt
     render_chat(msg["role"], msg["content"])
     if msg["role"] == "assistant":
-        copy_to_clipboard_button(msg["content"])
+        copy_to_clipboard_button(msg["content"], idx)
         rating_buttons(idx)
     st.markdown("---")
+
 
