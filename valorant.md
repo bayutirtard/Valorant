@@ -1,5 +1,75 @@
 # Valorant Agents
 
+## Total
+## Total Agents
+Total Agents : 27
+By Release date Beta - Patch 9.04
+1. Brimstone – Controller | United States | Beta
+2. Viper – Controller | United States | Beta
+3. Omen – Controller | Unknown | Beta
+4. Cypher – Sentinel | Morocco | Beta
+5. Sova – Initiator | Russia | Beta
+6. Sage – Sentinel | China | Beta
+7. Phoenix – Duelist | England | Beta
+8. Jett – Duelist | South Korea | Beta
+9. Raze – Duelist | Brazil | Beta
+10. Breach – Initiator | Sweden | Beta
+11. Reyna – Duelist | Mexico | 1.0
+12. Killjoy – Sentinel | Germany | 1.05
+13. Skye – Initiator | Australia | 1.11
+14. Yoru – Duelist | Japan | 2.0
+15. Astra – Controller | Ghana | 2.04
+16. KAY/O – Initiator | Alternate Timeline Earth | 3.0
+17. Chamber – Sentinel | France | 3.10
+18. Neon – Duelist | Philippines | 4.0
+19. Fade – Initiator | Turkey | 4.08  
+20. Harbor – Controller | India | 5.08  
+21. Gekko – Initiator | United States | 6.04  
+22. Deadlock – Sentinel | Norway | 7.0  
+23. Iso – Duelist | China | 7.09  
+24. Clove – Controller | Scotland | 8.05  
+25. Vyse – Sentinel | Unknown | 9.04  
+26. Tejo – Initiator | Colombia | 9.08  
+27. Waylay – Duelist | Thailand | 9.04  
+
+## Total Weapon
+Total Weapon = 17
+1. Odin
+2. Ares
+3. Vandal
+4. Bulldog
+5. Phantom
+6. Judge
+7. Bucky
+8. Frenzy
+9. Classic
+10. Ghost
+11. Sheriff
+12. Shorty
+13. Operator
+14. Guardian
+15. Outlaw
+16. Marshal
+17. Spectre
+18. Stinger
+19. Melee
+
+## Total Maps
+Total Maps = 13
+1. Ascent
+2. Split
+3. Fracture
+4. Bind
+5. Breeze
+6. Abyss
+7. Lotus
+8. Sunset
+9. Pearl
+10. Icebox
+11. The Range
+12. Corrode
+13. Haven
+
 ## Gekko
 ![Gekko](https://media.valorant-api.com/agents/e370fa57-4757-3604-3648-499e1f642d3f/fullportrait.png)
 
@@ -269,32 +339,14 @@ Ghanaian Agent Astra harnesses the energies of the cosmos to reshape battlefield
 
 **Skills & Ultimate**
 - **Nova Pulse** – Place Stars in Astral Form (Ultimate Key).
-
-
-
 ACTIVATE a Star to detonate a Nova Pulse. The Nova Pulse charges briefly then strikes, Concussing all players in its area.
 - **Nebula  / Dissipate** – Place Stars in Astral Form (Ultimate Key). 
-
-
-
 ACTIVATE a Star to transform it into a Nebula (smoke).
-
-
-
 USE a Star to Dissipate it, returning the Star to be placed in a new location after a delay.
-
-
-
 Dissipate briefly forms a fake Nebula at the Star's location before returning.
 - **Gravity Well** – Place Stars in Astral Form (Ultimate Key).
-
-
-
 ACTIVATE a Star to form a Gravity Well. Players in the area are pulled toward the center before it explodes, making all players still trapped inside Vulnerable.
 - **Astral Form / Cosmic Divide** – ACTIVATE to enter Astral Form where you can place Stars with FIRE. Stars can be reactivated later, transforming them into a Nova Pulse, Nebula, or Gravity Well.
-
-
-
 When Cosmic Divide is charged, use ALT FIRE in Astral Form to begin aiming it, then FIRE to select two locations. An infinite Cosmic Divide connects the two points you select. Cosmic Divide blocks bullets and sound.
 - **Astral Form** – ACTIVATE Ultimate to enter Astral Form and PRIMARY FIRE to place Stars. Target Stars with your Nova Pulse, Nebula, or Gravity Well to use those abilities.
 
