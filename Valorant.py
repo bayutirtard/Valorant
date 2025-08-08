@@ -37,37 +37,81 @@ if "chat_history" not in st.session_state:
     st.session_state.chat_history = [system_prompt]
 
 # --- Fungsi Copy ke Clipboard
-def copy_to_clipboard_button(text, idx):
+def copy_like_dislike_buttons(text, idx):
     st.components.v1.html(f"""
-    <button id="copyBtn{idx}" style="
-        margin-right:0px;
-        padding:5px 16px;
-        border-radius:8px;
-        border:none;
-        background:#262730;
-        color:#FFD700;
-        font-weight:bold;
-        font-size:14px;
-        box-shadow:0 2px 8px #0002;
-        cursor:pointer;
-        transition: background 0.2s;">
-        📋 Copy
-    </button>
-    <span id="copiedMsg{idx}" style="color:#32CD32; margin-left:12px; display:none; font-size:14px;">Copied!</span>
+    <div style="display: flex; gap: 16px; align-items: center; margin-top: 2px; margin-bottom: 10px;">
+        <button id="copyBtn{idx}" style="
+            padding:5px 18px;
+            border-radius:8px;
+            border:none;
+            background:#262730;
+            color:#FFD700;
+            font-weight:bold;
+            font-size:16px;
+            box-shadow:0 2px 8px #0002;
+            cursor:pointer;">
+            📋 Copy
+        </button>
+        <button id="likeBtn{idx}" style="
+            padding:5px 14px;
+            border-radius:8px;
+            border:none;
+            background:#262730;
+            color:#FFD700;
+            font-size:19px;
+            margin-left:4px;
+            cursor:pointer;">
+            👍
+        </button>
+        <button id="dislikeBtn{idx}" style="
+            padding:5px 14px;
+            border-radius:8px;
+            border:none;
+            background:#262730;
+            color:#FFD700;
+            font-size:19px;
+            margin-left:2px;
+            cursor:pointer;">
+            👎
+        </button>
+        <span id="copiedMsg{idx}" style="color:#32CD32; margin-left:8px; display:none; font-size:14px;">Copied!</span>
+        <span id="likedMsg{idx}" style="color:#32CD32; margin-left:8px; display:none; font-size:14px;">Thank you! 👍</span>
+        <span id="dislikedMsg{idx}" style="color:#e04a3c; margin-left:8px; display:none; font-size:14px;">Feedback noted 👎</span>
+    </div>
     <script>
-    const btn = document.getElementById('copyBtn{idx}');
-    const msg = document.getElementById('copiedMsg{idx}');
-    if (btn) {{
-        btn.onclick = function() {{
+    const btnCopy = document.getElementById('copyBtn{idx}');
+    const btnLike = document.getElementById('likeBtn{idx}');
+    const btnDislike = document.getElementById('dislikeBtn{idx}');
+    const msgCopied = document.getElementById('copiedMsg{idx}');
+    const msgLiked = document.getElementById('likedMsg{idx}');
+    const msgDisliked = document.getElementById('dislikedMsg{idx}');
+    if(btnCopy) {{
+        btnCopy.onclick = function() {{
             navigator.clipboard.writeText(`{text.replace("`", "\\`")}`);
-            if(msg) {{
-                msg.style.display = "inline";
-                setTimeout(function(){{msg.style.display="none"}}, 1200);
+            if(msgCopied) {{
+                msgCopied.style.display = "inline";
+                setTimeout(function(){{msgCopied.style.display="none"}}, 1200);
+            }}
+        }};
+    }}
+    if(btnLike) {{
+        btnLike.onclick = function() {{
+            if(msgLiked) {{
+                msgLiked.style.display = "inline";
+                setTimeout(function(){{msgLiked.style.display="none"}}, 1200);
+            }}
+        }};
+    }}
+    if(btnDislike) {{
+        btnDislike.onclick = function() {{
+            if(msgDisliked) {{
+                msgDisliked.style.display = "inline";
+                setTimeout(function(){{msgDisliked.style.display="none"}}, 1200);
             }}
         }};
     }}
     </script>
-    """, height=38)
+    """, height=54)
 
 # --- Fungsi Rating
 def rating_buttons(idx):
@@ -130,6 +174,7 @@ for idx, msg in enumerate(st.session_state.chat_history[1:]):  # skip system pro
         copy_to_clipboard_button(msg["content"], idx)
         rating_buttons(idx)
     st.markdown("---")
+
 
 
 
