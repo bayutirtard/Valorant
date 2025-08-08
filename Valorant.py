@@ -54,7 +54,7 @@ for msg in st.session_state.chat_history[1:]:
 # Input form
 st.markdown("<br>", unsafe_allow_html=True)
 with st.form(key="chat_form", clear_on_submit=True):
-    col1, col2, col3 = st.columns([6, 1, 1, 1])
+    col1, col2, col3 = st.columns([6, 1, 1])
     with col1:
         user_input = st.text_input("Type your question here", placeholder="Type your question here...", label_visibility="collapsed")
         
@@ -119,6 +119,7 @@ if st.session_state.get("confirm_reset", False):
             if st.button("Cancel", key="confirm_no"):
                 st.session_state.confirm_reset = False
                 st.rerun()
+
 
 
 
