@@ -72,8 +72,8 @@ def copy_like_dislike_buttons(text, idx):
             👎
         </button>
         <span id="copiedMsg{idx}" style="color:#32CD32; margin-left:8px; display:none; font-size:12px;">Copied!</span>
-        <span id="likedMsg{idx}" style="color:#32CD32; margin-left:7px; display:none; font-size:12px;">👍</span>
-        <span id="dislikedMsg{idx}" style="color:#e04a3c; margin-left:7px; display:none; font-size:12px;">👎</span>
+        <span id="likedMsg{idx}" style="color:#32CD32; margin-left:7px; display:none; font-size:12px;">Thanks for the rating!</span>
+        <span id="dislikedMsg{idx}" style="color:#e04a3c; margin-left:7px; display:none; font-size:12px;">hanks for the feedback!</span>
     </div>
     <script>
     const btnCopy = document.getElementById('copyBtn{idx}');
@@ -163,3 +163,4 @@ for idx, msg in enumerate(st.session_state.chat_history[1:]):  # skip system pro
     if msg["role"] == "assistant":
         copy_like_dislike_buttons(msg.get("raw_markdown", msg["content"]), idx)
     st.markdown("---")
+
