@@ -56,7 +56,7 @@ st.markdown("<br>", unsafe_allow_html=True)
 with st.form(key="chat_form", clear_on_submit=True):
     col1, col2, col3 = st.columns([6, 1, 1])
     with col1:
-    user_input = st.text_input(
+        user_input = st.text_input(
         "Type your question here",
         key="input_text",
         placeholder="Type your question here...",
@@ -140,6 +140,7 @@ if st.session_state.get("confirm_reset", False):
             if st.button("Cancel", key="confirm_no"):
                 st.session_state.confirm_reset = False
                 st.rerun()
+
 
 
 
