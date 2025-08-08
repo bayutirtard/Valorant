@@ -1,6 +1,6 @@
 # Valorant Agents
 
-## Total
+# Total
 ## Total Agents
 Total Agents : 27
 By Release date Beta - Patch 9.04
