@@ -85,7 +85,7 @@ def rating_buttons(idx):
 
 # --- Fitur New Chat
 st.sidebar.markdown("### Menu")
-if st.sidebar.button("🆕 New Chat"):
+if st.sidebar.button("+ New Chat"):
     if st.session_state.chat_history != [system_prompt]:
         st.session_state.all_chats.append(list(st.session_state.chat_history))
     st.session_state.chat_history = [system_prompt]
@@ -172,3 +172,4 @@ if st.session_state.get("confirm_reset", False):
 n_like = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "up")
 n_dislike = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "down")
 st.markdown(f"### Statistik Feedback Sesi Ini:  \n👍 **{n_like}** &nbsp;&nbsp;&nbsp; 👎 **{n_dislike}**")
+
