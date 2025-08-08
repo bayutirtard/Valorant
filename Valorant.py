@@ -8,7 +8,7 @@ st.title("Chatbot Valorant")
 # --- Init Groq client
 client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 
-# --- Load markdown (asli atau dummy dulu)
+# --- Load markdown (dummy)
 def load_markdown_data():
     try:
         with open("valorant.md", "r", encoding="utf-8") as f:
@@ -32,14 +32,13 @@ system_prompt = {
     )
 }
 
-# --- Session state
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = [system_prompt]
 
-# --- Fungsi Copy ke Clipboard
-def copy_and_rating_buttons(text, idx):
+# ---- Fungsi Copy + Like/Dislike Satu Baris, Dempet Kiri ----
+def copy_like_dislike_buttons(text, idx):
     st.components.v1.html(f"""
-    <div style="display: flex; align-items: center; gap: 6px; margin: 2px 0 8px 0; justify-content: flex-start;">
+    <div style="display: flex; align-items: center; gap: 6px; margin: 3px 0 7px 0; justify-content: flex-start;">
         <button id="copyBtn{idx}" style="
             padding:3px 12px;
             border-radius:8px;
@@ -88,7 +87,7 @@ def copy_and_rating_buttons(text, idx):
             navigator.clipboard.writeText(`{text.replace("`", "\\`")}`);
             if(msgCopied) {{
                 msgCopied.style.display = "inline";
-                setTimeout(function(){{msgCopied.style.display="none"}}, 1000);
+                setTimeout(function(){{msgCopied.style.display="none"}}, 900);
             }}
         }};
     }}
@@ -111,16 +110,7 @@ def copy_and_rating_buttons(text, idx):
     </script>
     """, height=38)
 
-    with col2:
-        if st.button("👍", key=f"up_{idx}"):
-            st.session_state[f"rate_{idx}"] = "up"
-            st.success("Terima kasih atas ratingnya!")
-    with col3:
-        if st.button("👎", key=f"down_{idx}"):
-            st.session_state[f"rate_{idx}"] = "down"
-            st.info("Terima kasih atas feedbacknya!")
-
-# --- Render chat (sama seperti sebelumnya)
+# --- Render chat seperti biasa
 def render_chat(role, content):
     if role == "user":
         st.markdown(f"**You:** {content}")
@@ -154,7 +144,12 @@ if submit and st.session_state.get("input_text", ""):
             messages=st.session_state.chat_history
         )
         answer = response.choices[0].message.content
-        st.session_state.chat_history.append({"role": "assistant", "content": answer})
+        # raw_markdown untuk copy (biar format markdown tetap ikut)
+        st.session_state.chat_history.append({
+            "role": "assistant",
+            "content": answer,
+            "raw_markdown": answer
+        })
     st.rerun()
 
 # --- Reset chat
@@ -162,43 +157,9 @@ if reset:
     st.session_state.chat_history = [system_prompt]
     st.rerun()
 
-# --- Tampilkan chat + fitur Copy & Rating (untuk setiap jawaban bot)
+# --- Tampilkan chat + tombol Copy/Like/Dislike di bawah jawaban bot
 for idx, msg in enumerate(st.session_state.chat_history[1:]):  # skip system prompt
     render_chat(msg["role"], msg["content"])
     if msg["role"] == "assistant":
-        copy_and_rating_buttons(msg.get("raw_markdown", msg["content"]), idx)
+        copy_like_dislike_buttons(msg.get("raw_markdown", msg["content"]), idx)
     st.markdown("---")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
