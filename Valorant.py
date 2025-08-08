@@ -5,9 +5,8 @@ from google.oauth2.service_account import Credentials
 from datetime import datetime
 import json
 
-# --- Fungsi simpan log ke Google Sheets
+# --- Simpan ke Google Sheets (boleh hapus jika tidak butuh sheets)
 def save_feedback_to_gsheet(user_q, bot_a, feedback):
-    # Untuk Streamlit Cloud: load credential dari secrets
     creds = Credentials.from_service_account_info(
         json.loads(st.secrets["GS_CRED_JSON"]),
         scopes=["https://www.googleapis.com/auth/spreadsheets"]
@@ -17,7 +16,7 @@ def save_feedback_to_gsheet(user_q, bot_a, feedback):
     ws = sh.sheet1
     ws.append_row([str(datetime.now()), user_q, bot_a, feedback])
 
-# --- Streamlit config
+# --- Chatbot config
 st.set_page_config(page_title="Chatbot Valorant", page_icon="🎮")
 st.title("Chatbot Valorant")
 
@@ -45,8 +44,13 @@ system_prompt = {
     )
 }
 
+# --- Inisialisasi state untuk fitur history
+if "all_chats" not in st.session_state:
+    st.session_state.all_chats = []
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = [system_prompt]
+if "current_chat_index" not in st.session_state:
+    st.session_state.current_chat_index = None
 if "confirm_reset" not in st.session_state:
     st.session_state.confirm_reset = False
 
@@ -79,7 +83,33 @@ def rating_buttons(idx):
             if user_msg and bot_msg:
                 save_feedback_to_gsheet(user_msg, bot_msg, "down")
 
-# --- Tampilkan chat & rating
+# --- Fitur New Chat
+st.sidebar.markdown("### Menu")
+if st.sidebar.button("🆕 New Chat"):
+    if st.session_state.chat_history != [system_prompt]:
+        st.session_state.all_chats.append(list(st.session_state.chat_history))
+    st.session_state.chat_history = [system_prompt]
+    st.session_state.current_chat_index = None
+    st.rerun()
+
+# --- Tampilkan riwayat chat di sidebar
+st.sidebar.markdown("### Riwayat Chat")
+if st.session_state.all_chats:
+    for i, chat in enumerate(st.session_state.all_chats):
+        # Ambil preview 1 pertanyaan user pertama
+        if len(chat) > 1:
+            preview = chat[1]["content"][:30]
+        else:
+            preview = "[kosong]"
+        label = f"Chat #{i+1} : {preview}"
+        if st.sidebar.button(label, key=f"history_{i}"):
+            st.session_state.chat_history = list(chat)
+            st.session_state.current_chat_index = i
+            st.rerun()
+else:
+    st.sidebar.info("Belum ada history chat.")
+
+# --- Tampilkan chat aktif & rating
 for idx in range(0, (len(st.session_state.chat_history)-1)//2):
     msg_user = st.session_state.chat_history[1:][idx*2]
     msg_bot = st.session_state.chat_history[1:][idx*2+1]
