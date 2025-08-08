@@ -1,36 +1,18 @@
 import streamlit as st
 from groq import Groq
-import csv
-import io
+import gspread
+from google.oauth2.service_account import Credentials
 from datetime import datetime
-import requests
-import base64
 
-# === Kirim log ke email admin via Brevo API ===
-def send_csv_email_via_brevo(subject, body_text, csv_bytes, to_email, from_email, brevo_api_key):
-    encoded_file = base64.b64encode(csv_bytes).decode("utf-8")
-    data = {
-        "sender": {"name": "Valorant Bot", "email": from_email},
-        "to": [{"email": to_email}],
-        "subject": subject,
-        "textContent": body_text,
-        "attachment": [
-            {
-                "content": encoded_file,
-                "name": "chat_feedback_log.csv"
-            }
-        ]
-    }
-    resp = requests.post(
-        "https://api.brevo.com/v3/smtp/email",
-        headers={
-            "accept": "application/json",
-            "api-key": brevo_api_key,
-            "content-type": "application/json"
-        },
-        json=data
+# --- Fungsi simpan log ke Google Sheets
+def save_feedback_to_gsheet(user_q, bot_a, feedback):
+    creds = Credentials.from_service_account_file(
+        "gspread_cred.json", scopes=["https://www.googleapis.com/auth/spreadsheets"]
     )
-    return resp.status_code, resp.text
+    gc = gspread.authorize(creds)
+    sh = gc.open_by_url("https://docs.google.com/spreadsheets/d/1Nlis6U5BCx7afjdulH2pRKvJmZG0PpwpBFpoMTN1L4s/edit?gid=0#gid=0")  
+    ws = sh.sheet1
+    ws.append_row([str(datetime.now()), user_q, bot_a, feedback])
 
 # --- Streamlit config
 st.set_page_config(page_title="Chatbot Valorant", page_icon="🎮")
@@ -85,10 +67,14 @@ def rating_buttons(idx):
         if st.button("👍", key=f"up_{idx}"):
             st.session_state[f"rate_{idx}"] = "up"
             st.success("Terima kasih atas ratingnya!")
+            if user_msg and bot_msg:
+                save_feedback_to_gsheet(user_msg, bot_msg, "up")
     with col2:
         if st.button("👎", key=f"down_{idx}"):
             st.session_state[f"rate_{idx}"] = "down"
             st.info("Terima kasih atas feedbacknya!")
+            if user_msg and bot_msg:
+                save_feedback_to_gsheet(user_msg, bot_msg, "down")
 
 # --- Tampilkan chat & rating
 for idx in range(0, (len(st.session_state.chat_history)-1)//2):
@@ -124,6 +110,7 @@ if submit and user_input:
         )
         answer = response.choices[0].message.content
         st.session_state.chat_history.append({"role": "assistant", "content": answer})
+        save_feedback_to_gsheet(user_input, answer, "")   # log QnA tanpa feedback
     st.rerun()
 
 # --- RESET dengan popup konfirmasi & hapus feedback
@@ -138,7 +125,6 @@ if st.session_state.get("confirm_reset", False):
     with col1:
         if st.button("Yes, reset", key="confirm_yes"):
             st.session_state.chat_history = [system_prompt]
-            # Reset feedback
             keys_to_delete = [k for k in st.session_state.keys() if k.startswith('rate_')]
             for k in keys_to_delete:
                 del st.session_state[k]
@@ -153,43 +139,3 @@ if st.session_state.get("confirm_reset", False):
 n_like = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "up")
 n_dislike = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "down")
 st.markdown(f"### Statistik Feedback Sesi Ini:  \n👍 **{n_like}** &nbsp;&nbsp;&nbsp; 👎 **{n_dislike}**")
-
-# --- ADMIN BLOK: KIRIM LOG KE EMAIL (CSV DIBUAT DI MEMORY)
-st.markdown("---")
-st.subheader("Fitur Admin (Akses Terkunci)")
-
-is_admin = False
-admin_code = st.text_input("Kode Admin (hanya untuk admin):", type="password")
-if admin_code == st.secrets["ADMIN_CODE"]:
-    is_admin = True
-
-def generate_csv_from_session():
-    output = io.StringIO()
-    writer = csv.writer(output)
-    writer.writerow(["timestamp", "user_question", "bot_answer", "feedback"])
-    chat_hist = st.session_state.chat_history[1:]
-    for idx in range(0, len(chat_hist)//2):
-        user_msg = chat_hist[idx*2]["content"]
-        bot_msg = chat_hist[idx*2+1]["content"]
-        feedback = st.session_state.get(f"rate_{idx}", "")
-        writer.writerow([datetime.now().isoformat(), user_msg, bot_msg, feedback])
-    return output.getvalue().encode("utf-8")
-
-if is_admin:
-    st.success("Mode admin aktif! Anda bisa kirim log ke email.")
-    if st.button("Kirim log ke email admin"):
-        csv_bytes = generate_csv_from_session()
-        status, resp = send_csv_email_via_brevo(
-            subject="Log Chatbot Valorant",
-            body_text="Terlampir log chat + feedback terbaru.",
-            csv_bytes=csv_bytes,
-            to_email=st.secrets["EMAIL_TO"],
-            from_email=st.secrets["EMAIL_FROM"],
-            brevo_api_key=st.secrets["BREVO_API_KEY"]
-        )
-        if status == 201:
-            st.success("Email terkirim!")
-        else:
-            st.error(f"Gagal mengirim email: {resp}")
-else:
-    st.info("Masukkan kode admin untuk akses fitur ini.")
