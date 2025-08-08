@@ -50,10 +50,10 @@ def copy_and_rating_buttons(text, idx):
             background:#262730;
             color:#FFD700;
             font-weight:bold;
-            font-size:16px;
+            font-size:14px;
             box-shadow:0 2px 8px #0002;
             cursor:pointer;">
-            📋 Copy
+            📋
         </button>
         <span id="copiedMsg{idx}" style="color:#32CD32; margin-left:8px; display:none; font-size:14px;">Copied!</span>
         <script>
@@ -127,6 +127,7 @@ for idx, msg in enumerate(st.session_state.chat_history[1:]):  # skip system pro
     if msg["role"] == "assistant":
         copy_and_rating_buttons(msg.get("raw_markdown", msg["content"]), idx)
     st.markdown("---")
+
 
 
 
