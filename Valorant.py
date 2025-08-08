@@ -38,10 +38,12 @@ if "chat_history" not in st.session_state:
 
 # --- Fungsi Copy ke Clipboard
 def copy_to_clipboard_button(text, idx):
+def copy_to_clipboard_button(text, idx):
     st.components.v1.html(f"""
     <button id="copyBtn{idx}" style="
-        margin-top:10px;
-        padding:6px 24px;
+        margin-top:2px;
+        margin-bottom:8px;
+        padding:5px 16px;
         border-radius:8px;
         border:none;
         background:#262730;
@@ -67,7 +69,7 @@ def copy_to_clipboard_button(text, idx):
         }};
     }}
     </script>
-    """, height=44)
+    """, height=38)
 
 # --- Fungsi Rating
 def rating_buttons(idx):
@@ -130,5 +132,6 @@ for idx, msg in enumerate(st.session_state.chat_history[1:]):  # skip system pro
         copy_to_clipboard_button(msg["content"], idx)
         rating_buttons(idx)
     st.markdown("---")
+
 
 
