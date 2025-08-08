@@ -34,7 +34,7 @@ if "chat_history" not in st.session_state:
 
 # --- COPY BUTTON HTML/JS ---
 def copy_and_rating_inline(text, idx):
-    cols = st.columns([0.26, 0.1, 0.1, 0.54])  # Copy, 👍, 👎, spacer agar tetap dempet
+    cols = st.columns([0.26, 0.1, 0.1, 0.54]) 
     with cols[0]:
         st.components.v1.html(f"""
         <button id="copyBtn{idx}" style="
@@ -50,7 +50,7 @@ def copy_and_rating_inline(text, idx):
             cursor:pointer;
             display:inline-block;
             vertical-align:middle;">
-            📋 Copy
+            📋
         </button>
         <span id="copiedMsg{idx}" style="color:#32CD32; margin-left:7px; display:none; font-size:13px;">Copied!</span>
         <script>
@@ -129,4 +129,5 @@ for idx, msg in enumerate(st.session_state.chat_history[1:]):
 n_like = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "up")
 n_dislike = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "down")
 st.markdown(f"### Statistik Feedback Sesi Ini:  \n👍 **{n_like}** &nbsp;&nbsp;&nbsp; 👎 **{n_dislike}**")
+
 
