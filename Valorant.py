@@ -48,7 +48,7 @@ def copy_to_clipboard_button(text, idx):
         background:#262730;
         color:#FFD700;
         font-weight:bold;
-        font-size:16px;
+        font-size:12px;
         box-shadow:0 2px 8px #0002;
         cursor:pointer;
         transition: background 0.2s;">
@@ -131,6 +131,7 @@ for idx, msg in enumerate(st.session_state.chat_history[1:]):  # skip system pro
         copy_to_clipboard_button(msg["content"], idx)
         rating_buttons(idx)
     st.markdown("---")
+
 
 
 
