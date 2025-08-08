@@ -38,38 +38,79 @@ if "chat_history" not in st.session_state:
 
 # --- Fungsi Copy ke Clipboard
 def copy_and_rating_buttons(text, idx):
-    col1, col2, col3 = st.columns([1, 0.2, 0.2])
-    with col1:
-        st.components.v1.html(f"""
+    st.components.v1.html(f"""
+    <div style="display: flex; align-items: center; gap: 6px; margin: 2px 0 8px 0; justify-content: flex-start;">
         <button id="copyBtn{idx}" style="
-            margin-top:2px;
-            margin-bottom:2px;
-            padding:5px 18px;
+            padding:3px 12px;
             border-radius:8px;
             border:none;
             background:#262730;
             color:#FFD700;
             font-weight:bold;
-            font-size:14px;
+            font-size:15px;
             box-shadow:0 2px 8px #0002;
             cursor:pointer;">
-            📋
+            📋 Copy
         </button>
-        <span id="copiedMsg{idx}" style="color:#32CD32; margin-left:8px; display:none; font-size:14px;">Copied!</span>
-        <script>
-        const btn = document.getElementById('copyBtn{idx}');
-        const msg = document.getElementById('copiedMsg{idx}');
-        if(btn) {{
-            btn.onclick = function() {{
-                navigator.clipboard.writeText(`{text.replace("`", "\\`")}`);
-                if(msg) {{
-                    msg.style.display = "inline";
-                    setTimeout(function(){{msg.style.display="none"}}, 1200);
-                }}
-            }};
-        }}
-        </script>
-        """, height=38)
+        <button id="likeBtn{idx}" style="
+            padding:3px 10px;
+            border-radius:8px;
+            border:none;
+            background:#262730;
+            color:#FFD700;
+            font-size:17px;
+            cursor:pointer;">
+            👍
+        </button>
+        <button id="dislikeBtn{idx}" style="
+            padding:3px 10px;
+            border-radius:8px;
+            border:none;
+            background:#262730;
+            color:#FFD700;
+            font-size:17px;
+            cursor:pointer;">
+            👎
+        </button>
+        <span id="copiedMsg{idx}" style="color:#32CD32; margin-left:8px; display:none; font-size:12px;">Copied!</span>
+        <span id="likedMsg{idx}" style="color:#32CD32; margin-left:7px; display:none; font-size:12px;">👍</span>
+        <span id="dislikedMsg{idx}" style="color:#e04a3c; margin-left:7px; display:none; font-size:12px;">👎</span>
+    </div>
+    <script>
+    const btnCopy = document.getElementById('copyBtn{idx}');
+    const btnLike = document.getElementById('likeBtn{idx}');
+    const btnDislike = document.getElementById('dislikeBtn{idx}');
+    const msgCopied = document.getElementById('copiedMsg{idx}');
+    const msgLiked = document.getElementById('likedMsg{idx}');
+    const msgDisliked = document.getElementById('dislikedMsg{idx}');
+    if(btnCopy) {{
+        btnCopy.onclick = function() {{
+            navigator.clipboard.writeText(`{text.replace("`", "\\`")}`);
+            if(msgCopied) {{
+                msgCopied.style.display = "inline";
+                setTimeout(function(){{msgCopied.style.display="none"}}, 1000);
+            }}
+        }};
+    }}
+    if(btnLike) {{
+        btnLike.onclick = function() {{
+            if(msgLiked) {{
+                msgLiked.style.display = "inline";
+                setTimeout(function(){{msgLiked.style.display="none"}}, 900);
+            }}
+        }};
+    }}
+    if(btnDislike) {{
+        btnDislike.onclick = function() {{
+            if(msgDisliked) {{
+                msgDisliked.style.display = "inline";
+                setTimeout(function(){{msgDisliked.style.display="none"}}, 900);
+            }}
+        }};
+    }}
+    </script>
+    """, height=38)
+
     with col2:
         if st.button("👍", key=f"up_{idx}"):
             st.session_state[f"rate_{idx}"] = "up"
@@ -127,6 +168,7 @@ for idx, msg in enumerate(st.session_state.chat_history[1:]):  # skip system pro
     if msg["role"] == "assistant":
         copy_and_rating_buttons(msg.get("raw_markdown", msg["content"]), idx)
     st.markdown("---")
+
 
 
 
