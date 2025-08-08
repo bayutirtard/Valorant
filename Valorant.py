@@ -21,9 +21,6 @@ def load_json_data():
 
 agents, weapons, maps = load_json_data()
 
-# Groq config, etc (same as your previous code)
-client = Groq(api_key=st.secrets["GROQ_API_KEY"])
-
 system_prompt = {
     "role": "system",
     "content": (
@@ -96,5 +93,6 @@ if st.session_state.get("confirm_reset", False):
             if st.button("Cancel", key="confirm_no"):
                 st.session_state.confirm_reset = False
                 st.rerun()
+
 
 
