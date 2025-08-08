@@ -2,6 +2,13 @@ import streamlit as st
 import json
 from groq import Groq
 
+# Konfigurasi halaman
+st.set_page_config(page_title="Chatbot Valorant", page_icon="🎮")
+st.title("Chatbot Valorant")
+
+# Inisialisasi Groq client
+client = Groq(api_key=st.secrets["GROQ_API_KEY"])
+
 # Load JSON data
 def load_json_data():
     with open("valorant_agents.json", "r", encoding="utf-8") as f:
@@ -89,4 +96,5 @@ if st.session_state.get("confirm_reset", False):
             if st.button("Cancel", key="confirm_no"):
                 st.session_state.confirm_reset = False
                 st.rerun()
+
 
