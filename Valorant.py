@@ -105,6 +105,10 @@ if st.session_state.get("confirm_reset", False):
     with col1:
         if st.button("Yes, reset", key="confirm_yes"):
             st.session_state.chat_history = [system_prompt]
+            # Tambah baris ini untuk reset feedback juga!
+            keys_to_delete = [k for k in st.session_state.keys() if k.startswith('rate_')]
+            for k in keys_to_delete:
+                del st.session_state[k]
             st.session_state.confirm_reset = False
             st.rerun()
     with col2:
@@ -116,3 +120,4 @@ if st.session_state.get("confirm_reset", False):
 n_like = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "up")
 n_dislike = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "down")
 st.markdown(f"### Statistik Feedback Sesi Ini:  \n👍 **{n_like}** &nbsp;&nbsp;&nbsp; 👎 **{n_dislike}**")
+
