@@ -54,13 +54,44 @@ for msg in st.session_state.chat_history[1:]:
 # Input form
 st.markdown("<br>", unsafe_allow_html=True)
 with st.form(key="chat_form", clear_on_submit=True):
-    col1, col2, col3 = st.columns([6, 1, 1])
+    col1, col2, col3 = st.columns([6, 1, 1, 1])
     with col1:
         user_input = st.text_input("Type your question here", placeholder="Type your question here...", label_visibility="collapsed")
     with col2:
         submit = st.form_submit_button("Send")
     with col3:
         reset = st.form_submit_button("Reset")
+    with col4:
+    # Text input untuk user (nanti diisi hasil dictation)
+    user_input = st.text_input("Type your question here", key="input_text", placeholder="Type your question here...", label_visibility="collapsed")
+
+    # Tombol Dictate + Script HTML (hanya tampil di browser support)
+    st.components.v1.html("""
+        <button id="dictateBtn" style="margin-top:6px;padding:3px 12px 3px 5px;border-radius:6px;border:1px solid #ccc;background:#1e232b;color:#fff;cursor:pointer;font-size:15px;">
+            🎤 Dictate
+        </button>
+        <script>
+        const inputBox = window.parent.document.querySelector('input[data-testid="stTextInput"][id^="input_text"]');
+        const btn = document.getElementById('dictateBtn');
+        if (btn && inputBox) {
+            btn.onclick = function() {
+                var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                if (!SpeechRecognition) {
+                    alert('Browser tidak support speech recognition!');
+                    return;
+                }
+                var recognition = new SpeechRecognition();
+                recognition.lang = "id-ID"; // Bisa diganti "en-US" sesuai kebutuhan
+                recognition.onresult = function(event) {
+                    inputBox.value = event.results[0][0].transcript;
+                    inputBox.dispatchEvent(new Event('input', { bubbles: true }));
+                };
+                recognition.start();
+            }
+        }
+        </script>
+    """, height=38)
+
 
 # Proses input user
 if submit and user_input:
@@ -93,6 +124,7 @@ if st.session_state.get("confirm_reset", False):
             if st.button("Cancel", key="confirm_no"):
                 st.session_state.confirm_reset = False
                 st.rerun()
+
 
 
 
