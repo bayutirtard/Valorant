@@ -38,7 +38,7 @@ if "chat_history" not in st.session_state:
 
 # --- Fungsi Copy ke Clipboard
 def copy_and_rating_buttons(text, idx):
-    col1, col2, col3 = st.columns([0.5, 0.5, 1])
+    col1, col2, col3 = st.columns([0.1, 0.1, 1])
     with col1:
         st.components.v1.html(f"""
         <button id="copyBtn{idx}" style="
@@ -127,6 +127,7 @@ for idx, msg in enumerate(st.session_state.chat_history[1:]):  # skip system pro
     if msg["role"] == "assistant":
         copy_and_rating_buttons(msg.get("raw_markdown", msg["content"]), idx)
     st.markdown("---")
+
 
 
 
