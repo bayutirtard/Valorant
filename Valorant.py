@@ -16,7 +16,6 @@ def load_markdown_data():
     except FileNotFoundError:
         return "Valorant data not found."
 
-# Simpan isi markdown ke variabel
 markdown_data = load_markdown_data()
 
 system_prompt = {
@@ -33,23 +32,38 @@ system_prompt = {
     )
 }
 
-# Inisialisasi riwayat chat jika belum ada
+# Inisialisasi riwayat chat dan flag konfirmasi reset jika belum ada
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = [system_prompt]
+if "confirm_reset" not in st.session_state:
+    st.session_state.confirm_reset = False
 
 # Fungsi render chat
 def render_chat(role, content):
     if role == "user":
         st.markdown(f"**You:** {content}")
-
     elif role == "assistant":
         st.markdown("**Bot:**")
         st.markdown(content)
 
+# --- Feedback Button Streamlit ---
+def rating_buttons(idx):
+    col1, col2 = st.columns([1,1])
+    with col1:
+        if st.button("👍", key=f"up_{idx}"):
+            st.session_state[f"rate_{idx}"] = "up"
+            st.success("Terima kasih atas ratingnya!")
+    with col2:
+        if st.button("👎", key=f"down_{idx}"):
+            st.session_state[f"rate_{idx}"] = "down"
+            st.info("Terima kasih atas feedbacknya!")
 
 # Tampilkan riwayat chat (skip sistem message)
-for msg in st.session_state.chat_history[1:]:
+for idx, msg in enumerate(st.session_state.chat_history[1:]):
     render_chat(msg["role"], msg["content"])
+    if msg["role"] == "assistant":
+        rating_buttons(idx)
+    st.markdown("---")
 
 # Input form
 st.markdown("<br>", unsafe_allow_html=True)
@@ -67,7 +81,6 @@ with st.form(key="chat_form", clear_on_submit=True):
     with col3:
         reset = st.form_submit_button("Reset")
 
-
 # Proses input user
 if submit and user_input:
     st.session_state.chat_history.append({"role": "user", "content": user_input})
@@ -80,22 +93,26 @@ if submit and user_input:
         st.session_state.chat_history.append({"role": "assistant", "content": answer})
     st.rerun()
 
-# === 11. RESET CHAT DENGAN SIMULASI POPUP ===
+# RESET dengan popup konfirmasi
 if reset:
     st.session_state.confirm_reset = True
+    st.rerun()
 
-# Tampilkan "popup" konfirmasi jika diminta
 if st.session_state.get("confirm_reset", False):
-    with st.container():
-        st.markdown("---")
-        st.error("⚠️ Are you sure you want to reset the entire conversation?")
-        col1, col2 = st.columns(2)
-        with col1:
-            if st.button("Yes, reset", key="confirm_yes"):
-                st.session_state.chat_history = [system_prompt]
-                st.session_state.confirm_reset = False
-                st.rerun()
-        with col2:
-            if st.button("Cancel", key="confirm_no"):
-                st.session_state.confirm_reset = False
-                st.rerun()
+    st.markdown("---")
+    st.error("⚠️ Are you sure you want to reset the entire conversation?")
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("Yes, reset", key="confirm_yes"):
+            st.session_state.chat_history = [system_prompt]
+            st.session_state.confirm_reset = False
+            st.rerun()
+    with col2:
+        if st.button("Cancel", key="confirm_no"):
+            st.session_state.confirm_reset = False
+            st.rerun()
+
+# Statistik total Like/Dislike
+n_like = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "up")
+n_dislike = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "down")
+st.markdown(f"### Statistik Feedback Sesi Ini:  \n👍 **{n_like}** &nbsp;&nbsp;&nbsp; 👎 **{n_dislike}**")
