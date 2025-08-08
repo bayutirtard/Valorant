@@ -1,35 +1,31 @@
 import streamlit as st
+import json
 from groq import Groq
 
-# Konfigurasi halaman
-st.set_page_config(page_title="Chatbot Valorant", page_icon="🎮")
-st.title("Chatbot Valorant")
+# Load JSON data
+def load_json_data():
+    with open("valorant_agents.json", "r", encoding="utf-8") as f:
+        agents = json.load(f)
+    with open("valorant_weapons.json", "r", encoding="utf-8") as f:
+        weapons = json.load(f)
+    with open("valorant_maps.json", "r", encoding="utf-8") as f:
+        maps = json.load(f)
+    return agents, weapons, maps
 
-# Inisialisasi Groq client
+agents, weapons, maps = load_json_data()
+
+# Groq config, etc (same as your previous code)
 client = Groq(api_key=st.secrets["GROQ_API_KEY"])
-
-# Baca isi markdown valorant.md
-def load_markdown_data():
-    try:
-        with open("valorant.md", "r", encoding="utf-8") as f:
-            return f.read()
-    except FileNotFoundError:
-        return "Valorant data not found."
-
-# Simpan isi markdown ke variabel
-markdown_data = load_markdown_data()
 
 system_prompt = {
     "role": "system",
     "content": (
-        "You are a Valorant expert. You are only allowed to answer based on the data provided below. "
-        "You must not use any outside knowledge. Do not guess. Do not refer to other games. "
-        "Show the picture of the agents, weapon and others if user ask about the name of it "
+        "You are a Valorant expert. Only answer using the data below. "
         "If the answer is not clearly found in the data, respond only with: "
-        "\"Sorry, that information is not available in the current database.\" "
-        "Even if the question seems obvious or easy, do not use general knowledge. "
-        "Use ONLY the following data as your source:\n\n"
-        + markdown_data
+        "\"Sorry, that information is not available in the current database.\"\n\n"
+        "AGENTS:\n" + json.dumps(agents, ensure_ascii=False) + "\n\n"
+        "WEAPONS:\n" + json.dumps(weapons, ensure_ascii=False) + "\n\n"
+        "MAPS:\n" + json.dumps(maps, ensure_ascii=False)
     )
 }
 
@@ -93,3 +89,4 @@ if st.session_state.get("confirm_reset", False):
             if st.button("Cancel", key="confirm_no"):
                 st.session_state.confirm_reset = False
                 st.rerun()
+
