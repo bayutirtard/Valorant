@@ -46,7 +46,7 @@ def copy_to_clipboard_button(text, idx):
         background:#393a41;
         color:#FFD700;
         font-weight:bold;
-        font-size:16px;
+        font-size:14px;
         box-shadow:0 2px 8px #0002;
         cursor:pointer;">
         📋
@@ -141,5 +141,6 @@ for idx, msg in enumerate(st.session_state.chat_history[1:]):  # skip system pro
 n_like = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "up")
 n_dislike = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "down")
 st.markdown(f"### Statistik Feedback Sesi Ini:  \n👍 **{n_like}** &nbsp;&nbsp;&nbsp; 👎 **{n_dislike}**")
+
 
 
