@@ -40,7 +40,7 @@ if "chat_history" not in st.session_state:
 def copy_to_clipboard_button(text, idx):
     st.components.v1.html(f"""
     <button id="copyBtn{idx}" style="
-        margin-top:2px;
+        margin-top:4px;
         margin-bottom:8px;
         padding:5px 16px;
         border-radius:8px;
@@ -131,6 +131,7 @@ for idx, msg in enumerate(st.session_state.chat_history[1:]):  # skip system pro
         copy_to_clipboard_button(msg["content"], idx)
         rating_buttons(idx)
     st.markdown("---")
+
 
 
 
