@@ -160,8 +160,8 @@ for idx, msg in enumerate(st.session_state.chat_history[1:]):  # skip system pro
     render_chat(msg["role"], msg["content"])
     if msg["role"] == "assistant":
         copy_like_dislike_buttons(msg.get("raw_markdown", msg["content"]), idx)
-        rating_buttons(idx)
     st.markdown("---")
+
 
 
 
