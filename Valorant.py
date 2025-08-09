@@ -76,6 +76,15 @@ def render_chat(role, content):
 
 # --- Tombol rating
 def rating_buttons(idx):
+    # Cek apakah sudah ada rating untuk idx ini
+    if f"rate_{idx}" in st.session_state:
+        # Sudah diberi rating, tampilkan info saja
+        if st.session_state[f"rate_{idx}"] == "up":
+            st.markdown("👍 **You rated this answer positively.**")
+        else:
+            st.markdown("👎 **You rated this answer negatively.**")
+        return  # keluar supaya tidak render tombol lagi
+
     col1, col2 = st.columns([1, 1])
     chat_hist = st.session_state.chat_history[1:]
     user_msg = None
@@ -220,3 +229,4 @@ if st.session_state.stats_history:
     st.markdown("### Riwayat Statistik")
     for i, stats in enumerate(st.session_state.stats_history, 1):
         st.markdown(f"Sesi {i}: 👍 {stats['like']} | 👎 {stats['dislike']}")
+
