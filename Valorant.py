@@ -100,49 +100,49 @@ if st.session_state.all_chats:
     if "del_confirm_idx" not in st.session_state:
         st.session_state.del_confirm_idx = None
 
-    for i, chat in enumerate(st.session_state.all_chats):
-        # Preview: pakai pertanyaan user pertama jika ada
-        if len(chat) > 1 and chat[1]["role"] == "user":
-            preview = chat[1]["content"][:40]
-        else:
-            preview = "[kosong]"
+for i, chat in enumerate(st.session_state.all_chats):
+    # Preview: pakai pertanyaan user pertama jika ada
+    if len(chat) > 1 and chat[1]["role"] == "user":
+        preview = chat[1]["content"][:40]
+    else:
+        preview = "[kosong]"
 
-        row = st.sidebar.container()
-        with row:
-            c1, c2, c3 = st.columns([7, 1.5, 1.5])  # judul | open | delete
-            with c1:
-                st.markdown(f"**Chat #{i+1}** — {preview}")
-            with c2:
-                if st.button("🔍", key=f"open_{i}", help="Buka chat ini"):
-                    st.session_state.chat_history = list(chat)
-                    st.session_state.current_chat_index = i
-                    st.rerun()
-            with c3:
-                if st.button("🗑", key=f"del_{i}", help="Hapus chat ini"):
-                    st.session_state.del_confirm_idx = i
-                    st.rerun()
+    row = st.sidebar.container()
+    with row:
+        # judul (sekarang tombol), spacer kecil, tombol hapus
+        c1, c3 = st.columns([8, 2])
 
-        # Baris konfirmasi (muncul hanya untuk item yang dipilih)
-        if st.session_state.del_confirm_idx == i:
-            k = st.sidebar.container()
-            with k:
-                cc1, cc2 = st.columns([1, 1])
-                with cc1:
-                    if st.button("Yes, delete", key=f"del_yes_{i}"):
-                        # Hapus chat i
-                        st.session_state.all_chats.pop(i)
-                        # Reset penunjuk jika perlu
-                        if st.session_state.current_chat_index == i:
-                            st.session_state.current_chat_index = None
-                            st.session_state.chat_history = [system_prompt]
-                        # Tutup confirm
-                        st.session_state.del_confirm_idx = None
-                        st.rerun()
-                with cc2:
-                    if st.button("Cancel", key=f"del_no_{i}"):
-                        st.session_state.del_confirm_idx = None
-                        st.rerun()
-            st.sidebar.markdown("---")
+        with c1:
+            # Langsung tombol untuk membuka chat (tanpa ikon 🔍)
+            if st.button(f"Chat #{i+1} — {preview}", key=f"open_{i}"):
+                st.session_state.chat_history = list(chat)
+                st.session_state.current_chat_index = i
+                st.rerun()
+
+        with c3:
+            if st.button("🗑", key=f"del_{i}", help="Hapus chat ini"):
+                st.session_state.del_confirm_idx = i
+                st.rerun()
+
+    # Baris konfirmasi hapus (tetap sama)
+    if st.session_state.del_confirm_idx == i:
+        k = st.sidebar.container()
+        with k:
+            cc1, cc2 = st.columns([1, 1])
+            with cc1:
+                if st.button("Yes, delete", key=f"del_yes_{i}"):
+                    st.session_state.all_chats.pop(i)
+                    if st.session_state.current_chat_index == i:
+                        st.session_state.current_chat_index = None
+                        st.session_state.chat_history = [system_prompt]
+                    st.session_state.del_confirm_idx = None
+                    st.rerun()
+            with cc2:
+                if st.button("Cancel", key=f"del_no_{i}"):
+                    st.session_state.del_confirm_idx = None
+                    st.rerun()
+        st.sidebar.markdown("---")
+
 else:
     st.sidebar.info("Belum ada history chat.")
 
@@ -209,6 +209,7 @@ if st.session_state.get("confirm_reset", False):
 n_like = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "up")
 n_dislike = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "down")
 st.markdown(f"### Statistik Feedback Sesi Ini:  \n👍 **{n_like}** &nbsp;&nbsp;&nbsp; 👎 **{n_dislike}**")
+
 
 
 
