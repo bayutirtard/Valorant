@@ -133,7 +133,7 @@ if st.sidebar.button("New Chat"):
 
 
 # --- Sidebar: Riwayat Chat
-st.sidebar.markdown("### Riwayat Chat")
+st.sidebar.markdown("### Chats")
 if st.session_state.all_chats:
     for i, chat in enumerate(st.session_state.all_chats):
         preview = chat[1]["content"][:40] if len(chat) > 1 and chat[1]["role"] == "user" else "[kosong]"
@@ -165,7 +165,7 @@ if st.session_state.all_chats:
                     st.rerun()
             st.sidebar.markdown("---")
 else:
-    st.sidebar.info("Belum ada history chat.")
+    st.sidebar.info("No chat history yet.")
 
 # --- Tampilkan chat aktif & rating
 for idx in range(0, (len(st.session_state.chat_history) - 1) // 2):
@@ -234,6 +234,7 @@ if st.session_state.stats_history:
     st.markdown("### Statistics History")
     for i, stats in enumerate(st.session_state.stats_history, 1):
         st.markdown(f"Session {i}: 👍 {stats['like']} | 👎 {stats['dislike']}")
+
 
 
 
