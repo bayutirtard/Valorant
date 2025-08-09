@@ -28,6 +28,7 @@ def load_markdown_data():
             return f.read()
     except FileNotFoundError:
         return "Valorant data not found."
+
 markdown_data = load_markdown_data()
 
 system_prompt = {
@@ -44,7 +45,7 @@ system_prompt = {
     )
 }
 
-# --- Inisialisasi state untuk fitur history
+# --- Inisialisasi state untuk fitur history & statistik
 if "all_chats" not in st.session_state:
     st.session_state.all_chats = []
 if "chat_history" not in st.session_state:
@@ -53,7 +54,19 @@ if "current_chat_index" not in st.session_state:
     st.session_state.current_chat_index = None
 if "confirm_reset" not in st.session_state:
     st.session_state.confirm_reset = False
+if "del_confirm_idx" not in st.session_state:
+    st.session_state.del_confirm_idx = None
 
+# Statistik per sesi
+if "n_like" not in st.session_state:
+    st.session_state.n_like = 0
+if "n_dislike" not in st.session_state:
+    st.session_state.n_dislike = 0
+# Riwayat statistik
+if "stats_history" not in st.session_state:
+    st.session_state.stats_history = []
+
+# --- Fungsi render chat
 def render_chat(role, content):
     if role == "user":
         st.markdown(f"**You:** {content}")
@@ -61,45 +74,55 @@ def render_chat(role, content):
         st.markdown("**Bot:**")
         st.markdown(content)
 
+# --- Tombol rating
 def rating_buttons(idx):
-    col1, col2 = st.columns([1,1])
+    col1, col2 = st.columns([1, 1])
     chat_hist = st.session_state.chat_history[1:]
     user_msg = None
     bot_msg = None
-    msg_i = idx*2
-    if msg_i >= 0 and (msg_i+1) < len(chat_hist):
+    msg_i = idx * 2
+    if msg_i >= 0 and (msg_i + 1) < len(chat_hist):
         user_msg = chat_hist[msg_i]["content"]
-        bot_msg = chat_hist[msg_i+1]["content"]
+        bot_msg = chat_hist[msg_i + 1]["content"]
     with col1:
         if st.button("👍", key=f"up_{idx}"):
             st.session_state[f"rate_{idx}"] = "up"
+            st.session_state.n_like += 1
             st.success("Terima kasih atas ratingnya!")
             if user_msg and bot_msg:
                 save_feedback_to_gsheet(user_msg, bot_msg, "up")
     with col2:
         if st.button("👎", key=f"down_{idx}"):
             st.session_state[f"rate_{idx}"] = "down"
+            st.session_state.n_dislike += 1
             st.info("Terima kasih atas feedbacknya!")
             if user_msg and bot_msg:
                 save_feedback_to_gsheet(user_msg, bot_msg, "down")
 
-# --- Fitur New Chat
+# --- Sidebar: Menu
 st.sidebar.markdown("### Menu")
 if st.sidebar.button("New Chat"):
     if st.session_state.chat_history != [system_prompt]:
+        # Simpan chat lama
         st.session_state.all_chats.append(list(st.session_state.chat_history))
+        # Simpan statistik sesi lama
+        st.session_state.stats_history.append({
+            "like": st.session_state.n_like,
+            "dislike": st.session_state.n_dislike
+        })
+    # Reset statistik sesi baru
+    st.session_state.n_like = 0
+    st.session_state.n_dislike = 0
+    # Reset chat
     st.session_state.chat_history = [system_prompt]
     st.session_state.current_chat_index = None
     st.rerun()
 
-# --- Tampilkan riwayat chat di sidebar (open / delete per item)
+# --- Sidebar: Riwayat Chat
 st.sidebar.markdown("### Riwayat Chat")
 if st.session_state.all_chats:
     for i, chat in enumerate(st.session_state.all_chats):
-        if len(chat) > 1 and chat[1]["role"] == "user":
-            preview = chat[1]["content"][:40]
-        else:
-            preview = "[kosong]"
+        preview = chat[1]["content"][:40] if len(chat) > 1 and chat[1]["role"] == "user" else "[kosong]"
 
         c1, c3 = st.sidebar.columns([8, 2])
         with c1:
@@ -107,13 +130,12 @@ if st.session_state.all_chats:
                 st.session_state.chat_history = list(chat)
                 st.session_state.current_chat_index = i
                 st.rerun()
-
         with c3:
             if st.button("🗑", key=f"del_{i}", help="Hapus chat ini"):
                 st.session_state.del_confirm_idx = i
                 st.rerun()
 
-        if st.session_state.get("del_confirm_idx") == i:
+        if st.session_state.del_confirm_idx == i:
             cc1, cc2 = st.sidebar.columns([1, 1])
             with cc1:
                 if st.button("Yes, delete", key=f"del_yes_{i}"):
@@ -131,11 +153,10 @@ if st.session_state.all_chats:
 else:
     st.sidebar.info("Belum ada history chat.")
 
-
 # --- Tampilkan chat aktif & rating
-for idx in range(0, (len(st.session_state.chat_history)-1)//2):
-    msg_user = st.session_state.chat_history[1:][idx*2]
-    msg_bot = st.session_state.chat_history[1:][idx*2+1]
+for idx in range(0, (len(st.session_state.chat_history) - 1) // 2):
+    msg_user = st.session_state.chat_history[1:][idx * 2]
+    msg_bot = st.session_state.chat_history[1:][idx * 2 + 1]
     render_chat(msg_user["role"], msg_user["content"])
     render_chat(msg_bot["role"], msg_bot["content"])
     rating_buttons(idx)
@@ -166,10 +187,10 @@ if submit and user_input:
         )
         answer = response.choices[0].message.content
         st.session_state.chat_history.append({"role": "assistant", "content": answer})
-        save_feedback_to_gsheet(user_input, answer, "")   # log QnA tanpa feedback
+        save_feedback_to_gsheet(user_input, answer, "")  # log QnA tanpa feedback
     st.rerun()
 
-# --- RESET dengan popup konfirmasi & hapus feedback
+# --- Reset Conversation
 if reset:
     st.session_state.confirm_reset = True
     st.rerun()
@@ -184,6 +205,8 @@ if st.session_state.get("confirm_reset", False):
             keys_to_delete = [k for k in st.session_state.keys() if k.startswith('rate_')]
             for k in keys_to_delete:
                 del st.session_state[k]
+            st.session_state.n_like = 0
+            st.session_state.n_dislike = 0
             st.session_state.confirm_reset = False
             st.rerun()
     with col2:
@@ -191,17 +214,9 @@ if st.session_state.get("confirm_reset", False):
             st.session_state.confirm_reset = False
             st.rerun()
 
-# --- Statistik feedback
-n_like = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "up")
-n_dislike = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "down")
-st.markdown(f"### Statistik Feedback Sesi Ini:  \n👍 **{n_like}** &nbsp;&nbsp;&nbsp; 👎 **{n_dislike}**")
-
-
-
-
-
-
-
-
-
-
+# --- Statistik
+st.markdown(f"### Statistik Sesi Ini  \n👍 **{st.session_state.n_like}** &nbsp;&nbsp;&nbsp; 👎 **{st.session_state.n_dislike}**")
+if st.session_state.stats_history:
+    st.markdown("### Riwayat Statistik")
+    for i, stats in enumerate(st.session_state.stats_history, 1):
+        st.markdown(f"Sesi {i}: 👍 {stats['like']} | 👎 {stats['dislike']}")
