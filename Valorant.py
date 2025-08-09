@@ -143,8 +143,6 @@ for i, chat in enumerate(st.session_state.all_chats):
                     st.rerun()
         st.sidebar.markdown("---")
 
-else:
-    st.sidebar.info("Belum ada history chat.")
 
 # --- Tampilkan chat aktif & rating
 for idx in range(0, (len(st.session_state.chat_history)-1)//2):
@@ -209,6 +207,7 @@ if st.session_state.get("confirm_reset", False):
 n_like = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "up")
 n_dislike = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "down")
 st.markdown(f"### Statistik Feedback Sesi Ini:  \n👍 **{n_like}** &nbsp;&nbsp;&nbsp; 👎 **{n_dislike}**")
+
 
 
 
