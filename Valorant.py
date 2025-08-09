@@ -93,12 +93,21 @@ if st.sidebar.button("New Chat"):
     st.rerun()
 
 # --- Tampilkan riwayat chat di sidebar (open / delete per item)
+# --- Riwayat Chat
 st.sidebar.markdown("### Riwayat Chat")
-
 if st.session_state.all_chats:
-    # Opsional: state buat konfirmasi hapus per item
-    if "del_confirm_idx" not in st.session_state:
-        st.session_state.del_confirm_idx = None
+    for i, chat in enumerate(st.session_state.all_chats):
+        if len(chat) > 1 and chat[1]["role"] == "user":
+            preview = chat[1]["content"][:40]
+        else:
+            preview = "[kosong]"
+        
+        if st.sidebar.button(f"Chat #{i+1} — {preview}", key=f"open_{i}"):
+            st.session_state.chat_history = list(chat)
+            st.session_state.current_chat_index = i
+            st.rerun()
+else:
+    st.sidebar.info("Belum ada history chat.")
 
 for i, chat in enumerate(st.session_state.all_chats):
     # Preview: pakai pertanyaan user pertama jika ada
@@ -207,6 +216,7 @@ if st.session_state.get("confirm_reset", False):
 n_like = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "up")
 n_dislike = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "down")
 st.markdown(f"### Statistik Feedback Sesi Ini:  \n👍 **{n_like}** &nbsp;&nbsp;&nbsp; 👎 **{n_dislike}**")
+
 
 
 
