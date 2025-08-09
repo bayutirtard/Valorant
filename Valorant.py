@@ -103,7 +103,7 @@ if st.session_state.all_chats:
 
         c1, c3 = st.sidebar.columns([8, 2])
         with c1:
-            if st.button(f"Chat #{i+1} — {preview}", key=f"open_{i}"):
+            if st.button(preview, key=f"open_{i}", help="Buka chat ini"):
                 st.session_state.chat_history = list(chat)
                 st.session_state.current_chat_index = i
                 st.rerun()
@@ -195,6 +195,7 @@ if st.session_state.get("confirm_reset", False):
 n_like = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "up")
 n_dislike = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "down")
 st.markdown(f"### Statistik Feedback Sesi Ini:  \n👍 **{n_like}** &nbsp;&nbsp;&nbsp; 👎 **{n_dislike}**")
+
 
 
 
