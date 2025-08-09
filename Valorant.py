@@ -128,7 +128,7 @@ if st.session_state.all_chats:
             with k:
                 cc1, cc2 = st.columns([1, 1])
                 with cc1:
-                    if st.button("✅ Ya", key=f"del_yes_{i}"):
+                    if st.button("Yes, delete", key=f"del_yes_{i}"):
                         # Hapus chat i
                         st.session_state.all_chats.pop(i)
                         # Reset penunjuk jika perlu
@@ -139,7 +139,7 @@ if st.session_state.all_chats:
                         st.session_state.del_confirm_idx = None
                         st.rerun()
                 with cc2:
-                    if st.button("❌ Batal", key=f"del_no_{i}"):
+                    if st.button("Cancel", key=f"del_no_{i}"):
                         st.session_state.del_confirm_idx = None
                         st.rerun()
             st.sidebar.markdown("---")
@@ -209,6 +209,7 @@ if st.session_state.get("confirm_reset", False):
 n_like = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "up")
 n_dislike = sum(1 for k,v in st.session_state.items() if k.startswith('rate_') and v == "down")
 st.markdown(f"### Statistik Feedback Sesi Ini:  \n👍 **{n_like}** &nbsp;&nbsp;&nbsp; 👎 **{n_dislike}**")
+
 
 
 
