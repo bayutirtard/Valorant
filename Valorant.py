@@ -140,12 +140,12 @@ if st.session_state.all_chats:
 
         c1, c3 = st.sidebar.columns([8, 2])
         with c1:
-            if st.button(preview, key=f"open_{i}", help="Buka chat ini"):
+            if st.button(preview, key=f"open_{i}", help="Open this chat"):
                 st.session_state.chat_history = list(chat)
                 st.session_state.current_chat_index = i
                 st.rerun()
         with c3:
-            if st.button("🗑", key=f"del_{i}", help="Hapus chat ini"):
+            if st.button("🗑", key=f"del_{i}", help="Delete this chat"):
                 st.session_state.del_confirm_idx = i
                 st.rerun()
 
@@ -231,8 +231,9 @@ if st.session_state.get("confirm_reset", False):
 # --- Statistik
 st.markdown(f"### Statistik Sesi Ini  \n👍 **{st.session_state.n_like}** &nbsp;&nbsp;&nbsp; 👎 **{st.session_state.n_dislike}**")
 if st.session_state.stats_history:
-    st.markdown("### Riwayat Statistik")
+    st.markdown("### Statistics History")
     for i, stats in enumerate(st.session_state.stats_history, 1):
-        st.markdown(f"Sesi {i}: 👍 {stats['like']} | 👎 {stats['dislike']}")
+        st.markdown(f"Session {i}: 👍 {stats['like']} | 👎 {stats['dislike']}")
+
 
 
