@@ -122,10 +122,15 @@ if st.sidebar.button("New Chat"):
     # Reset statistik sesi baru
     st.session_state.n_like = 0
     st.session_state.n_dislike = 0
+    # Hapus semua status rating lama
+    keys_to_delete = [k for k in st.session_state.keys() if k.startswith('rate_')]
+    for k in keys_to_delete:
+        del st.session_state[k]
     # Reset chat
     st.session_state.chat_history = [system_prompt]
     st.session_state.current_chat_index = None
     st.rerun()
+
 
 # --- Sidebar: Riwayat Chat
 st.sidebar.markdown("### Riwayat Chat")
@@ -229,4 +234,5 @@ if st.session_state.stats_history:
     st.markdown("### Riwayat Statistik")
     for i, stats in enumerate(st.session_state.stats_history, 1):
         st.markdown(f"Sesi {i}: 👍 {stats['like']} | 👎 {stats['dislike']}")
+
 
