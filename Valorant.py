@@ -5,12 +5,6 @@ from google.oauth2.service_account import Credentials
 from datetime import datetime
 import json
 
-from io import BytesIO
-from reportlab.pdfgen import canvas
-from reportlab.lib.pagesizes import A4
-from reportlab.lib import colors
-from reportlab.lib.units import cm
-
 # ======= Simpan ke Google Sheets =======
 def save_feedback_to_gsheet(user_q, bot_a, feedback):
     creds = Credentials.from_service_account_info(
@@ -78,7 +72,13 @@ def render_chat_bubble(i, chat):
     preview = chat.get("title") or (
         chat["messages"][1]["content"][:40] if len(chat["messages"]) > 1 else "[empty]"
     )
-    
+    st.download_button(
+        label="Download Chat",
+        data=export_data.encode("utf-8"),
+        file_name=f"chat_session_{i+1}.txt",
+        mime="text/plain",
+        key=f"download_{i}"
+    )
     col1, col2 = st.sidebar.columns([8, 1])
     with col1:
         if st.button(preview, key=f"open_{i}", use_container_width=True):
@@ -108,63 +108,6 @@ def render_chat_bubble(i, chat):
                 st.session_state.delete_confirm = i
                 st.session_state.rename_mode = None
                 st.rerun()
-            if st.button("Export as PDF", key=f"exportbtn_{i}", use_container_width=True):
-                buffer = BytesIO()
-                c = canvas.Canvas(buffer, pagesize=A4)
-                width, height = A4
-
-    # Judul
-    c.setFont("Helvetica-Bold", 20)
-    c.drawString(2*cm, height - 2*cm, "Valorant Chat")
-    y = height - 3*cm
-
-    # Loop chat
-    for msg in chat["messages"]:
-        if msg["role"] == "system":
-            continue  # skip system prompt
-
-        if msg["role"] == "user":
-            c.setFillColor(colors.blue)
-            c.setFont("Helvetica-Bold", 12)
-            c.drawString(2*cm, y, "You:")
-            y -= 0.5*cm
-            c.setFillColor(colors.black)
-            c.setFont("Helvetica", 11)
-        else:
-            c.setFillColor(colors.green)
-            c.setFont("Helvetica-Bold", 12)
-            c.drawString(2*cm, y, "Bot:")
-            y -= 0.5*cm
-            c.setFillColor(colors.black)
-            c.setFont("Helvetica", 11)
-
-        # Bungkus text otomatis
-        text_lines = []
-        for line in msg["content"].split("\n"):
-            while len(line) > 90:
-                text_lines.append(line[:90])
-                line = line[90:]
-            text_lines.append(line)
-
-        for line in text_lines:
-            if y < 2*cm:  # kalau mau ganti halaman
-                c.showPage()
-                y = height - 2*cm
-            c.drawString(2.5*cm, y, line)
-            y -= 0.5*cm
-
-        y -= 0.3*cm  # spasi antar pesan
-
-    c.save()
-    buffer.seek(0)
-
-    st.download_button(
-        label="Download PDF",
-        data=buffer,
-        file_name=f"chat_session_{i+1}.pdf",
-        mime="application/pdf",
-        key=f"download_pdf_{i}"
-    )
 
     # Mode Rename
     if st.session_state.rename_mode == i:
@@ -331,14 +274,3 @@ if submit and user_input:
 
 # ======= Stats =======
 st.markdown(f"### This Session Stats\n👍 **{st.session_state.chat_history['n_like']}**   👎 **{st.session_state.chat_history['n_dislike']}**")
-
-
-
-
-
-
-
-
-
-
-
