@@ -2,4 +2,3 @@ streamlit
 groq
 gspread
 google-auth
-reportlab
