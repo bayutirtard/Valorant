@@ -26,7 +26,7 @@ st.markdown("""
     justify-content: space-between;
     align-items: center;
     background-color: #2f2f2f;
-    padding: 8px 10px;
+    padding: 6px 8px;
     border-radius: 8px;
     margin-bottom: 4px;
     cursor: pointer;
@@ -57,15 +57,6 @@ st.markdown("""
     border-radius: 6px;
     padding: 6px;
     margin-top: 2px;
-}
-.menu-item {
-    padding: 4px 6px;
-    color: white;
-    cursor: pointer;
-    border-radius: 4px;
-}
-.menu-item:hover {
-    background-color: #444;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -112,7 +103,7 @@ if "current_chat_index" not in st.session_state:
 if "menu_open" not in st.session_state:
     st.session_state.menu_open = None
 
-# ======= Chat Bubble Rendering =======
+# ======= Render Chat Bubble =======
 def render_chat_bubble(i, chat):
     preview = chat.get("title") or (
         chat["messages"][1]["content"][:40] if len(chat["messages"]) > 1 else "[empty]"
@@ -120,27 +111,32 @@ def render_chat_bubble(i, chat):
     is_active = st.session_state.current_chat_index == i
     bubble_class = "chat-bubble active" if is_active else "chat-bubble"
 
-    # Bubble HTML
-    st.markdown(
-        f"""
-        <div class="{bubble_class}" onclick="window.parent.postMessage({{'type': 'open_chat', 'index': {i}}}, '*')">
-            <div class="chat-title">{preview}</div>
-            <div class="chat-menu" onclick="window.parent.postMessage({{'type': 'menu_click', 'index': {i}}}, '*')">⋮</div>
-        </div>
-        """, unsafe_allow_html=True
-    )
+    col1, col2 = st.sidebar.columns([8, 1])
+    with col1:
+        if st.button(preview, key=f"open_{i}", use_container_width=True):
+            st.session_state.chat_history = chat
+            st.session_state.current_chat_index = i
+            st.session_state.menu_open = None
+            st.rerun()
+        if is_active:
+            st.markdown(
+                f"<style>button[key='open_{i}']{{background-color:#555 !important;color:white !important;}}</style>",
+                unsafe_allow_html=True
+            )
 
-    # Menu
+    with col2:
+        if st.button("⋮", key=f"menu_{i}"):
+            st.session_state.menu_open = i if st.session_state.menu_open != i else None
+            st.rerun()
+
     if st.session_state.menu_open == i:
-        with st.container():
+        with st.sidebar.container():
             st.markdown('<div class="menu-box">', unsafe_allow_html=True)
-            # Rename
             new_title = st.text_input("Rename chat", value=preview, key=f"rename_{i}")
             if st.button("Save", key=f"save_name_{i}"):
                 chat["title"] = new_title
                 st.session_state.menu_open = None
                 st.rerun()
-            # Delete
             if st.button("Delete", key=f"delete_{i}"):
                 st.session_state.all_chats.pop(i)
                 if st.session_state.current_chat_index == i:
