@@ -246,7 +246,7 @@ if reset:
 
 if st.session_state.get("confirm_reset_all", False):
     st.markdown("---")
-    st.error("⚠️ Are you sure you want to reset and delete ALL chats in this session?")
+    st.error("Are you sure you want to reset and delete all chats in this session?")
     col1, col2 = st.columns(2)
     with col1:
         if st.button("Yes, reset all", key="confirm_yes_all"):
@@ -269,6 +269,7 @@ if st.session_state.get("confirm_reset_all", False):
 
 # ======= Stats =======
 st.markdown(f"### This Session Stats\n👍 **{st.session_state.chat_history['n_like']}**   👎 **{st.session_state.chat_history['n_dislike']}**")
+
 
 
 
