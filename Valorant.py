@@ -84,10 +84,9 @@ def render_chat_bubble(i, chat):
             st.session_state.delete_confirm = None
             st.rerun()
 
-    # Popup menu menempel di bawah ⋮
+    # Popup menu
     if st.session_state.menu_open == i:
         with st.sidebar.container():
-            st.markdown('<div class="menu-box">', unsafe_allow_html=True)
             if st.button("Rename", key=f"renamebtn_{i}", use_container_width=True):
                 st.session_state.rename_mode = i
                 st.session_state.delete_confirm = None
@@ -96,7 +95,6 @@ def render_chat_bubble(i, chat):
                 st.session_state.delete_confirm = i
                 st.session_state.rename_mode = None
                 st.rerun()
-            st.markdown('</div>', unsafe_allow_html=True)
 
     # Mode Rename
     if st.session_state.rename_mode == i:
@@ -204,6 +202,7 @@ def rating_buttons(idx):
             del st.session_state[f"temp_thumb_{idx}"]
             st.rerun()
 
+# ======= Display Chat & Ratings =======
 for idx in range(0, (len(st.session_state.chat_history["messages"]) - 1) // 2):
     msg_user = st.session_state.chat_history["messages"][1:][idx * 2]
     msg_bot = st.session_state.chat_history["messages"][1:][idx * 2 + 1]
@@ -212,16 +211,14 @@ for idx in range(0, (len(st.session_state.chat_history["messages"]) - 1) // 2):
     rating_buttons(idx)
     st.markdown("---")
 
-# ======= Input Form =======
+# ======= Input Form (No Reset) =======
 st.markdown("<br>", unsafe_allow_html=True)
 with st.form(key="chat_form", clear_on_submit=True):
-    col1, col2, col3 = st.columns([6, 1, 1])
+    col1, col2 = st.columns([7, 1])
     with col1:
         user_input = st.text_input("Type your question here", key="input_text", label_visibility="collapsed")
     with col2:
         submit = st.form_submit_button("Send")
-    with col3:
-        reset = st.form_submit_button("Reset")
 
 if submit and user_input:
     st.session_state.chat_history["messages"].append({"role": "user", "content": user_input})
@@ -240,37 +237,5 @@ if submit and user_input:
         save_feedback_to_gsheet(user_input, answer, "")
     st.rerun()
 
-if reset:
-    st.session_state.confirm_reset_all = True
-    st.rerun()
-
-if st.session_state.get("confirm_reset_all", False):
-    st.markdown("---")
-    st.error("Are you sure you want to reset and delete all chats in this session?")
-    col1, col2 = st.columns(2)
-    with col1:
-        if st.button("Yes, reset all", key="confirm_yes_all"):
-            st.session_state.all_chats.clear()
-            st.session_state.chat_history = {
-                "messages": [system_prompt],
-                "ratings": {},
-                "n_like": 0,
-                "n_dislike": 0,
-                "title": None,
-                "added_to_history": False
-            }
-            st.session_state.current_chat_index = None
-            st.session_state.confirm_reset_all = False
-            st.rerun()
-    with col2:
-        if st.button("Cancel", key="confirm_no_all"):
-            st.session_state.confirm_reset_all = False
-            st.rerun()
-
 # ======= Stats =======
 st.markdown(f"### This Session Stats\n👍 **{st.session_state.chat_history['n_like']}**   👎 **{st.session_state.chat_history['n_dislike']}**")
-
-
-
-
-
