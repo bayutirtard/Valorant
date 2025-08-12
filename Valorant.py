@@ -202,6 +202,7 @@ def rating_buttons(idx):
                 chat_data["n_dislike"] += 1
             save_feedback_to_gsheet(user_msg, bot_msg, f"{thumb} | {stars_value} stars")
             del st.session_state[f"temp_thumb_{idx}"]
+            st.rerun()
 
 for idx in range(0, (len(st.session_state.chat_history["messages"]) - 1) // 2):
     msg_user = st.session_state.chat_history["messages"][1:][idx * 2]
@@ -253,5 +254,6 @@ if reset:
 
 # ======= Stats =======
 st.markdown(f"### This Session Stats\n👍 **{st.session_state.chat_history['n_like']}**   👎 **{st.session_state.chat_history['n_dislike']}**")
+
 
 
