@@ -18,13 +18,9 @@ def save_feedback_to_gsheet(user_q, bot_a, feedback):
     ws = sh.sheet1
     ws.append_row([str(datetime.now()), user_q, bot_a, feedback])
 
-# --- CSS untuk highlight abu gelap pada chat aktif
+# --- CSS untuk tombol session aktif
 st.markdown("""
     <style>
-    div[data-testid="stSidebar"] button[kind="secondary"] {
-        border-radius: 5px;
-        text-align: left;
-    }
     div[data-testid="stSidebar"] button.session-active {
         background-color: #666 !important;
         color: white !important;
@@ -146,14 +142,14 @@ if st.sidebar.button("New Chat", use_container_width=True):
     st.session_state.current_chat_index = None
     st.rerun()
 
-# --- Sidebar: Chats
+# --- Sidebar: Chats (tombol + delete sejajar)
 st.sidebar.markdown("### Chats")
 if st.session_state.all_chats:
     for i, chat in enumerate(st.session_state.all_chats):
         preview = chat["messages"][1]["content"][:40] if len(chat["messages"]) > 1 and chat["messages"][1]["role"] == "user" else "[empty]"
         is_active = st.session_state.current_chat_index == i
 
-        col1, col2 = st.sidebar.columns([7, 1])
+        col1, col2 = st.sidebar.columns([8, 1])
         with col1:
             btn_label = preview
             btn_key = f"open_{i}"
@@ -162,7 +158,7 @@ if st.session_state.all_chats:
                 st.session_state.current_chat_index = i
                 st.rerun()
             if is_active:
-                st.markdown(f"<div style='background-color:#666;color:white;padding:4px;border-radius:5px;'>{preview}</div>", unsafe_allow_html=True)
+                st.markdown(f"<style>button[key='{btn_key}']{{background-color:#666 !important;color:white !important;}}</style>", unsafe_allow_html=True)
         with col2:
             if st.sidebar.button("🗑", key=f"del_{i}"):
                 st.session_state.del_confirm_idx = i
