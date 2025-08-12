@@ -18,12 +18,18 @@ def save_feedback_to_gsheet(user_q, bot_a, feedback):
     ws = sh.sheet1
     ws.append_row([str(datetime.now()), user_q, bot_a, feedback])
 
-# --- CSS untuk tombol session aktif
+# --- CSS untuk tombol aktif
 st.markdown("""
     <style>
-    div[data-testid="stSidebar"] button.session-active {
+    .sidebar-chat-btn {
+        border-radius: 5px;
+        text-align: left;
+    }
+    .sidebar-chat-btn-active {
         background-color: #666 !important;
         color: white !important;
+        border-radius: 5px;
+        text-align: left;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -142,7 +148,7 @@ if st.sidebar.button("New Chat", use_container_width=True):
     st.session_state.current_chat_index = None
     st.rerun()
 
-# --- Sidebar: Chats (tombol + delete sejajar)
+# --- Sidebar: Chats (button + delete sejajar)
 st.sidebar.markdown("### Chats")
 if st.session_state.all_chats:
     for i, chat in enumerate(st.session_state.all_chats):
@@ -152,22 +158,21 @@ if st.session_state.all_chats:
         col1, col2 = st.sidebar.columns([8, 1])
         with col1:
             btn_label = preview
-            btn_key = f"open_{i}"
-            if st.sidebar.button(btn_label, key=btn_key, use_container_width=True):
+            btn_style = "sidebar-chat-btn-active" if is_active else "sidebar-chat-btn"
+            if st.button(btn_label, key=f"open_{i}", use_container_width=True):
                 st.session_state.chat_history = chat
                 st.session_state.current_chat_index = i
                 st.rerun()
-            if is_active:
-                st.markdown(f"<style>button[key='{btn_key}']{{background-color:#666 !important;color:white !important;}}</style>", unsafe_allow_html=True)
+            st.markdown(f"<style>button[key='open_{i}']{{{'background-color:#666;color:white;' if is_active else ''}}}</style>", unsafe_allow_html=True)
         with col2:
-            if st.sidebar.button("🗑", key=f"del_{i}"):
+            if st.button("🗑", key=f"del_{i}"):
                 st.session_state.del_confirm_idx = i
                 st.rerun()
 
         if st.session_state.del_confirm_idx == i:
             cc1, cc2 = st.sidebar.columns([1, 1])
             with cc1:
-                if st.sidebar.button("Yes", key=f"del_yes_{i}"):
+                if st.button("Yes", key=f"del_yes_{i}"):
                     st.session_state.all_chats.pop(i)
                     if st.session_state.current_chat_index == i:
                         st.session_state.current_chat_index = None
@@ -181,7 +186,7 @@ if st.session_state.all_chats:
                     st.session_state.del_confirm_idx = None
                     st.rerun()
             with cc2:
-                if st.sidebar.button("Cancel", key=f"del_no_{i}"):
+                if st.button("Cancel", key=f"del_no_{i}"):
                     st.session_state.del_confirm_idx = None
                     st.rerun()
             st.sidebar.markdown("---")
