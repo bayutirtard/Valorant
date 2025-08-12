@@ -51,9 +51,9 @@ system_prompt = {
 
 # --- Init state
 if "all_chats" not in st.session_state:
-    st.session_state.all_chats = []  # List of dict {messages, ratings, n_like, n_dislike}
+    st.session_state.all_chats = []  # List of dict {messages, ratings, n_like, n_dislike, added_to_history}
 if "chat_history" not in st.session_state:
-    st.session_state.chat_history = {"messages": [system_prompt], "ratings": {}, "n_like": 0, "n_dislike": 0}
+    st.session_state.chat_history = {"messages": [system_prompt], "ratings": {}, "n_like": 0, "n_dislike": 0, "added_to_history": False}
 if "current_chat_index" not in st.session_state:
     st.session_state.current_chat_index = None
 if "confirm_reset" not in st.session_state:
@@ -121,13 +121,11 @@ def rating_buttons(idx):
 # --- Sidebar: Menu
 st.sidebar.markdown("### Menu")
 if st.sidebar.button("New Chat"):
-    if st.session_state.chat_history["messages"] != [system_prompt]:
-        st.session_state.all_chats.append(st.session_state.chat_history)
-    st.session_state.chat_history = {"messages": [system_prompt], "ratings": {}, "n_like": 0, "n_dislike": 0}
+    st.session_state.chat_history = {"messages": [system_prompt], "ratings": {}, "n_like": 0, "n_dislike": 0, "added_to_history": False}
     st.session_state.current_chat_index = None
     st.rerun()
 
-# --- Sidebar: History
+# --- Sidebar: Chats
 st.sidebar.markdown("### Chats")
 if st.session_state.all_chats:
     for i, chat in enumerate(st.session_state.all_chats):
@@ -149,7 +147,7 @@ if st.session_state.all_chats:
                     st.session_state.all_chats.pop(i)
                     if st.session_state.current_chat_index == i:
                         st.session_state.current_chat_index = None
-                        st.session_state.chat_history = {"messages": [system_prompt], "ratings": {}, "n_like": 0, "n_dislike": 0}
+                        st.session_state.chat_history = {"messages": [system_prompt], "ratings": {}, "n_like": 0, "n_dislike": 0, "added_to_history": False}
                     st.session_state.del_confirm_idx = None
                     st.rerun()
             with cc2:
@@ -186,7 +184,15 @@ with st.form(key="chat_form", clear_on_submit=True):
         reset = st.form_submit_button("Reset")
 
 if submit and user_input:
+    # Simpan pesan user
     st.session_state.chat_history["messages"].append({"role": "user", "content": user_input})
+
+    # Kalau ini pertanyaan pertama di chat baru → tambahkan ke history
+    if not st.session_state.chat_history["added_to_history"] and len(st.session_state.chat_history["messages"]) == 2:
+        st.session_state.all_chats.append(st.session_state.chat_history)
+        st.session_state.chat_history["added_to_history"] = True
+
+    # Dapatkan jawaban dari model
     with st.spinner("Answering..."):
         response = client.chat.completions.create(
             model="meta-llama/llama-4-scout-17b-16e-instruct",
@@ -208,7 +214,7 @@ if st.session_state.get("confirm_reset", False):
     col1, col2 = st.columns(2)
     with col1:
         if st.button("Yes, reset", key="confirm_yes"):
-            st.session_state.chat_history = {"messages": [system_prompt], "ratings": {}, "n_like": 0, "n_dislike": 0}
+            st.session_state.chat_history = {"messages": [system_prompt], "ratings": {}, "n_like": 0, "n_dislike": 0, "added_to_history": False}
             keys_to_delete = [k for k in list(st.session_state.keys()) if k.startswith('temp_thumb_') or k.startswith('stars_')]
             for k in keys_to_delete:
                 del st.session_state[k]
