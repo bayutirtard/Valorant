@@ -241,19 +241,35 @@ if submit and user_input:
     st.rerun()
 
 if reset:
-    st.session_state.chat_history = {
-        "messages": [system_prompt],
-        "ratings": {},
-        "n_like": 0,
-        "n_dislike": 0,
-        "title": None,
-        "added_to_history": False
-    }
-    st.session_state.current_chat_index = None
+    st.session_state.confirm_reset_all = True
     st.rerun()
+
+if st.session_state.get("confirm_reset_all", False):
+    st.markdown("---")
+    st.error("⚠️ Are you sure you want to reset and delete ALL chats in this session?")
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("Yes, reset all", key="confirm_yes_all"):
+            st.session_state.all_chats.clear()
+            st.session_state.chat_history = {
+                "messages": [system_prompt],
+                "ratings": {},
+                "n_like": 0,
+                "n_dislike": 0,
+                "title": None,
+                "added_to_history": False
+            }
+            st.session_state.current_chat_index = None
+            st.session_state.confirm_reset_all = False
+            st.rerun()
+    with col2:
+        if st.button("Cancel", key="confirm_no_all"):
+            st.session_state.confirm_reset_all = False
+            st.rerun()
 
 # ======= Stats =======
 st.markdown(f"### This Session Stats\n👍 **{st.session_state.chat_history['n_like']}**   👎 **{st.session_state.chat_history['n_dislike']}**")
+
 
 
 
