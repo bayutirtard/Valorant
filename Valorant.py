@@ -245,7 +245,7 @@ st.markdown("<br>", unsafe_allow_html=True)
 with st.form(key="chat_form", clear_on_submit=True):
     col1, col2 = st.columns([7, 1])
     with col1:
-        user_input = st.text_input(placeholder="Type your question here", key="input_text", label_visibility="collapsed")
+        user_input = st.text_input("", placeholder="Type your question here", key="input_text", label_visibility="collapsed")
     with col2:
         submit = st.form_submit_button("Send")
 
@@ -268,6 +268,7 @@ if submit and user_input:
 
 # ======= Stats =======
 st.markdown(f"### This Session Stats\n👍 **{st.session_state.chat_history['n_like']}**   👎 **{st.session_state.chat_history['n_dislike']}**")
+
 
 
 
