@@ -20,7 +20,7 @@ def save_feedback_to_gsheet(user_q, bot_a, feedback):
         [str(datetime.now()), user_q, bot_a, feedback]
     )
 
-# --- CSS untuk highlight tombol chat aktif
+# --- CSS untuk highlight abu terang pada chat aktif
 st.markdown("""
     <style>
     div[data-testid="stSidebar"] button[kind="secondary"] {
@@ -28,7 +28,7 @@ st.markdown("""
         text-align: left;
     }
     div[data-testid="stSidebar"] button.active-chat {
-        background-color: #1f77b4 !important;
+        background-color: #555 !important;
         color: white !important;
     }
     </style>
@@ -102,13 +102,11 @@ def rating_buttons(idx):
     else:
         return
 
-    # Kalau sudah ada rating → langsung tampilkan
     if idx in ratings:
         thumb, stars = ratings[idx]
         st.markdown(f"{'👍' if thumb == 'up' else '👎'} Rated — {'⭐'*stars} ({stars} stars)")
         return
 
-    # Belum ada rating → pilih jempol
     col1, col2 = st.columns([1, 1])
     if f"temp_thumb_{idx}" not in st.session_state:
         with col1:
@@ -118,7 +116,6 @@ def rating_buttons(idx):
             if st.button("👎", key=f"down_{idx}"):
                 st.session_state[f"temp_thumb_{idx}"] = "down"
 
-    # Sudah pilih jempol → slider & submit
     if f"temp_thumb_{idx}" in st.session_state:
         stars_value = st.select_slider(
             "Give a star rating:",
@@ -151,19 +148,48 @@ if st.sidebar.button("New Chat", use_container_width=True):
     st.session_state.current_chat_index = None
     st.rerun()
 
-# --- Sidebar: Chats (highlight penuh)
+# --- Sidebar: Chats (dengan highlight abu terang + delete button)
 st.sidebar.markdown("### Chats")
 if st.session_state.all_chats:
     for i, chat in enumerate(st.session_state.all_chats):
         preview = chat["messages"][1]["content"][:40] if len(chat["messages"]) > 1 and chat["messages"][1]["role"] == "user" else "[empty]"
         is_active = st.session_state.current_chat_index == i
-        btn_label = f"{preview}"
-        if st.sidebar.button(btn_label, key=f"open_{i}", use_container_width=True):
-            st.session_state.chat_history = chat
-            st.session_state.current_chat_index = i
-            st.rerun()
-        if is_active:
-            st.markdown(f"<div style='background-color:#1f77b4;color:white;padding:4px;border-radius:5px;'>{preview}</div>", unsafe_allow_html=True)
+
+        c1, c2 = st.sidebar.columns([8, 2])
+        with c1:
+            btn_class = "active-chat" if is_active else ""
+            if st.sidebar.button(preview, key=f"open_{i}", use_container_width=True):
+                st.session_state.chat_history = chat
+                st.session_state.current_chat_index = i
+                st.rerun()
+            if is_active:
+                st.markdown(f"<div style='background-color:#555;color:white;padding:4px;border-radius:5px;'>{preview}</div>", unsafe_allow_html=True)
+        with c2:
+            if st.sidebar.button("🗑", key=f"del_{i}"):
+                st.session_state.del_confirm_idx = i
+                st.rerun()
+
+        if st.session_state.del_confirm_idx == i:
+            cc1, cc2 = st.sidebar.columns([1, 1])
+            with cc1:
+                if st.sidebar.button("Yes", key=f"del_yes_{i}"):
+                    st.session_state.all_chats.pop(i)
+                    if st.session_state.current_chat_index == i:
+                        st.session_state.current_chat_index = None
+                        st.session_state.chat_history = {
+                            "messages": [system_prompt],
+                            "ratings": {},
+                            "n_like": 0,
+                            "n_dislike": 0,
+                            "added_to_history": False
+                        }
+                    st.session_state.del_confirm_idx = None
+                    st.rerun()
+            with cc2:
+                if st.sidebar.button("Cancel", key=f"del_no_{i}"):
+                    st.session_state.del_confirm_idx = None
+                    st.rerun()
+            st.sidebar.markdown("---")
 else:
     st.sidebar.info("No chat history yet.")
 
