@@ -168,7 +168,6 @@ if st.session_state.all_chats:
         if search_query.lower() in (c.get("title") or "").lower()
         or (len(c["messages"]) > 1 and search_query.lower() in c["messages"][1]["content"].lower())
     ]
-
     # Pisahkan pinned dan unpinned
     pinned_chats = [(i, c) for i, c in filtered_chats if c.get("pinned")]
     unpinned_chats = [(i, c) for i, c in filtered_chats if not c.get("pinned")]
@@ -268,5 +267,6 @@ if submit and user_input:
 
 # ======= Stats =======
 st.markdown(f"### This Session Stats\n👍 **{st.session_state.chat_history['n_like']}**   👎 **{st.session_state.chat_history['n_dislike']}**")
+
 
 
