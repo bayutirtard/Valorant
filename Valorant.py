@@ -16,9 +16,27 @@ def save_feedback_to_gsheet(user_q, bot_a, feedback):
         "https://docs.google.com/spreadsheets/d/1Nlis6U5BCx7afjdulH2pRKvJmZG0PpwpBFpoMTN1L4s/edit?usp=sharing"
     )
     ws = sh.sheet1
-    ws.append_row(
-        [str(datetime.now()), user_q, bot_a, feedback]
-    )
+    ws.append_row([str(datetime.now()), user_q, bot_a, feedback])
+
+# --- CSS tombol session
+st.markdown("""
+    <style>
+    .chat-btn {
+        border-radius: 8px;
+        text-align: left;
+    }
+    .chat-btn-active {
+        background-color: #3a3a3a !important;
+        color: white !important;
+        border-radius: 8px;
+        text-align: left;
+    }
+    .chat-btn:hover {
+        background-color: #555 !important;
+        color: white !important;
+    }
+    </style>
+""", unsafe_allow_html=True)
 
 # --- Chatbot config
 st.set_page_config(page_title="Chatbot Valorant", page_icon="🎮")
@@ -51,17 +69,20 @@ system_prompt = {
 
 # --- Init state
 if "all_chats" not in st.session_state:
-    st.session_state.all_chats = []  # List of dict {messages, ratings, n_like, n_dislike, added_to_history}
+    st.session_state.all_chats = []
 if "chat_history" not in st.session_state:
-    st.session_state.chat_history = {"messages": [system_prompt], "ratings": {}, "n_like": 0, "n_dislike": 0, "added_to_history": False}
+    st.session_state.chat_history = {
+        "messages": [system_prompt],
+        "ratings": {},
+        "n_like": 0,
+        "n_dislike": 0,
+        "added_to_history": False,
+        "title": None
+    }
 if "current_chat_index" not in st.session_state:
     st.session_state.current_chat_index = None
-if "confirm_reset" not in st.session_state:
-    st.session_state.confirm_reset = False
-if "del_confirm_idx" not in st.session_state:
-    st.session_state.del_confirm_idx = None
 
-# --- Render chat
+# --- Render chat bubble
 def render_chat(role, content):
     if role == "user":
         st.markdown(f"**You:** {content}")
@@ -82,13 +103,11 @@ def rating_buttons(idx):
     else:
         return
 
-    # Sudah ada rating
     if idx in ratings:
         thumb, stars = ratings[idx]
         st.markdown(f"{'👍' if thumb == 'up' else '👎'} Rated — {'⭐'*stars} ({stars} stars)")
         return
 
-    # Belum ada rating → pilih jempol
     col1, col2 = st.columns([1, 1])
     if f"temp_thumb_{idx}" not in st.session_state:
         with col1:
@@ -98,7 +117,6 @@ def rating_buttons(idx):
             if st.button("👎", key=f"down_{idx}"):
                 st.session_state[f"temp_thumb_{idx}"] = "down"
 
-    # Sudah pilih jempol → slider & submit
     if f"temp_thumb_{idx}" in st.session_state:
         stars_value = st.select_slider(
             "Give a star rating:",
@@ -116,49 +134,66 @@ def rating_buttons(idx):
                 chat_data["n_dislike"] += 1
             save_feedback_to_gsheet(user_msg, bot_msg, f"{thumb} | {stars_value} stars")
             del st.session_state[f"temp_thumb_{idx}"]
-            st.success(f"Thanks! You gave {'⭐'*stars_value} ({stars_value} stars).")
 
-# --- Sidebar: Menu
+# --- Sidebar Menu
 st.sidebar.markdown("### Menu")
-if st.sidebar.button("New Chat"):
-    st.session_state.chat_history = {"messages": [system_prompt], "ratings": {}, "n_like": 0, "n_dislike": 0, "added_to_history": False}
+if st.sidebar.button("New Chat", use_container_width=True):
+    st.session_state.chat_history = {
+        "messages": [system_prompt],
+        "ratings": {},
+        "n_like": 0,
+        "n_dislike": 0,
+        "added_to_history": False,
+        "title": None
+    }
     st.session_state.current_chat_index = None
     st.rerun()
 
-# --- Sidebar: Chats
+# --- Sidebar Chats dengan titik tiga
 st.sidebar.markdown("### Chats")
 if st.session_state.all_chats:
     for i, chat in enumerate(st.session_state.all_chats):
-        preview = chat["messages"][1]["content"][:40] if len(chat["messages"]) > 1 and chat["messages"][1]["role"] == "user" else "[empty]"
-        c1, c3 = st.sidebar.columns([8, 2])
-        with c1:
-            if st.button(preview, key=f"open_{i}", help="Open this chat"):
+        preview = chat.get("title") or (
+            chat["messages"][1]["content"][:40] if len(chat["messages"]) > 1 else "[empty]"
+        )
+        is_active = st.session_state.current_chat_index == i
+
+        col1, col2 = st.sidebar.columns([8, 1])
+        with col1:
+            btn_key = f"open_{i}"
+            if st.button(preview, key=btn_key, use_container_width=True):
                 st.session_state.chat_history = chat
                 st.session_state.current_chat_index = i
                 st.rerun()
-        with c3:
-            if st.button("🗑", key=f"del_{i}", help="Delete this chat"):
-                st.session_state.del_confirm_idx = i
-                st.rerun()
-        if st.session_state.del_confirm_idx == i:
-            cc1, cc2 = st.sidebar.columns([1, 1])
-            with cc1:
-                if st.button("Yes, delete", key=f"del_yes_{i}"):
+            if is_active:
+                st.markdown(f"<style>button[key='{btn_key}']{{background-color:#3a3a3a !important;color:white !important;border-radius:8px;}}</style>", unsafe_allow_html=True)
+
+        with col2:
+            with st.popover("⋮", use_container_width=True):
+                # Rename
+                new_name = st.text_input("Rename chat", value=preview, key=f"rename_{i}")
+                if st.button("Save", key=f"save_name_{i}"):
+                    chat["title"] = new_name
+                    st.rerun()
+                st.markdown("---")
+                # Delete
+                if st.button("Delete", key=f"del_{i}"):
                     st.session_state.all_chats.pop(i)
                     if st.session_state.current_chat_index == i:
                         st.session_state.current_chat_index = None
-                        st.session_state.chat_history = {"messages": [system_prompt], "ratings": {}, "n_like": 0, "n_dislike": 0, "added_to_history": False}
-                    st.session_state.del_confirm_idx = None
+                        st.session_state.chat_history = {
+                            "messages": [system_prompt],
+                            "ratings": {},
+                            "n_like": 0,
+                            "n_dislike": 0,
+                            "added_to_history": False,
+                            "title": None
+                        }
                     st.rerun()
-            with cc2:
-                if st.button("Cancel", key=f"del_no_{i}"):
-                    st.session_state.del_confirm_idx = None
-                    st.rerun()
-            st.sidebar.markdown("---")
 else:
     st.sidebar.info("No chat history yet.")
 
-# --- Show current chat & ratings
+# --- Show current chat
 for idx in range(0, (len(st.session_state.chat_history["messages"]) - 1) // 2):
     msg_user = st.session_state.chat_history["messages"][1:][idx * 2]
     msg_bot = st.session_state.chat_history["messages"][1:][idx * 2 + 1]
@@ -184,15 +219,14 @@ with st.form(key="chat_form", clear_on_submit=True):
         reset = st.form_submit_button("Reset")
 
 if submit and user_input:
-    # Simpan pesan user
     st.session_state.chat_history["messages"].append({"role": "user", "content": user_input})
 
-    # Kalau ini pertanyaan pertama di chat baru → tambahkan ke history
     if not st.session_state.chat_history["added_to_history"] and len(st.session_state.chat_history["messages"]) == 2:
+        st.session_state.chat_history["title"] = user_input[:40]
         st.session_state.all_chats.append(st.session_state.chat_history)
         st.session_state.chat_history["added_to_history"] = True
+        st.session_state.current_chat_index = len(st.session_state.all_chats) - 1
 
-    # Dapatkan jawaban dari model
     with st.spinner("Answering..."):
         response = client.chat.completions.create(
             model="meta-llama/llama-4-scout-17b-16e-instruct",
@@ -205,25 +239,16 @@ if submit and user_input:
 
 # --- Reset Conversation
 if reset:
-    st.session_state.confirm_reset = True
+    st.session_state.chat_history = {
+        "messages": [system_prompt],
+        "ratings": {},
+        "n_like": 0,
+        "n_dislike": 0,
+        "added_to_history": False,
+        "title": None
+    }
+    st.session_state.current_chat_index = None
     st.rerun()
 
-if st.session_state.get("confirm_reset", False):
-    st.markdown("---")
-    st.error("⚠️ Are you sure you want to reset the entire conversation?")
-    col1, col2 = st.columns(2)
-    with col1:
-        if st.button("Yes, reset", key="confirm_yes"):
-            st.session_state.chat_history = {"messages": [system_prompt], "ratings": {}, "n_like": 0, "n_dislike": 0, "added_to_history": False}
-            keys_to_delete = [k for k in list(st.session_state.keys()) if k.startswith('temp_thumb_') or k.startswith('stars_')]
-            for k in keys_to_delete:
-                del st.session_state[k]
-            st.session_state.confirm_reset = False
-            st.rerun()
-    with col2:
-        if st.button("Cancel", key="confirm_no"):
-            st.session_state.confirm_reset = False
-            st.rerun()
-
-# --- This Session Stats
+# --- Stats
 st.markdown(f"### This Session Stats\n👍 **{st.session_state.chat_history['n_like']}**   👎 **{st.session_state.chat_history['n_dislike']}**")
