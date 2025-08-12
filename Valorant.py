@@ -5,7 +5,7 @@ from google.oauth2.service_account import Credentials
 from datetime import datetime
 import json
 
-# --- Simpan ke Google Sheets (boleh hapus jika tidak butuh sheets)
+# --- Simpan ke Google Sheets
 def save_feedback_to_gsheet(user_q, bot_a, feedback):
     creds = Credentials.from_service_account_info(
         json.loads(st.secrets["GS_CRED_JSON"]),
@@ -45,7 +45,7 @@ system_prompt = {
     )
 }
 
-# --- Inisialisasi state untuk fitur history & statistik
+# --- Inisialisasi state
 if "all_chats" not in st.session_state:
     st.session_state.all_chats = []
 if "chat_history" not in st.session_state:
@@ -57,16 +57,14 @@ if "confirm_reset" not in st.session_state:
 if "del_confirm_idx" not in st.session_state:
     st.session_state.del_confirm_idx = None
 
-# Statistik per sesi
 if "n_like" not in st.session_state:
     st.session_state.n_like = 0
 if "n_dislike" not in st.session_state:
     st.session_state.n_dislike = 0
-# Riwayat statistik
 if "stats_history" not in st.session_state:
     st.session_state.stats_history = []
 
-# --- Fungsi render chat
+# --- Render chat
 def render_chat(role, content):
     if role == "user":
         st.markdown(f"**You:** {content}")
@@ -74,18 +72,8 @@ def render_chat(role, content):
         st.markdown("**Bot:**")
         st.markdown(content)
 
-# --- Tombol rating
+# --- Rating (👍👎 lalu slider bintang)
 def rating_buttons(idx):
-    # Cek apakah sudah ada rating untuk idx ini
-    if f"rate_{idx}" in st.session_state:
-        # Sudah diberi rating, tampilkan info saja
-        if st.session_state[f"rate_{idx}"] == "up":
-            st.markdown("👍 **You rated this answer positively.**")
-        else:
-            st.markdown("👎 **You rated this answer negatively.**")
-        return  # keluar supaya tidak render tombol lagi
-
-    col1, col2 = st.columns([1, 1])
     chat_hist = st.session_state.chat_history[1:]
     user_msg = None
     bot_msg = None
@@ -93,51 +81,71 @@ def rating_buttons(idx):
     if msg_i >= 0 and (msg_i + 1) < len(chat_hist):
         user_msg = chat_hist[msg_i]["content"]
         bot_msg = chat_hist[msg_i + 1]["content"]
+
+    # Jika sudah ada rating 👍👎
+    if f"rate_{idx}" in st.session_state:
+        if st.session_state[f"rate_{idx}"] == "up":
+            st.markdown("👍 **You rated this answer positively.**")
+        else:
+            st.markdown("👎 **You rated this answer negatively.**")
+
+        # Slider bintang
+        star_key = f"stars_{idx}"
+        if star_key not in st.session_state:
+            st.session_state[star_key] = 3  # default
+
+        st.session_state[star_key] = st.select_slider(
+            "Give a star rating:",
+            options=[1, 2, 3, 4, 5],
+            value=st.session_state[star_key],
+            key=star_key
+        )
+
+        if st.button("Submit Star Rating", key=f"submit_star_{idx}"):
+            save_feedback_to_gsheet(
+                user_msg,
+                bot_msg,
+                f"{st.session_state[f'rate_{idx}']} | {st.session_state[star_key]} stars"
+            )
+            st.success(f"Thanks! You gave {st.session_state[star_key]} stars.")
+        return
+
+    # Kalau belum ada rating 👍👎
+    col1, col2 = st.columns([1, 1])
     with col1:
         if st.button("👍", key=f"up_{idx}"):
             st.session_state[f"rate_{idx}"] = "up"
             st.session_state.n_like += 1
-            st.success("Terima kasih atas ratingnya!")
-            if user_msg and bot_msg:
-                save_feedback_to_gsheet(user_msg, bot_msg, "up")
+            st.success("Thanks for your rating!")
     with col2:
         if st.button("👎", key=f"down_{idx}"):
             st.session_state[f"rate_{idx}"] = "down"
             st.session_state.n_dislike += 1
-            st.info("Terima kasih atas feedbacknya!")
-            if user_msg and bot_msg:
-                save_feedback_to_gsheet(user_msg, bot_msg, "down")
+            st.info("Thanks for your feedback!")
 
 # --- Sidebar: Menu
 st.sidebar.markdown("### Menu")
 if st.sidebar.button("New Chat"):
     if st.session_state.chat_history != [system_prompt]:
-        # Simpan chat lama
         st.session_state.all_chats.append(list(st.session_state.chat_history))
-        # Simpan statistik sesi lama
         st.session_state.stats_history.append({
             "like": st.session_state.n_like,
             "dislike": st.session_state.n_dislike
         })
-    # Reset statistik sesi baru
     st.session_state.n_like = 0
     st.session_state.n_dislike = 0
-    # Hapus semua status rating lama
-    keys_to_delete = [k for k in st.session_state.keys() if k.startswith('rate_')]
+    keys_to_delete = [k for k in st.session_state.keys() if k.startswith('rate_') or k.startswith('stars_')]
     for k in keys_to_delete:
         del st.session_state[k]
-    # Reset chat
     st.session_state.chat_history = [system_prompt]
     st.session_state.current_chat_index = None
     st.rerun()
 
-
-# --- Sidebar: Riwayat Chat
+# --- Sidebar: History
 st.sidebar.markdown("### Chats")
 if st.session_state.all_chats:
     for i, chat in enumerate(st.session_state.all_chats):
-        preview = chat[1]["content"][:40] if len(chat) > 1 and chat[1]["role"] == "user" else "[kosong]"
-
+        preview = chat[1]["content"][:40] if len(chat) > 1 and chat[1]["role"] == "user" else "[empty]"
         c1, c3 = st.sidebar.columns([8, 2])
         with c1:
             if st.button(preview, key=f"open_{i}", help="Open this chat"):
@@ -148,7 +156,6 @@ if st.session_state.all_chats:
             if st.button("🗑", key=f"del_{i}", help="Delete this chat"):
                 st.session_state.del_confirm_idx = i
                 st.rerun()
-
         if st.session_state.del_confirm_idx == i:
             cc1, cc2 = st.sidebar.columns([1, 1])
             with cc1:
@@ -167,7 +174,7 @@ if st.session_state.all_chats:
 else:
     st.sidebar.info("No chat history yet.")
 
-# --- Tampilkan chat aktif & rating
+# --- Show current chat & rating
 for idx in range(0, (len(st.session_state.chat_history) - 1) // 2):
     msg_user = st.session_state.chat_history[1:][idx * 2]
     msg_bot = st.session_state.chat_history[1:][idx * 2 + 1]
@@ -181,12 +188,7 @@ st.markdown("<br>", unsafe_allow_html=True)
 with st.form(key="chat_form", clear_on_submit=True):
     col1, col2, col3 = st.columns([6, 1, 1])
     with col1:
-        user_input = st.text_input(
-            "Type your question here",
-            key="input_text",
-            placeholder="Type your question here...",
-            label_visibility="collapsed"
-        )
+        user_input = st.text_input("Type your question here", key="input_text", placeholder="Type your question here...", label_visibility="collapsed")
     with col2:
         submit = st.form_submit_button("Send")
     with col3:
@@ -201,7 +203,7 @@ if submit and user_input:
         )
         answer = response.choices[0].message.content
         st.session_state.chat_history.append({"role": "assistant", "content": answer})
-        save_feedback_to_gsheet(user_input, answer, "")  # log QnA tanpa feedback
+        save_feedback_to_gsheet(user_input, answer, "")
     st.rerun()
 
 # --- Reset Conversation
@@ -216,7 +218,7 @@ if st.session_state.get("confirm_reset", False):
     with col1:
         if st.button("Yes, reset", key="confirm_yes"):
             st.session_state.chat_history = [system_prompt]
-            keys_to_delete = [k for k in st.session_state.keys() if k.startswith('rate_')]
+            keys_to_delete = [k for k in st.session_state.keys() if k.startswith('rate_') or k.startswith('stars_')]
             for k in keys_to_delete:
                 del st.session_state[k]
             st.session_state.n_like = 0
@@ -228,9 +230,9 @@ if st.session_state.get("confirm_reset", False):
             st.session_state.confirm_reset = False
             st.rerun()
 
-# --- Statistik
-st.markdown(f"### Statistik Sesi Ini  \n👍 **{st.session_state.n_like}** &nbsp;&nbsp;&nbsp; 👎 **{st.session_state.n_dislike}**")
+# --- Stats
+st.markdown(f"### Current Session Stats\n👍 **{st.session_state.n_like}**   👎 **{st.session_state.n_dislike}**")
 if st.session_state.stats_history:
-    st.markdown("### Statistics History")
+    st.markdown("### Stats History")
     for i, stats in enumerate(st.session_state.stats_history, 1):
         st.markdown(f"Session {i}: 👍 {stats['like']} | 👎 {stats['dislike']}")
