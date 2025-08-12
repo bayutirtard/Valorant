@@ -34,9 +34,6 @@ st.markdown("""
 .chat-bubble:hover {
     background-color: #444;
 }
-.chat-bubble.active {
-    background-color: #555;
-}
 .chat-title {
     color: white;
     flex-grow: 1;
@@ -51,12 +48,6 @@ st.markdown("""
 }
 .chat-menu:hover {
     color: white;
-}
-.menu-box {
-    background-color: #2f2f2f;
-    border-radius: 6px;
-    padding: 6px;
-    margin-top: 2px;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -100,58 +91,28 @@ if "chat_history" not in st.session_state:
     }
 if "current_chat_index" not in st.session_state:
     st.session_state.current_chat_index = None
-if "menu_open" not in st.session_state:
-    st.session_state.menu_open = None
+if "modal_action" not in st.session_state:
+    st.session_state.modal_action = None
+if "modal_index" not in st.session_state:
+    st.session_state.modal_index = None
 
 # ======= Render Chat Bubble =======
 def render_chat_bubble(i, chat):
     preview = chat.get("title") or (
         chat["messages"][1]["content"][:40] if len(chat["messages"]) > 1 else "[empty]"
     )
-    is_active = st.session_state.current_chat_index == i
-    bubble_class = "chat-bubble active" if is_active else "chat-bubble"
 
     col1, col2 = st.sidebar.columns([8, 1])
     with col1:
         if st.button(preview, key=f"open_{i}", use_container_width=True):
             st.session_state.chat_history = chat
             st.session_state.current_chat_index = i
-            st.session_state.menu_open = None
             st.rerun()
-        if is_active:
-            st.markdown(
-                f"<style>button[key='open_{i}']{{background-color:#555 !important;color:white !important;}}</style>",
-                unsafe_allow_html=True
-            )
 
     with col2:
         if st.button("⋮", key=f"menu_{i}"):
-            st.session_state.menu_open = i if st.session_state.menu_open != i else None
-            st.rerun()
-
-    if st.session_state.menu_open == i:
-        with st.sidebar.container():
-            st.markdown('<div class="menu-box">', unsafe_allow_html=True)
-            new_title = st.text_input("Rename chat", value=preview, key=f"rename_{i}")
-            if st.button("Save", key=f"save_name_{i}"):
-                chat["title"] = new_title
-                st.session_state.menu_open = None
-                st.rerun()
-            if st.button("Delete", key=f"delete_{i}"):
-                st.session_state.all_chats.pop(i)
-                if st.session_state.current_chat_index == i:
-                    st.session_state.current_chat_index = None
-                    st.session_state.chat_history = {
-                        "messages": [system_prompt],
-                        "ratings": {},
-                        "n_like": 0,
-                        "n_dislike": 0,
-                        "title": None,
-                        "added_to_history": False
-                    }
-                st.session_state.menu_open = None
-                st.rerun()
-            st.markdown('</div>', unsafe_allow_html=True)
+            st.session_state.modal_index = i
+            st.session_state.modal_action = "menu"
 
 # ======= Sidebar Menu =======
 st.sidebar.markdown("### Menu")
@@ -165,7 +126,6 @@ if st.sidebar.button("New Chat", use_container_width=True):
         "added_to_history": False
     }
     st.session_state.current_chat_index = None
-    st.session_state.menu_open = None
     st.rerun()
 
 # ======= Sidebar Chats =======
@@ -175,6 +135,56 @@ if st.session_state.all_chats:
         render_chat_bubble(i, chat)
 else:
     st.sidebar.info("No chat history yet.")
+
+# ======= Modal Handling =======
+if st.session_state.modal_action == "menu" and st.session_state.modal_index is not None:
+    i = st.session_state.modal_index
+    with st.modal("Chat Options"):
+        if st.button("✏️ Rename"):
+            st.session_state.modal_action = "rename"
+            st.rerun()
+        if st.button("🗑 Delete"):
+            st.session_state.modal_action = "delete"
+            st.rerun()
+        if st.button("Cancel"):
+            st.session_state.modal_action = None
+            st.session_state.modal_index = None
+
+if st.session_state.modal_action == "rename" and st.session_state.modal_index is not None:
+    i = st.session_state.modal_index
+    with st.modal("Rename Chat"):
+        new_title = st.text_input("New chat title", value=st.session_state.all_chats[i].get("title") or "")
+        if st.button("Save"):
+            st.session_state.all_chats[i]["title"] = new_title
+            st.session_state.modal_action = None
+            st.session_state.modal_index = None
+            st.rerun()
+        if st.button("Cancel"):
+            st.session_state.modal_action = None
+            st.session_state.modal_index = None
+
+if st.session_state.modal_action == "delete" and st.session_state.modal_index is not None:
+    i = st.session_state.modal_index
+    with st.modal("Delete Chat?"):
+        st.warning("Are you sure you want to delete this chat?")
+        if st.button("Yes, Delete"):
+            st.session_state.all_chats.pop(i)
+            if st.session_state.current_chat_index == i:
+                st.session_state.current_chat_index = None
+                st.session_state.chat_history = {
+                    "messages": [system_prompt],
+                    "ratings": {},
+                    "n_like": 0,
+                    "n_dislike": 0,
+                    "title": None,
+                    "added_to_history": False
+                }
+            st.session_state.modal_action = None
+            st.session_state.modal_index = None
+            st.rerun()
+        if st.button("Cancel"):
+            st.session_state.modal_action = None
+            st.session_state.modal_index = None
 
 # ======= Main Chat Rendering =======
 def render_chat(role, content):
@@ -270,7 +280,6 @@ if reset:
         "added_to_history": False
     }
     st.session_state.current_chat_index = None
-    st.session_state.menu_open = None
     st.rerun()
 
 # ======= Stats =======
