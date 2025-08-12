@@ -4,6 +4,11 @@ import gspread
 from google.oauth2.service_account import Credentials
 from datetime import datetime
 import json
+from io import BytesIO
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import A4
+from reportlab.lib import colors
+from reportlab.lib.units import cm
 
 # ======= Simpan ke Google Sheets =======
 def save_feedback_to_gsheet(user_q, bot_a, feedback):
@@ -21,7 +26,6 @@ def save_feedback_to_gsheet(user_q, bot_a, feedback):
 # ======= Config =======
 st.set_page_config(page_title="Chatbot Valorant", page_icon="🎮")
 st.title("Chatbot Valorant")
-
 client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 
 # ======= Load Data =======
@@ -53,8 +57,8 @@ if "chat_history" not in st.session_state:
         "n_like": 0,
         "n_dislike": 0,
         "title": None,
-        "pinned": False,
-        "added_to_history": False
+        "added_to_history": False,
+        "pinned": False
     }
 if "current_chat_index" not in st.session_state:
     st.session_state.current_chat_index = None
@@ -64,14 +68,77 @@ if "rename_mode" not in st.session_state:
     st.session_state.rename_mode = None
 if "delete_confirm" not in st.session_state:
     st.session_state.delete_confirm = None
-if "search_query" not in st.session_state:
-    st.session_state.search_query = ""
+if "export_mode" not in st.session_state:
+    st.session_state.export_mode = None
+
+# ======= Helper: Export TXT =======
+def generate_txt(chat):
+    txt_data = ""
+    for msg in chat["messages"]:
+        if msg["role"] == "system":
+            continue
+        role = "You" if msg["role"] == "user" else "Bot"
+        txt_data += f"{role}: {msg['content']}\n\n"
+    return txt_data.encode("utf-8")
+
+# ======= Helper: Export PDF =======
+def generate_pdf(chat):
+    buffer = BytesIO()
+    c = canvas.Canvas(buffer, pagesize=A4)
+    width, height = A4
+
+    # Judul
+    c.setFont("Helvetica-Bold", 20)
+    c.drawString(2*cm, height - 2*cm, "Valorant Chat")
+    y = height - 3*cm
+
+    # Loop chat
+    for msg in chat["messages"]:
+        if msg["role"] == "system":
+            continue
+
+        if msg["role"] == "user":
+            c.setFillColor(colors.blue)
+            c.setFont("Helvetica-Bold", 12)
+            c.drawString(2*cm, y, "You:")
+            y -= 0.5*cm
+            c.setFillColor(colors.black)
+            c.setFont("Helvetica", 11)
+        else:
+            c.setFillColor(colors.green)
+            c.setFont("Helvetica-Bold", 12)
+            c.drawString(2*cm, y, "Bot:")
+            y -= 0.5*cm
+            c.setFillColor(colors.black)
+            c.setFont("Helvetica", 11)
+
+        # Bungkus text
+        text_lines = []
+        for line in msg["content"].split("\n"):
+            while len(line) > 90:
+                text_lines.append(line[:90])
+                line = line[90:]
+            text_lines.append(line)
+
+        for line in text_lines:
+            if y < 2*cm:
+                c.showPage()
+                y = height - 2*cm
+            c.drawString(2.5*cm, y, line)
+            y -= 0.5*cm
+
+        y -= 0.3*cm
+
+    c.save()
+    buffer.seek(0)
+    return buffer
 
 # ======= Render Chat Bubble =======
 def render_chat_bubble(i, chat):
     preview = chat.get("title") or (
         chat["messages"][1]["content"][:40] if len(chat["messages"]) > 1 else "[empty]"
     )
+
     col1, col2 = st.sidebar.columns([8, 1])
     with col1:
         if st.button(preview, key=f"open_{i}", use_container_width=True):
@@ -84,62 +151,80 @@ def render_chat_bubble(i, chat):
             st.session_state.menu_open = i if st.session_state.menu_open != i else None
             st.session_state.rename_mode = None
             st.session_state.delete_confirm = None
+            st.session_state.export_mode = None
             st.rerun()
 
-    # Popup menu
     if st.session_state.menu_open == i:
         with st.sidebar.container():
             if st.button("Rename", key=f"renamebtn_{i}", use_container_width=True):
                 st.session_state.rename_mode = i
                 st.session_state.delete_confirm = None
+                st.session_state.export_mode = None
                 st.rerun()
             if st.button("Pin" if not chat.get("pinned") else "Unpin", key=f"pinbtn_{i}", use_container_width=True):
-                chat["pinned"] = not chat.get("pinned", False)
-                st.session_state.menu_open = None
+                chat["pinned"] = not chat.get("pinned")
+                st.rerun()
+            if st.button("Export", key=f"exportopt_{i}", use_container_width=True):
+                st.session_state.export_mode = i
+                st.session_state.rename_mode = None
+                st.session_state.delete_confirm = None
                 st.rerun()
             if st.button("Delete", key=f"deletebtn_{i}", use_container_width=True):
                 st.session_state.delete_confirm = i
                 st.session_state.rename_mode = None
+                st.session_state.export_mode = None
                 st.rerun()
 
-    # Mode Rename
+    if st.session_state.export_mode == i:
+        st.download_button(
+            label="Download TXT",
+            data=generate_txt(chat),
+            file_name=f"chat_session_{i+1}.txt",
+            mime="text/plain",
+            key=f"dltxt_{i}"
+        )
+        st.download_button(
+            label="Download PDF",
+            data=generate_pdf(chat),
+            file_name=f"chat_session_{i+1}.pdf",
+            mime="application/pdf",
+            key=f"dlpdf_{i}"
+        )
+
     if st.session_state.rename_mode == i:
-        with st.sidebar.container():
-            new_title = st.text_input("Title", value=preview, key=f"rename_{i}")
-            if st.button("Save", key=f"savename_{i}"):
-                chat["title"] = new_title
-                st.session_state.menu_open = None
-                st.session_state.rename_mode = None
-                st.rerun()
-            if st.button("Cancel", key=f"cancelrename_{i}"):
-                st.session_state.rename_mode = None
-                st.session_state.menu_open = None
-                st.rerun()
+        new_title = st.text_input("Title", value=preview, key=f"rename_{i}")
+        if st.button("Save", key=f"savename_{i}"):
+            chat["title"] = new_title
+            st.session_state.menu_open = None
+            st.session_state.rename_mode = None
+            st.rerun()
+        if st.button("Cancel", key=f"cancelrename_{i}"):
+            st.session_state.rename_mode = None
+            st.session_state.menu_open = None
+            st.rerun()
 
-    # Mode Delete
     if st.session_state.delete_confirm == i:
-        with st.sidebar.container():
-            st.error("Delete this chat?")
-            if st.button("Yes, Delete", key=f"yesdelete_{i}"):
-                st.session_state.all_chats.pop(i)
-                if st.session_state.current_chat_index == i:
-                    st.session_state.current_chat_index = None
-                    st.session_state.chat_history = {
-                        "messages": [system_prompt],
-                        "ratings": {},
-                        "n_like": 0,
-                        "n_dislike": 0,
-                        "title": None,
-                        "pinned": False,
-                        "added_to_history": False
-                    }
-                st.session_state.menu_open = None
-                st.session_state.delete_confirm = None
-                st.rerun()
-            if st.button("Cancel", key=f"canceldelete_{i}"):
-                st.session_state.delete_confirm = None
-                st.session_state.menu_open = None
-                st.rerun()
+        st.error("Delete this chat?")
+        if st.button("Yes, Delete", key=f"yesdelete_{i}"):
+            st.session_state.all_chats.pop(i)
+            if st.session_state.current_chat_index == i:
+                st.session_state.current_chat_index = None
+                st.session_state.chat_history = {
+                    "messages": [system_prompt],
+                    "ratings": {},
+                    "n_like": 0,
+                    "n_dislike": 0,
+                    "title": None,
+                    "added_to_history": False,
+                    "pinned": False
+                }
+            st.session_state.menu_open = None
+            st.session_state.delete_confirm = None
+            st.rerun()
+        if st.button("Cancel", key=f"canceldelete_{i}"):
+            st.session_state.delete_confirm = None
+            st.session_state.menu_open = None
+            st.rerun()
 
 # ======= Sidebar Menu =======
 st.sidebar.markdown("### Menu")
@@ -150,8 +235,8 @@ if st.sidebar.button("New Chat", use_container_width=True):
         "n_like": 0,
         "n_dislike": 0,
         "title": None,
-        "pinned": False,
-        "added_to_history": False
+        "added_to_history": False,
+        "pinned": False
     }
     st.session_state.current_chat_index = None
     st.session_state.menu_open = None
@@ -159,24 +244,21 @@ if st.sidebar.button("New Chat", use_container_width=True):
 
 # ======= Sidebar Chats =======
 st.sidebar.markdown("### Chats")
-search_query = st.sidebar.text_input("", placeholder="Search chats")  # rapat
-
+search_query = st.sidebar.text_input("", placeholder="Search chats...")
 if st.session_state.all_chats:
-    filtered_chats = [
-        (i, c) for i, c in enumerate(st.session_state.all_chats)
+    pinned_chats = [(i, c) for i, c in enumerate(st.session_state.all_chats) if c.get("pinned")]
+    normal_chats = [(i, c) for i, c in enumerate(st.session_state.all_chats) if not c.get("pinned")]
+    filtered_pinned = [
+        (i, c) for i, c in pinned_chats
         if search_query.lower() in (c.get("title") or "").lower()
         or (len(c["messages"]) > 1 and search_query.lower() in c["messages"][1]["content"].lower())
     ]
-
-    # Pisahkan pinned dan unpinned
-    pinned_chats = [(i, c) for i, c in filtered_chats if c.get("pinned")]
-    unpinned_chats = [(i, c) for i, c in filtered_chats if not c.get("pinned")]
-
-    for i, chat in pinned_chats:
-        render_chat_bubble(i, chat)
-    if pinned_chats and unpinned_chats:
-        st.sidebar.markdown("---")
-    for i, chat in unpinned_chats:
+    filtered_normal = [
+        (i, c) for i, c in normal_chats
+        if search_query.lower() in (c.get("title") or "").lower()
+        or (len(c["messages"]) > 1 and search_query.lower() in c["messages"][1]["content"].lower())
+    ]
+    for i, chat in filtered_pinned + filtered_normal:
         render_chat_bubble(i, chat)
 else:
     st.sidebar.info("No chat history yet.")
@@ -228,9 +310,7 @@ def rating_buttons(idx):
                 chat_data["n_dislike"] += 1
             save_feedback_to_gsheet(user_msg, bot_msg, f"{thumb} | {stars_value} stars")
             del st.session_state[f"temp_thumb_{idx}"]
-            st.rerun()
 
-# ======= Display Chat & Ratings =======
 for idx in range(0, (len(st.session_state.chat_history["messages"]) - 1) // 2):
     msg_user = st.session_state.chat_history["messages"][1:][idx * 2]
     msg_bot = st.session_state.chat_history["messages"][1:][idx * 2 + 1]
@@ -244,7 +324,7 @@ st.markdown("<br>", unsafe_allow_html=True)
 with st.form(key="chat_form", clear_on_submit=True):
     col1, col2 = st.columns([7, 1])
     with col1:
-        user_input = st.text_input("", placeholder="Type your question here", key="input_text", label_visibility="collapsed")
+        user_input = st.text_input("", placeholder="Ask something about Valorant...", key="input_text", label_visibility="collapsed")
     with col2:
         submit = st.form_submit_button("Send")
 
