@@ -26,7 +26,7 @@ st.markdown("""
         text-align: left;
     }
     button[key^="open_"].active-chat {
-        background-color: #999 !important;
+        background-color: #888 !important;
         color: white !important;
     }
     button[key^="open_"]:hover {
@@ -269,3 +269,4 @@ if st.session_state.get("confirm_reset", False):
 
 # --- This Session Stats
 st.markdown(f"### This Session Stats\n👍 **{st.session_state.chat_history['n_like']}**   👎 **{st.session_state.chat_history['n_dislike']}**")
+
