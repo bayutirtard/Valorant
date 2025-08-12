@@ -107,6 +107,9 @@ def render_chat_bubble(i, chat):
                 st.rerun()
             if st.button("Cancel", key=f"cancelrename_{i}"):
                 st.session_state.rename_mode = None
+                st.session_state.menu_open = None
+                st.rerun()
+
 
     # Mode Delete
     if st.session_state.delete_confirm == i:
@@ -129,6 +132,10 @@ def render_chat_bubble(i, chat):
                 st.rerun()
             if st.button("Cancel", key=f"canceldelete_{i}"):
                 st.session_state.delete_confirm = None
+                st.session_state.menu_open = None
+                st.session_state.rename_mode = None
+                st.rerun()
+
 
 # ======= Sidebar Menu =======
 st.sidebar.markdown("### Menu")
@@ -239,3 +246,4 @@ if submit and user_input:
 
 # ======= Stats =======
 st.markdown(f"### This Session Stats\n👍 **{st.session_state.chat_history['n_like']}**   👎 **{st.session_state.chat_history['n_dislike']}**")
+
