@@ -18,56 +18,6 @@ def save_feedback_to_gsheet(user_q, bot_a, feedback):
     ws = sh.sheet1
     ws.append_row([str(datetime.now()), user_q, bot_a, feedback])
 
-# ======= CSS =======
-st.markdown("""
-<style>
-.chat-bubble {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #2f2f2f;
-    padding: 6px 8px;
-    border-radius: 8px;
-    margin-bottom: 4px;
-    cursor: pointer;
-}
-.chat-bubble:hover {
-    background-color: #444;
-}
-.chat-title {
-    color: white;
-    flex-grow: 1;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-.chat-menu {
-    color: #bbb;
-    padding-left: 8px;
-    cursor: pointer;
-}
-.chat-menu:hover {
-    color: white;
-}
-.menu-box {
-    background-color: #2f2f2f;
-    border-radius: 6px;
-    margin-top: 2px;
-}
-.menu-item {
-    padding: 6px;
-    cursor: pointer;
-    border-radius: 4px;
-}
-.menu-item:hover {
-    background-color: #444;
-}
-.menu-item.delete {
-    color: #ff4d4d;
-}
-</style>
-""", unsafe_allow_html=True)
-
 # ======= Config =======
 st.set_page_config(page_title="Chatbot Valorant", page_icon="🎮")
 st.title("Chatbot Valorant")
@@ -151,7 +101,7 @@ def render_chat_bubble(i, chat):
     # Mode Rename
     if st.session_state.rename_mode == i:
         with st.sidebar.container():
-            new_title = st.text_input("New chat title", value=preview, key=f"rename_{i}")
+            new_title = st.text_input("Title", value=preview, key=f"rename_{i}")
             if st.button("Save", key=f"savename_{i}"):
                 chat["title"] = new_title
                 st.session_state.menu_open = None
@@ -303,3 +253,4 @@ if reset:
 
 # ======= Stats =======
 st.markdown(f"### This Session Stats\n👍 **{st.session_state.chat_history['n_like']}**   👎 **{st.session_state.chat_history['n_dislike']}**")
+
