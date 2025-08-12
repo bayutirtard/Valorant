@@ -52,8 +52,18 @@ st.markdown("""
 .menu-box {
     background-color: #2f2f2f;
     border-radius: 6px;
-    padding: 6px;
     margin-top: 2px;
+}
+.menu-item {
+    padding: 6px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.menu-item:hover {
+    background-color: #444;
+}
+.menu-item.delete {
+    color: #ff4d4d;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -124,15 +134,15 @@ def render_chat_bubble(i, chat):
             st.session_state.delete_confirm = None
             st.rerun()
 
-    # Popup menu di sidebar
+    # Popup menu menempel di bawah ⋮
     if st.session_state.menu_open == i:
         with st.sidebar.container():
             st.markdown('<div class="menu-box">', unsafe_allow_html=True)
-            if st.button("✏️ Rename", key=f"renamebtn_{i}"):
+            if st.button("Rename", key=f"renamebtn_{i}", use_container_width=True):
                 st.session_state.rename_mode = i
                 st.session_state.delete_confirm = None
                 st.rerun()
-            if st.button("🗑 Delete", key=f"deletebtn_{i}"):
+            if st.button("Delete", key=f"deletebtn_{i}", use_container_width=True):
                 st.session_state.delete_confirm = i
                 st.session_state.rename_mode = None
                 st.rerun()
@@ -141,7 +151,6 @@ def render_chat_bubble(i, chat):
     # Mode Rename
     if st.session_state.rename_mode == i:
         with st.sidebar.container():
-            st.markdown('<div class="menu-box">', unsafe_allow_html=True)
             new_title = st.text_input("New chat title", value=preview, key=f"rename_{i}")
             if st.button("Save", key=f"savename_{i}"):
                 chat["title"] = new_title
@@ -150,12 +159,10 @@ def render_chat_bubble(i, chat):
                 st.rerun()
             if st.button("Cancel", key=f"cancelrename_{i}"):
                 st.session_state.rename_mode = None
-            st.markdown('</div>', unsafe_allow_html=True)
 
     # Mode Delete
     if st.session_state.delete_confirm == i:
         with st.sidebar.container():
-            st.markdown('<div class="menu-box">', unsafe_allow_html=True)
             st.warning("Delete this chat?")
             if st.button("Yes, Delete", key=f"yesdelete_{i}"):
                 st.session_state.all_chats.pop(i)
@@ -174,7 +181,6 @@ def render_chat_bubble(i, chat):
                 st.rerun()
             if st.button("Cancel", key=f"canceldelete_{i}"):
                 st.session_state.delete_confirm = None
-            st.markdown('</div>', unsafe_allow_html=True)
 
 # ======= Sidebar Menu =======
 st.sidebar.markdown("### Menu")
