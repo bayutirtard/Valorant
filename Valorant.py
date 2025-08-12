@@ -72,40 +72,42 @@ def render_chat(role, content):
         st.markdown("**Bot:**")
         st.markdown(content)
 
-# --- Rating (sekali klik & otomatis)
+# --- Rating
 def rating_buttons(idx):
-    # Jika chat ini dari history, hanya tampilkan rating yang pernah ada
+    # Tidak bisa rating di chat history
     if st.session_state.current_chat_index is not None:
-        st.info("Ratings for history chats cannot be changed.")
+        if f"final_rating_{idx}" in st.session_state:
+            thumb, stars = st.session_state[f"final_rating_{idx}"]
+            st.markdown(f"{'👍' if thumb == 'up' else '👎'} Rated — {'⭐'*stars} ({stars} stars)")
+        else:
+            st.info("Ratings for history chats cannot be changed.")
         return
 
     chat_hist = st.session_state.chat_history[1:]
-    user_msg = None
-    bot_msg = None
     msg_i = idx * 2
     if msg_i >= 0 and (msg_i + 1) < len(chat_hist):
         user_msg = chat_hist[msg_i]["content"]
         bot_msg = chat_hist[msg_i + 1]["content"]
-
-    # Jika sudah rating, tampilkan hasil
-    if f"final_rating_{idx}" in st.session_state:
-        thumb, stars = st.session_state[f"final_rating_{idx}"]
-        if thumb == "up":
-            st.markdown(f"👍 You rated this answer positively — {'⭐' * stars} ({stars} stars)")
-        else:
-            st.markdown(f"👎 You rated this answer negatively — {'⭐' * stars} ({stars} stars)")
+    else:
         return
 
-    # Belum ada rating → tampilkan tombol jempol
-    col1, col2 = st.columns([1, 1])
-    with col1:
-        if st.button("👍", key=f"up_{idx}"):
-            st.session_state[f"temp_thumb_{idx}"] = "up"
-    with col2:
-        if st.button("👎", key=f"down_{idx}"):
-            st.session_state[f"temp_thumb_{idx}"] = "down"
+    # Jika sudah ada final rating
+    if f"final_rating_{idx}" in st.session_state:
+        thumb, stars = st.session_state[f"final_rating_{idx}"]
+        st.markdown(f"{'👍' if thumb == 'up' else '👎'} Rated — {'⭐'*stars} ({stars} stars)")
+        return
 
-    # Kalau user sudah pilih jempol, tampilkan slider bintang
+    # Jika belum ada rating
+    col1, col2 = st.columns([1, 1])
+    if f"temp_thumb_{idx}" not in st.session_state:
+        with col1:
+            if st.button("👍", key=f"up_{idx}"):
+                st.session_state[f"temp_thumb_{idx}"] = "up"
+        with col2:
+            if st.button("👎", key=f"down_{idx}"):
+                st.session_state[f"temp_thumb_{idx}"] = "down"
+
+    # Jika sudah pilih jempol → tampilkan slider + submit
     if f"temp_thumb_{idx}" in st.session_state:
         stars_value = st.select_slider(
             "Give a star rating:",
@@ -114,16 +116,16 @@ def rating_buttons(idx):
             format_func=lambda x: "⭐" * x,
             key=f"stars_{idx}"
         )
-        # Simpan hasil final rating
-        st.session_state[f"final_rating_{idx}"] = (st.session_state[f"temp_thumb_{idx}"], stars_value)
-        # Update statistik & kirim ke GSheet
-        if st.session_state[f"temp_thumb_{idx}"] == "up":
-            st.session_state.n_like += 1
-        else:
-            st.session_state.n_dislike += 1
-        save_feedback_to_gsheet(user_msg, bot_msg, f"{st.session_state[f'temp_thumb_{idx}']} | {stars_value} stars")
-        st.success(f"Thanks! You gave {'⭐'*stars_value} ({stars_value} stars).")
-        del st.session_state[f"temp_thumb_{idx}"]
+        if st.button("Submit Rating", key=f"submit_rating_{idx}"):
+            thumb = st.session_state[f"temp_thumb_{idx}"]
+            st.session_state[f"final_rating_{idx}"] = (thumb, stars_value)
+            if thumb == "up":
+                st.session_state.n_like += 1
+            else:
+                st.session_state.n_dislike += 1
+            save_feedback_to_gsheet(user_msg, bot_msg, f"{thumb} | {stars_value} stars")
+            del st.session_state[f"temp_thumb_{idx}"]
+            st.success(f"Thanks! You gave {'⭐'*stars_value} ({stars_value} stars).")
 
 # --- Sidebar: Menu
 st.sidebar.markdown("### Menu")
