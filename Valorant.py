@@ -72,8 +72,13 @@ def render_chat(role, content):
         st.markdown("**Bot:**")
         st.markdown(content)
 
-# --- Rating (👍👎 lalu slider bintang)
+# --- Rating (sekali klik & otomatis)
 def rating_buttons(idx):
+    # Jika chat ini dari history, hanya tampilkan rating yang pernah ada
+    if st.session_state.current_chat_index is not None:
+        st.info("Ratings for history chats cannot be changed.")
+        return
+
     chat_hist = st.session_state.chat_history[1:]
     user_msg = None
     bot_msg = None
@@ -82,44 +87,43 @@ def rating_buttons(idx):
         user_msg = chat_hist[msg_i]["content"]
         bot_msg = chat_hist[msg_i + 1]["content"]
 
-    # Jika sudah ada rating 👍👎
-    if f"rate_{idx}" in st.session_state:
-        if st.session_state[f"rate_{idx}"] == "up":
-            st.markdown("👍 **You rated this answer positively.**")
+    # Jika sudah rating, tampilkan hasil
+    if f"final_rating_{idx}" in st.session_state:
+        thumb, stars = st.session_state[f"final_rating_{idx}"]
+        if thumb == "up":
+            st.markdown(f"👍 You rated this answer positively — {'⭐' * stars} ({stars} stars)")
         else:
-            st.markdown("👎 **You rated this answer negatively.**")
-
-        # Slider bintang dengan ikon
-        star_key = f"stars_{idx}"
-        stars_value = st.select_slider(
-            "Give a star rating:",
-            options=[1, 2, 3, 4, 5],
-            value=st.session_state.get(star_key, 3),
-            format_func=lambda x: "⭐" * x,
-            key=star_key
-        )
-
-        if st.button("Submit Star Rating", key=f"submit_star_{idx}"):
-            save_feedback_to_gsheet(
-                user_msg,
-                bot_msg,
-                f"{st.session_state[f'rate_{idx}']} | {stars_value} stars"
-            )
-            st.success(f"Thanks! You gave {'⭐'*stars_value} ({stars_value} stars).")
+            st.markdown(f"👎 You rated this answer negatively — {'⭐' * stars} ({stars} stars)")
         return
 
-    # Kalau belum ada rating 👍👎
+    # Belum ada rating → tampilkan tombol jempol
     col1, col2 = st.columns([1, 1])
     with col1:
         if st.button("👍", key=f"up_{idx}"):
-            st.session_state[f"rate_{idx}"] = "up"
-            st.session_state.n_like += 1
-            st.success("Thanks for your rating!")
+            st.session_state[f"temp_thumb_{idx}"] = "up"
     with col2:
         if st.button("👎", key=f"down_{idx}"):
-            st.session_state[f"rate_{idx}"] = "down"
+            st.session_state[f"temp_thumb_{idx}"] = "down"
+
+    # Kalau user sudah pilih jempol, tampilkan slider bintang
+    if f"temp_thumb_{idx}" in st.session_state:
+        stars_value = st.select_slider(
+            "Give a star rating:",
+            options=[1, 2, 3, 4, 5],
+            value=3,
+            format_func=lambda x: "⭐" * x,
+            key=f"stars_{idx}"
+        )
+        # Simpan hasil final rating
+        st.session_state[f"final_rating_{idx}"] = (st.session_state[f"temp_thumb_{idx}"], stars_value)
+        # Update statistik & kirim ke GSheet
+        if st.session_state[f"temp_thumb_{idx}"] == "up":
+            st.session_state.n_like += 1
+        else:
             st.session_state.n_dislike += 1
-            st.info("Thanks for your feedback!")
+        save_feedback_to_gsheet(user_msg, bot_msg, f"{st.session_state[f'temp_thumb_{idx}']} | {stars_value} stars")
+        st.success(f"Thanks! You gave {'⭐'*stars_value} ({stars_value} stars).")
+        del st.session_state[f"temp_thumb_{idx}"]
 
 # --- Sidebar: Menu
 st.sidebar.markdown("### Menu")
@@ -132,7 +136,7 @@ if st.sidebar.button("New Chat"):
         })
     st.session_state.n_like = 0
     st.session_state.n_dislike = 0
-    keys_to_delete = [k for k in st.session_state.keys() if k.startswith('rate_') or k.startswith('stars_')]
+    keys_to_delete = [k for k in st.session_state.keys() if k.startswith('final_rating_') or k.startswith('temp_thumb_') or k.startswith('stars_')]
     for k in keys_to_delete:
         del st.session_state[k]
     st.session_state.chat_history = [system_prompt]
@@ -216,7 +220,7 @@ if st.session_state.get("confirm_reset", False):
     with col1:
         if st.button("Yes, reset", key="confirm_yes"):
             st.session_state.chat_history = [system_prompt]
-            keys_to_delete = [k for k in st.session_state.keys() if k.startswith('rate_') or k.startswith('stars_')]
+            keys_to_delete = [k for k in st.session_state.keys() if k.startswith('final_rating_') or k.startswith('temp_thumb_') or k.startswith('stars_')]
             for k in keys_to_delete:
                 del st.session_state[k]
             st.session_state.n_like = 0
