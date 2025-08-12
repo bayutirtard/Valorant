@@ -12,9 +12,13 @@ def save_feedback_to_gsheet(user_q, bot_a, feedback):
         scopes=["https://www.googleapis.com/auth/spreadsheets"]
     )
     gc = gspread.authorize(creds)
-    sh = gc.open_by_url("https://docs.google.com/spreadsheets/d/1Nlis6U5BCx7afjdulH2pRKvJmZG0PpwpBFpoMTN1L4s/edit?usp=sharing")
+    sh = gc.open_by_url(
+        "https://docs.google.com/spreadsheets/d/1Nlis6U5BCx7afjdulH2pRKvJmZG0PpwpBFpoMTN1L4s/edit?usp=sharing"
+    )
     ws = sh.sheet1
-    ws.append_row([str(datetime.now()), user_q, bot_a, feedback])
+    ws.append_row(
+        [str(datetime.now()), user_q, bot_a, feedback]
+    )
 
 # --- Chatbot config
 st.set_page_config(page_title="Chatbot Valorant", page_icon="🎮")
@@ -45,23 +49,17 @@ system_prompt = {
     )
 }
 
-# --- State init
+# --- Init state
 if "all_chats" not in st.session_state:
-    st.session_state.all_chats = []  # List chat, tiap chat = {"messages": [...], "ratings": {}}
+    st.session_state.all_chats = []  # List of dict {messages, ratings, n_like, n_dislike}
 if "chat_history" not in st.session_state:
-    st.session_state.chat_history = {"messages": [system_prompt], "ratings": {}}
+    st.session_state.chat_history = {"messages": [system_prompt], "ratings": {}, "n_like": 0, "n_dislike": 0}
 if "current_chat_index" not in st.session_state:
     st.session_state.current_chat_index = None
 if "confirm_reset" not in st.session_state:
     st.session_state.confirm_reset = False
 if "del_confirm_idx" not in st.session_state:
     st.session_state.del_confirm_idx = None
-if "n_like" not in st.session_state:
-    st.session_state.n_like = 0
-if "n_dislike" not in st.session_state:
-    st.session_state.n_dislike = 0
-if "stats_history" not in st.session_state:
-    st.session_state.stats_history = []
 
 # --- Render chat
 def render_chat(role, content):
@@ -71,11 +69,12 @@ def render_chat(role, content):
         st.markdown("**Bot:**")
         st.markdown(content)
 
-# --- Rating
+# --- Rating buttons
 def rating_buttons(idx):
-    ratings = st.session_state.chat_history["ratings"]
+    chat_data = st.session_state.chat_history
+    ratings = chat_data["ratings"]
 
-    chat_hist = st.session_state.chat_history["messages"][1:]
+    chat_hist = chat_data["messages"][1:]
     msg_i = idx * 2
     if msg_i >= 0 and (msg_i + 1) < len(chat_hist):
         user_msg = chat_hist[msg_i]["content"]
@@ -83,13 +82,13 @@ def rating_buttons(idx):
     else:
         return
 
-    # Kalau sudah ada rating → tampilkan
+    # Sudah ada rating
     if idx in ratings:
         thumb, stars = ratings[idx]
         st.markdown(f"{'👍' if thumb == 'up' else '👎'} Rated — {'⭐'*stars} ({stars} stars)")
         return
 
-    # Belum ada rating → tampilkan tombol jempol
+    # Belum ada rating → pilih jempol
     col1, col2 = st.columns([1, 1])
     if f"temp_thumb_{idx}" not in st.session_state:
         with col1:
@@ -99,7 +98,7 @@ def rating_buttons(idx):
             if st.button("👎", key=f"down_{idx}"):
                 st.session_state[f"temp_thumb_{idx}"] = "down"
 
-    # Jika sudah pilih jempol → tampilkan slider + submit
+    # Sudah pilih jempol → slider & submit
     if f"temp_thumb_{idx}" in st.session_state:
         stars_value = st.select_slider(
             "Give a star rating:",
@@ -110,11 +109,11 @@ def rating_buttons(idx):
         )
         if st.button("Submit Rating", key=f"submit_rating_{idx}"):
             thumb = st.session_state[f"temp_thumb_{idx}"]
-            ratings[idx] = (thumb, stars_value)  # Simpan di chat aktif
+            ratings[idx] = (thumb, stars_value)
             if thumb == "up":
-                st.session_state.n_like += 1
+                chat_data["n_like"] += 1
             else:
-                st.session_state.n_dislike += 1
+                chat_data["n_dislike"] += 1
             save_feedback_to_gsheet(user_msg, bot_msg, f"{thumb} | {stars_value} stars")
             del st.session_state[f"temp_thumb_{idx}"]
             st.success(f"Thanks! You gave {'⭐'*stars_value} ({stars_value} stars).")
@@ -123,17 +122,8 @@ def rating_buttons(idx):
 st.sidebar.markdown("### Menu")
 if st.sidebar.button("New Chat"):
     if st.session_state.chat_history["messages"] != [system_prompt]:
-        st.session_state.all_chats.append(st.session_state.chat_history.copy())
-        st.session_state.stats_history.append({
-            "like": st.session_state.n_like,
-            "dislike": st.session_state.n_dislike
-        })
-    st.session_state.n_like = 0
-    st.session_state.n_dislike = 0
-    keys_to_delete = [k for k in list(st.session_state.keys()) if k.startswith('temp_thumb_') or k.startswith('stars_')]
-    for k in keys_to_delete:
-        del st.session_state[k]
-    st.session_state.chat_history = {"messages": [system_prompt], "ratings": {}}
+        st.session_state.all_chats.append(st.session_state.chat_history)
+    st.session_state.chat_history = {"messages": [system_prompt], "ratings": {}, "n_like": 0, "n_dislike": 0}
     st.session_state.current_chat_index = None
     st.rerun()
 
@@ -145,7 +135,7 @@ if st.session_state.all_chats:
         c1, c3 = st.sidebar.columns([8, 2])
         with c1:
             if st.button(preview, key=f"open_{i}", help="Open this chat"):
-                st.session_state.chat_history = chat.copy()
+                st.session_state.chat_history = chat
                 st.session_state.current_chat_index = i
                 st.rerun()
         with c3:
@@ -159,7 +149,7 @@ if st.session_state.all_chats:
                     st.session_state.all_chats.pop(i)
                     if st.session_state.current_chat_index == i:
                         st.session_state.current_chat_index = None
-                        st.session_state.chat_history = {"messages": [system_prompt], "ratings": {}}
+                        st.session_state.chat_history = {"messages": [system_prompt], "ratings": {}, "n_like": 0, "n_dislike": 0}
                     st.session_state.del_confirm_idx = None
                     st.rerun()
             with cc2:
@@ -170,7 +160,7 @@ if st.session_state.all_chats:
 else:
     st.sidebar.info("No chat history yet.")
 
-# --- Show current chat & rating
+# --- Show current chat & ratings
 for idx in range(0, (len(st.session_state.chat_history["messages"]) - 1) // 2):
     msg_user = st.session_state.chat_history["messages"][1:][idx * 2]
     msg_bot = st.session_state.chat_history["messages"][1:][idx * 2 + 1]
@@ -184,7 +174,12 @@ st.markdown("<br>", unsafe_allow_html=True)
 with st.form(key="chat_form", clear_on_submit=True):
     col1, col2, col3 = st.columns([6, 1, 1])
     with col1:
-        user_input = st.text_input("Type your question here", key="input_text", placeholder="Type your question here...", label_visibility="collapsed")
+        user_input = st.text_input(
+            "Type your question here",
+            key="input_text",
+            placeholder="Type your question here...",
+            label_visibility="collapsed"
+        )
     with col2:
         submit = st.form_submit_button("Send")
     with col3:
@@ -213,12 +208,10 @@ if st.session_state.get("confirm_reset", False):
     col1, col2 = st.columns(2)
     with col1:
         if st.button("Yes, reset", key="confirm_yes"):
-            st.session_state.chat_history = {"messages": [system_prompt], "ratings": {}}
+            st.session_state.chat_history = {"messages": [system_prompt], "ratings": {}, "n_like": 0, "n_dislike": 0}
             keys_to_delete = [k for k in list(st.session_state.keys()) if k.startswith('temp_thumb_') or k.startswith('stars_')]
             for k in keys_to_delete:
                 del st.session_state[k]
-            st.session_state.n_like = 0
-            st.session_state.n_dislike = 0
             st.session_state.confirm_reset = False
             st.rerun()
     with col2:
@@ -226,9 +219,5 @@ if st.session_state.get("confirm_reset", False):
             st.session_state.confirm_reset = False
             st.rerun()
 
-# --- Stats
-st.markdown(f"### Current Session Stats\n👍 **{st.session_state.n_like}**   👎 **{st.session_state.n_dislike}**")
-if st.session_state.stats_history:
-    st.markdown("### Stats History")
-    for i, stats in enumerate(st.session_state.stats_history, 1):
-        st.markdown(f"Session {i}: 👍 {stats['like']} | 👎 {stats['dislike']}")
+# --- This Session Stats
+st.markdown(f"### This Session Stats\n👍 **{st.session_state.chat_history['n_like']}**   👎 **{st.session_state.chat_history['n_dislike']}**")
