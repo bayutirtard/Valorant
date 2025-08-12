@@ -49,6 +49,12 @@ st.markdown("""
 .chat-menu:hover {
     color: white;
 }
+.menu-box {
+    background-color: #2f2f2f;
+    border-radius: 6px;
+    padding: 6px;
+    margin-top: 2px;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -91,10 +97,12 @@ if "chat_history" not in st.session_state:
     }
 if "current_chat_index" not in st.session_state:
     st.session_state.current_chat_index = None
-if "modal_action" not in st.session_state:
-    st.session_state.modal_action = None
-if "modal_index" not in st.session_state:
-    st.session_state.modal_index = None
+if "menu_open" not in st.session_state:
+    st.session_state.menu_open = None
+if "rename_mode" not in st.session_state:
+    st.session_state.rename_mode = None
+if "delete_confirm" not in st.session_state:
+    st.session_state.delete_confirm = None
 
 # ======= Render Chat Bubble =======
 def render_chat_bubble(i, chat):
@@ -111,8 +119,62 @@ def render_chat_bubble(i, chat):
 
     with col2:
         if st.button("⋮", key=f"menu_{i}"):
-            st.session_state.modal_index = i
-            st.session_state.modal_action = "menu"
+            st.session_state.menu_open = i if st.session_state.menu_open != i else None
+            st.session_state.rename_mode = None
+            st.session_state.delete_confirm = None
+            st.rerun()
+
+    # Popup menu di sidebar
+    if st.session_state.menu_open == i:
+        with st.sidebar.container():
+            st.markdown('<div class="menu-box">', unsafe_allow_html=True)
+            if st.button("✏️ Rename", key=f"renamebtn_{i}"):
+                st.session_state.rename_mode = i
+                st.session_state.delete_confirm = None
+                st.rerun()
+            if st.button("🗑 Delete", key=f"deletebtn_{i}"):
+                st.session_state.delete_confirm = i
+                st.session_state.rename_mode = None
+                st.rerun()
+            st.markdown('</div>', unsafe_allow_html=True)
+
+    # Mode Rename
+    if st.session_state.rename_mode == i:
+        with st.sidebar.container():
+            st.markdown('<div class="menu-box">', unsafe_allow_html=True)
+            new_title = st.text_input("New chat title", value=preview, key=f"rename_{i}")
+            if st.button("Save", key=f"savename_{i}"):
+                chat["title"] = new_title
+                st.session_state.menu_open = None
+                st.session_state.rename_mode = None
+                st.rerun()
+            if st.button("Cancel", key=f"cancelrename_{i}"):
+                st.session_state.rename_mode = None
+            st.markdown('</div>', unsafe_allow_html=True)
+
+    # Mode Delete
+    if st.session_state.delete_confirm == i:
+        with st.sidebar.container():
+            st.markdown('<div class="menu-box">', unsafe_allow_html=True)
+            st.warning("Delete this chat?")
+            if st.button("Yes, Delete", key=f"yesdelete_{i}"):
+                st.session_state.all_chats.pop(i)
+                if st.session_state.current_chat_index == i:
+                    st.session_state.current_chat_index = None
+                    st.session_state.chat_history = {
+                        "messages": [system_prompt],
+                        "ratings": {},
+                        "n_like": 0,
+                        "n_dislike": 0,
+                        "title": None,
+                        "added_to_history": False
+                    }
+                st.session_state.menu_open = None
+                st.session_state.delete_confirm = None
+                st.rerun()
+            if st.button("Cancel", key=f"canceldelete_{i}"):
+                st.session_state.delete_confirm = None
+            st.markdown('</div>', unsafe_allow_html=True)
 
 # ======= Sidebar Menu =======
 st.sidebar.markdown("### Menu")
@@ -126,6 +188,7 @@ if st.sidebar.button("New Chat", use_container_width=True):
         "added_to_history": False
     }
     st.session_state.current_chat_index = None
+    st.session_state.menu_open = None
     st.rerun()
 
 # ======= Sidebar Chats =======
@@ -135,56 +198,6 @@ if st.session_state.all_chats:
         render_chat_bubble(i, chat)
 else:
     st.sidebar.info("No chat history yet.")
-
-# ======= Modal Handling =======
-if st.session_state.modal_action == "menu" and st.session_state.modal_index is not None:
-    i = st.session_state.modal_index
-    with st.modal("Chat Options"):
-        if st.button("✏️ Rename"):
-            st.session_state.modal_action = "rename"
-            st.rerun()
-        if st.button("🗑 Delete"):
-            st.session_state.modal_action = "delete"
-            st.rerun()
-        if st.button("Cancel"):
-            st.session_state.modal_action = None
-            st.session_state.modal_index = None
-
-if st.session_state.modal_action == "rename" and st.session_state.modal_index is not None:
-    i = st.session_state.modal_index
-    with st.modal("Rename Chat"):
-        new_title = st.text_input("New chat title", value=st.session_state.all_chats[i].get("title") or "")
-        if st.button("Save"):
-            st.session_state.all_chats[i]["title"] = new_title
-            st.session_state.modal_action = None
-            st.session_state.modal_index = None
-            st.rerun()
-        if st.button("Cancel"):
-            st.session_state.modal_action = None
-            st.session_state.modal_index = None
-
-if st.session_state.modal_action == "delete" and st.session_state.modal_index is not None:
-    i = st.session_state.modal_index
-    with st.modal("Delete Chat?"):
-        st.warning("Are you sure you want to delete this chat?")
-        if st.button("Yes, Delete"):
-            st.session_state.all_chats.pop(i)
-            if st.session_state.current_chat_index == i:
-                st.session_state.current_chat_index = None
-                st.session_state.chat_history = {
-                    "messages": [system_prompt],
-                    "ratings": {},
-                    "n_like": 0,
-                    "n_dislike": 0,
-                    "title": None,
-                    "added_to_history": False
-                }
-            st.session_state.modal_action = None
-            st.session_state.modal_index = None
-            st.rerun()
-        if st.button("Cancel"):
-            st.session_state.modal_action = None
-            st.session_state.modal_index = None
 
 # ======= Main Chat Rendering =======
 def render_chat(role, content):
