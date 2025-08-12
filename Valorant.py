@@ -72,13 +72,6 @@ def render_chat_bubble(i, chat):
     preview = chat.get("title") or (
         chat["messages"][1]["content"][:40] if len(chat["messages"]) > 1 else "[empty]"
     )
-    st.download_button(
-        label="Download Chat",
-        data=export_data.encode("utf-8"),
-        file_name=f"chat_session_{i+1}.txt",
-        mime="text/plain",
-        key=f"download_{i}"
-    )
     col1, col2 = st.sidebar.columns([8, 1])
     with col1:
         if st.button(preview, key=f"open_{i}", use_container_width=True):
