@@ -16,19 +16,17 @@ def save_feedback_to_gsheet(user_q, bot_a, feedback):
         "https://docs.google.com/spreadsheets/d/1Nlis6U5BCx7afjdulH2pRKvJmZG0PpwpBFpoMTN1L4s/edit?usp=sharing"
     )
     ws = sh.sheet1
-    ws.append_row(
-        [str(datetime.now()), user_q, bot_a, feedback]
-    )
+    ws.append_row([str(datetime.now()), user_q, bot_a, feedback])
 
-# --- CSS untuk highlight abu terang pada chat aktif
+# --- CSS untuk highlight abu gelap pada chat aktif
 st.markdown("""
     <style>
     div[data-testid="stSidebar"] button[kind="secondary"] {
         border-radius: 5px;
         text-align: left;
     }
-    div[data-testid="stSidebar"] button.active-chat {
-        background-color: #555 !important;
+    div[data-testid="stSidebar"] button.session-active {
+        background-color: #666 !important;
         color: white !important;
     }
     </style>
@@ -148,23 +146,24 @@ if st.sidebar.button("New Chat", use_container_width=True):
     st.session_state.current_chat_index = None
     st.rerun()
 
-# --- Sidebar: Chats (dengan highlight abu terang + delete button)
+# --- Sidebar: Chats
 st.sidebar.markdown("### Chats")
 if st.session_state.all_chats:
     for i, chat in enumerate(st.session_state.all_chats):
         preview = chat["messages"][1]["content"][:40] if len(chat["messages"]) > 1 and chat["messages"][1]["role"] == "user" else "[empty]"
         is_active = st.session_state.current_chat_index == i
 
-        c1, c2 = st.sidebar.columns([8, 2])
-        with c1:
-            btn_class = "active-chat" if is_active else ""
-            if st.sidebar.button(preview, key=f"open_{i}", use_container_width=True):
+        col1, col2 = st.sidebar.columns([7, 1])
+        with col1:
+            btn_label = preview
+            btn_key = f"open_{i}"
+            if st.sidebar.button(btn_label, key=btn_key, use_container_width=True):
                 st.session_state.chat_history = chat
                 st.session_state.current_chat_index = i
                 st.rerun()
             if is_active:
-                st.markdown(f"<div style='background-color:#555;color:white;padding:4px;border-radius:5px;'>{preview}</div>", unsafe_allow_html=True)
-        with c2:
+                st.markdown(f"<div style='background-color:#666;color:white;padding:4px;border-radius:5px;'>{preview}</div>", unsafe_allow_html=True)
+        with col2:
             if st.sidebar.button("🗑", key=f"del_{i}"):
                 st.session_state.del_confirm_idx = i
                 st.rerun()
