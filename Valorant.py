@@ -53,6 +53,7 @@ if "chat_history" not in st.session_state:
         "n_like": 0,
         "n_dislike": 0,
         "title": None,
+        "pinned": False,
         "added_to_history": False
     }
 if "current_chat_index" not in st.session_state:
@@ -63,6 +64,8 @@ if "rename_mode" not in st.session_state:
     st.session_state.rename_mode = None
 if "delete_confirm" not in st.session_state:
     st.session_state.delete_confirm = None
+if "search_query" not in st.session_state:
+    st.session_state.search_query = ""
 
 # ======= Render Chat Bubble =======
 def render_chat_bubble(i, chat):
@@ -91,6 +94,10 @@ def render_chat_bubble(i, chat):
                 st.session_state.rename_mode = i
                 st.session_state.delete_confirm = None
                 st.rerun()
+            if st.button("Pin" if not chat.get("pinned") else "Unpin", key=f"pinbtn_{i}", use_container_width=True):
+                chat["pinned"] = not chat.get("pinned", False)
+                st.session_state.menu_open = None
+                st.rerun()
             if st.button("Delete", key=f"deletebtn_{i}", use_container_width=True):
                 st.session_state.delete_confirm = i
                 st.session_state.rename_mode = None
@@ -110,7 +117,6 @@ def render_chat_bubble(i, chat):
                 st.session_state.menu_open = None
                 st.rerun()
 
-
     # Mode Delete
     if st.session_state.delete_confirm == i:
         with st.sidebar.container():
@@ -125,6 +131,7 @@ def render_chat_bubble(i, chat):
                         "n_like": 0,
                         "n_dislike": 0,
                         "title": None,
+                        "pinned": False,
                         "added_to_history": False
                     }
                 st.session_state.menu_open = None
@@ -133,9 +140,7 @@ def render_chat_bubble(i, chat):
             if st.button("Cancel", key=f"canceldelete_{i}"):
                 st.session_state.delete_confirm = None
                 st.session_state.menu_open = None
-                st.session_state.rename_mode = None
                 st.rerun()
-
 
 # ======= Sidebar Menu =======
 st.sidebar.markdown("### Menu")
@@ -146,6 +151,7 @@ if st.sidebar.button("New Chat", use_container_width=True):
         "n_like": 0,
         "n_dislike": 0,
         "title": None,
+        "pinned": False,
         "added_to_history": False
     }
     st.session_state.current_chat_index = None
@@ -154,8 +160,24 @@ if st.sidebar.button("New Chat", use_container_width=True):
 
 # ======= Sidebar Chats =======
 st.sidebar.markdown("### Chats")
+st.session_state.search_query = st.sidebar.text_input("Search chats", value=st.session_state.search_query)
+
 if st.session_state.all_chats:
-    for i, chat in enumerate(st.session_state.all_chats):
+    filtered_chats = [
+        (i, c) for i, c in enumerate(st.session_state.all_chats)
+        if st.session_state.search_query.lower() in (c.get("title") or "").lower()
+        or (len(c["messages"]) > 1 and st.session_state.search_query.lower() in c["messages"][1]["content"].lower())
+    ]
+
+    # Pisahkan pinned dan unpinned
+    pinned_chats = [(i, c) for i, c in filtered_chats if c.get("pinned")]
+    unpinned_chats = [(i, c) for i, c in filtered_chats if not c.get("pinned")]
+
+    for i, chat in pinned_chats:
+        render_chat_bubble(i, chat)
+    if pinned_chats and unpinned_chats:
+        st.sidebar.markdown("---")
+    for i, chat in unpinned_chats:
         render_chat_bubble(i, chat)
 else:
     st.sidebar.info("No chat history yet.")
@@ -218,7 +240,7 @@ for idx in range(0, (len(st.session_state.chat_history["messages"]) - 1) // 2):
     rating_buttons(idx)
     st.markdown("---")
 
-# ======= Input Form (No Reset) =======
+# ======= Input Form =======
 st.markdown("<br>", unsafe_allow_html=True)
 with st.form(key="chat_form", clear_on_submit=True):
     col1, col2 = st.columns([7, 1])
@@ -246,4 +268,3 @@ if submit and user_input:
 
 # ======= Stats =======
 st.markdown(f"### This Session Stats\n👍 **{st.session_state.chat_history['n_like']}**   👎 **{st.session_state.chat_history['n_dislike']}**")
-
