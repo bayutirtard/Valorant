@@ -113,7 +113,7 @@ def render_chat_bubble(i, chat):
     # Mode Delete
     if st.session_state.delete_confirm == i:
         with st.sidebar.container():
-            st.warning("Delete this chat?")
+            st.error("Delete this chat?")
             if st.button("Yes, Delete", key=f"yesdelete_{i}"):
                 st.session_state.all_chats.pop(i)
                 if st.session_state.current_chat_index == i:
@@ -253,4 +253,5 @@ if reset:
 
 # ======= Stats =======
 st.markdown(f"### This Session Stats\n👍 **{st.session_state.chat_history['n_like']}**   👎 **{st.session_state.chat_history['n_dislike']}**")
+
 
