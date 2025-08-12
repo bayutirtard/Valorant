@@ -101,31 +101,6 @@ def render_chat_bubble(i, chat):
                 st.session_state.delete_confirm = i
                 st.session_state.rename_mode = None
                 st.rerun()
-            if st.session_state.export_mode == i:
-                st.download_button(
-                label="Download TXT",
-                data=generate_txt(chat),
-                file_name=f"chat_session_{i+1}.txt",
-                mime="text/plain",
-                key=f"dltxt_{i}"
-                )
-                st.download_button(
-                label="Download PDF",
-                data=generate_pdf(chat),
-                file_name=f"chat_session_{i+1}.pdf",
-                mime="application/pdf",
-                key=f"dlpdf_{i}"
-                )
-                st.markdown(
-                    """
-                    <button onclick="window.print()" style="margin-top:5px;">🖨️ Print as PDF</button>
-                    """,
-                    unsafe_allow_html=True
-                )
-            if st.button("Cancel", key=f"cancelrename_{i}", use_container_width=True):
-                st.session_state.rename_mode = None
-                st.session_state.menu_open = None
-                st.rerun()
 
     # Mode Rename
     if st.session_state.rename_mode == i:
@@ -292,6 +267,3 @@ if submit and user_input:
 
 # ======= Stats =======
 st.markdown(f"### This Session Stats\n👍 **{st.session_state.chat_history['n_like']}**   👎 **{st.session_state.chat_history['n_dislike']}**")
-
-
-
