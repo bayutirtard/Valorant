@@ -89,22 +89,23 @@ def rating_buttons(idx):
         else:
             st.markdown("👎 **You rated this answer negatively.**")
 
-        # Slider bintang
-star_key = f"stars_{idx}"
-stars_value = st.select_slider(
-    "Give a star rating:",
-    options=[1, 2, 3, 4, 5],
-    value=st.session_state.get(star_key, 3),
-    key=star_key
-)
+        # Slider bintang dengan ikon
+        star_key = f"stars_{idx}"
+        stars_value = st.select_slider(
+            "Give a star rating:",
+            options=[1, 2, 3, 4, 5],
+            value=st.session_state.get(star_key, 3),
+            format_func=lambda x: "⭐" * x,
+            key=star_key
+        )
 
-if st.button("Submit Star Rating", key=f"submit_star_{idx}"):
-    save_feedback_to_gsheet(
-        user_msg,
-        bot_msg,
-        f"{st.session_state[f'rate_{idx}']} | {stars_value} stars"
-    )
-    st.success(f"Thanks! You gave {stars_value} stars.")
+        if st.button("Submit Star Rating", key=f"submit_star_{idx}"):
+            save_feedback_to_gsheet(
+                user_msg,
+                bot_msg,
+                f"{st.session_state[f'rate_{idx}']} | {stars_value} stars"
+            )
+            st.success(f"Thanks! You gave {'⭐'*stars_value} ({stars_value} stars).")
         return
 
     # Kalau belum ada rating 👍👎
