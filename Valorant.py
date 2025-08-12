@@ -160,7 +160,7 @@ if st.sidebar.button("New Chat", use_container_width=True):
 
 # ======= Sidebar Chats =======
 st.sidebar.markdown("### Chats")
-search_query = st.sidebar.text_input("", placeholder="Search chats...")  # rapat
+search_query = st.sidebar.text_input("", placeholder="Search chats")  # rapat
 
 if st.session_state.all_chats:
     filtered_chats = [
@@ -268,6 +268,7 @@ if submit and user_input:
 
 # ======= Stats =======
 st.markdown(f"### This Session Stats\n👍 **{st.session_state.chat_history['n_like']}**   👎 **{st.session_state.chat_history['n_dislike']}**")
+
 
 
 
