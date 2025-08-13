@@ -1087,7 +1087,7 @@ Representing her home country of South Korea, Jett's agile and evasive fighting 
 - **Rank Ratings**: In Valorant, you need 100 Rank Rating (RR) points to move from one tier to the next within a rank (e.g., Iron 1 to Iron 2). You also need 100 RR to advance to the next rank (e.g., Bronze 3 to Silver 1). Immortal and Radiant ranks have different progression rules, requiring specific RR thresholds and leaderboard placement for Radiant. 
 Here's a breakdown:
 
--**Iron to Ascendant**: Each tier within these ranks requires 100 RR to advance. 
+- **Iron to Ascendant**: Each tier within these ranks requires 100 RR to advance. 
 
 - **Immortal**: Progression requires exceeding a region-specific RR threshold, not just 100 RR. 
 
