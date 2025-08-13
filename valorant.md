@@ -1113,3 +1113,402 @@ Representing her home country of South Korea, Jett's agile and evasive fighting 
 | 25 | IMMORTAL 2 | ![IMMORTAL 2](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/25/largeicon.png) |
 | 26 | IMMORTAL 3 | ![IMMORTAL 3](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/26/largeicon.png) |
 | 27 | RADIANT | ![RADIANT](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/27/largeicon.png) |
+
+# Valorant Game Modes
+
+## Standard
+
+**Description**: Standard VALORANT. Switch between attack and defense at the half. Plant, defuse, or eliminate the enemy team to win rounds. First to 13 wins.
+
+---
+
+## Deathmatch
+
+**Description**: Practice your gunplay in a quick free-for-all. No abilities, economy, or rounds. First player to 40 kills wins.
+
+---
+
+## Escalation
+
+**Description**: Eliminate enemies to advance your team’s arsenal. Cycle through a series of 12 randomized weapons.  First to complete the series wins.
+
+---
+
+## Team Deathmatch
+
+**Description**: Ability-enabled team deathmatch on a unique set of maps. Progress through a series of increasingly powerful loadouts. First team to 100 kills wins.
+
+---
+
+## Basic Training
+
+**Description**: Replay the tutorial!
+
+
+---
+
+## Replication
+
+**Description**: Same rules as unrated, but all players on the same team are the same agent. Set credits per round, first to 5 rounds wins.
+
+---
+
+## Spike Rush
+
+**Description**: Shorter games of VALORANT with added powerup orbs and randomized weapons. Plant, defuse, or eliminate the enemy team to win rounds. First to 4 wins.
+
+---
+
+## The Range
+
+**Description**: Warm up with all weapons and agents unlocked!
+
+---
+
+## Snowball Fight
+
+**Description**: Fun game with snowball gun!
+
+---
+
+## Swiftplay
+
+**Description**: Shorter games of VALORANT with a simplified economy. Plant, defuse, or eliminate the enemy team to win rounds. First to 5 wins.
+
+# Valorant Gear
+
+## Heavy Armor
+
+**Description**: Absorbs 66% of total damage taken. Breaks after it has absorbed 50 damage.
+
+---
+
+## Light Armor
+
+**Description**: Absorbs 66% of total damage taken. Breaks after it has absorbed 25 damage.
+
+---
+
+## Regen Shield
+
+**Description**: Absorbs 100% of total damage taken. Regenerates after it has absorbed damage. Has a total regeneration pool of 50.
+
+---
+
+# Valorant Seasons (Start, End, Type)
+
+## Closed Beta
+- **Start**: 06 April 2020
+- **End**: 29 May 2020
+- **Type**: None
+
+---
+
+## ACT I
+- **Start**: 01 June 2020
+- **End**: 04 August 2020
+- **Type**: EAresSeasonType::Act
+
+---
+
+## ACT II
+- **Start**: 04 August 2020
+- **End**: 13 October 2020
+- **Type**: EAresSeasonType::Act
+
+---
+
+## ACT III
+- **Start**: 13 October 2020
+- **End**: 12 January 2021
+- **Type**: EAresSeasonType::Act
+
+---
+
+## EPISODE 1
+- **Start**: 01 June 2020
+- **End**: 12 January 2021
+- **Type**: None
+
+---
+
+## ACT I
+- **Start**: 12 January 2021
+- **End**: 02 March 2021
+- **Type**: EAresSeasonType::Act
+
+---
+
+## ACT II
+- **Start**: 02 March 2021
+- **End**: 27 April 2021
+- **Type**: EAresSeasonType::Act
+
+---
+
+## ACT III
+- **Start**: 27 April 2021
+- **End**: 22 June 2021
+- **Type**: EAresSeasonType::Act
+
+---
+
+## EPISODE 2
+- **Start**: 12 January 2021
+- **End**: 22 June 2021
+- **Type**: None
+
+---
+
+## ACT I
+- **Start**: 22 June 2021
+- **End**: 08 September 2021
+- **Type**: EAresSeasonType::Act
+
+---
+
+## ACT II
+- **Start**: 08 September 2021
+- **End**: 02 November 2021
+- **Type**: EAresSeasonType::Act
+
+---
+
+## ACT III
+- **Start**: 02 November 2021
+- **End**: 11 January 2022
+- **Type**: EAresSeasonType::Act
+
+---
+
+## EPISODE 3
+- **Start**: 22 June 2021
+- **End**: 11 January 2022
+- **Type**: None
+
+---
+
+## ACT I
+- **Start**: 11 January 2022
+- **End**: 01 March 2022
+- **Type**: EAresSeasonType::Act
+
+---
+
+## ACT II
+- **Start**: 01 March 2022
+- **End**: 26 April 2022
+- **Type**: EAresSeasonType::Act
+
+---
+
+## ACT III
+- **Start**: 26 April 2022
+- **End**: 21 June 2022
+- **Type**: EAresSeasonType::Act
+
+---
+
+## EPISODE 4
+- **Start**: 11 January 2022
+- **End**: 21 June 2022
+- **Type**: None
+
+---
+
+## ACT I
+- **Start**: 21 June 2022
+- **End**: 23 August 2022
+- **Type**: EAresSeasonType::Act
+
+---
+
+## ACT II
+- **Start**: 23 August 2022
+- **End**: 18 October 2022
+- **Type**: EAresSeasonType::Act
+
+---
+
+## ACT III
+- **Start**: 18 October 2022
+- **End**: 10 January 2023
+- **Type**: EAresSeasonType::Act
+
+---
+
+## EPISODE 5
+- **Start**: 21 June 2022
+- **End**: 10 January 2023
+- **Type**: None
+
+---
+
+## ACT I
+- **Start**: 10 January 2023
+- **End**: 07 March 2023
+- **Type**: EAresSeasonType::Act
+
+---
+
+## ACT II
+- **Start**: 07 March 2023
+- **End**: 25 April 2023
+- **Type**: EAresSeasonType::Act
+
+---
+
+## ACT III
+- **Start**: 25 April 2023
+- **End**: 27 June 2023
+- **Type**: EAresSeasonType::Act
+
+---
+
+## EPISODE 6
+- **Start**: 10 January 2023
+- **End**: 27 June 2023
+- **Type**: None
+
+---
+
+## ACT I
+- **Start**: 27 June 2023
+- **End**: 29 August 2023
+- **Type**: EAresSeasonType::Act
+
+---
+
+## ACT II
+- **Start**: 29 August 2023
+- **End**: 31 October 2023
+- **Type**: EAresSeasonType::Act
+
+---
+
+## ACT III
+- **Start**: 31 October 2023
+- **End**: 09 January 2024
+- **Type**: EAresSeasonType::Act
+
+---
+
+## EPISODE 7
+- **Start**: 27 June 2023
+- **End**: 09 January 2024
+- **Type**: None
+
+---
+
+## ACT I
+- **Start**: 09 January 2024
+- **End**: 05 March 2024
+- **Type**: EAresSeasonType::Act
+
+---
+
+## ACT II
+- **Start**: 05 March 2024
+- **End**: 30 April 2024
+- **Type**: EAresSeasonType::Act
+
+---
+
+## ACT III
+- **Start**: 30 April 2024
+- **End**: 26 June 2024
+- **Type**: EAresSeasonType::Act
+
+---
+
+## EPISODE 8
+- **Start**: 09 January 2024
+- **End**: 26 June 2024
+- **Type**: None
+
+---
+
+## ACT I
+- **Start**: 26 June 2024
+- **End**: 28 August 2024
+- **Type**: EAresSeasonType::Act
+
+---
+
+## ACT II
+- **Start**: 28 August 2024
+- **End**: 23 October 2024
+- **Type**: EAresSeasonType::Act
+
+---
+
+## ACT III
+- **Start**: 23 October 2024
+- **End**: 08 January 2025
+- **Type**: EAresSeasonType::Act
+
+---
+
+## EPISODE 9
+- **Start**: 26 June 2024
+- **End**: 08 January 2025
+- **Type**: None
+
+---
+
+## ACT I
+- **Start**: 08 January 2025
+- **End**: 05 March 2025
+- **Type**: EAresSeasonType::Act
+
+---
+
+## ACT II
+- **Start**: 05 March 2025
+- **End**: 30 April 2025
+- **Type**: EAresSeasonType::Act
+
+---
+
+## ACT III
+- **Start**: 30 April 2025
+- **End**: 25 June 2025
+- **Type**: EAresSeasonType::Act
+
+---
+
+## V25 Half 1
+- **Start**: 08 January 2025
+- **End**: 25 June 2025
+- **Type**: None
+
+---
+
+## ACT IV
+- **Start**: 25 June 2025
+- **End**: 20 August 2025
+- **Type**: EAresSeasonType::Act
+
+---
+
+## ACT V
+- **Start**: 20 August 2025
+- **End**: 15 October 2025
+- **Type**: EAresSeasonType::Act
+
+---
+
+## ACT VI
+- **Start**: 15 October 2025
+- **End**: 07 January 2026
+- **Type**: EAresSeasonType::Act
+
+---
+
+## V25 Half 2
+- **Start**: 25 June 2025
+- **End**: 07 January 2026
+- **Type**: None
+
+---
+
