@@ -1083,36 +1083,48 @@ Representing her home country of South Korea, Jett's agile and evasive fighting 
 
 # Competitive Tiers
 
+**Description**:
+- **Rank Ratings**: In Valorant, you need 100 Rank Rating (RR) points to move from one tier to the next within a rank (e.g., Iron 1 to Iron 2). You also need 100 RR to advance to the next rank (e.g., Bronze 3 to Silver 1). Immortal and Radiant ranks have different progression rules, requiring specific RR thresholds and leaderboard placement for Radiant. 
+Here's a breakdown:
+
+-**Iron to Ascendant**: Each tier within these ranks requires 100 RR to advance. 
+
+- **Immortal**: Progression requires exceeding a region-specific RR threshold, not just 100 RR. 
+
+- **Radiant**: To reach Radiant, you need to surpass the RR threshold for your region and also be among the top 500 players in that region. 
+
+- **Initial RR**: When you start a new rank (after placement or rank reset), you begin with 50 RR. 
+
+- **Buffer RR**: Upon reaching a new tier (e.g., Bronze 2 to Bronze 3), you'll have a minimum of 10 RR as a buffer in case your next match doesn't go well. 
+
 | Tier Number | Tier Name | Icon |
 |-------------|-----------|------|
 | 0 | UNRANKED | ![UNRANKED](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/0/largeicon.png) |
-| 1 | Unused1 |  |
-| 2 | Unused2 |  |
-| 3 | IRON 1 | ![IRON 1](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/3/largeicon.png) |
-| 4 | IRON 2 | ![IRON 2](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/4/largeicon.png) |
-| 5 | IRON 3 | ![IRON 3](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/5/largeicon.png) |
-| 6 | BRONZE 1 | ![BRONZE 1](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/6/largeicon.png) |
-| 7 | BRONZE 2 | ![BRONZE 2](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/7/largeicon.png) |
-| 8 | BRONZE 3 | ![BRONZE 3](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/8/largeicon.png) |
-| 9 | SILVER 1 | ![SILVER 1](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/9/largeicon.png) |
-| 10 | SILVER 2 | ![SILVER 2](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/10/largeicon.png) |
-| 11 | SILVER 3 | ![SILVER 3](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/11/largeicon.png) |
-| 12 | GOLD 1 | ![GOLD 1](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/12/largeicon.png) |
-| 13 | GOLD 2 | ![GOLD 2](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/13/largeicon.png) |
-| 14 | GOLD 3 | ![GOLD 3](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/14/largeicon.png) |
-| 15 | PLATINUM 1 | ![PLATINUM 1](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/15/largeicon.png) |
-| 16 | PLATINUM 2 | ![PLATINUM 2](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/16/largeicon.png) |
-| 17 | PLATINUM 3 | ![PLATINUM 3](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/17/largeicon.png) |
-| 18 | DIAMOND 1 | ![DIAMOND 1](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/18/largeicon.png) |
-| 19 | DIAMOND 2 | ![DIAMOND 2](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/19/largeicon.png) |
-| 20 | DIAMOND 3 | ![DIAMOND 3](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/20/largeicon.png) |
-| 21 | ASCENDANT 1 | ![ASCENDANT 1](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/21/largeicon.png) |
-| 22 | ASCENDANT 2 | ![ASCENDANT 2](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/22/largeicon.png) |
-| 23 | ASCENDANT 3 | ![ASCENDANT 3](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/23/largeicon.png) |
-| 24 | IMMORTAL 1 | ![IMMORTAL 1](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/24/largeicon.png) |
-| 25 | IMMORTAL 2 | ![IMMORTAL 2](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/25/largeicon.png) |
-| 26 | IMMORTAL 3 | ![IMMORTAL 3](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/26/largeicon.png) |
-| 27 | RADIANT | ![RADIANT](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/27/largeicon.png) |
+| 1 | IRON 1 | ![IRON 1](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/3/largeicon.png) |
+| 2 | IRON 2 | ![IRON 2](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/4/largeicon.png) |
+| 3 | IRON 3 | ![IRON 3](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/5/largeicon.png) |
+| 4 | BRONZE 1 | ![BRONZE 1](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/6/largeicon.png) |
+| 5 | BRONZE 2 | ![BRONZE 2](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/7/largeicon.png) |
+| 6 | BRONZE 3 | ![BRONZE 3](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/8/largeicon.png) |
+| 7 | SILVER 1 | ![SILVER 1](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/9/largeicon.png) |
+| 8 | SILVER 2 | ![SILVER 2](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/10/largeicon.png) |
+| 9 | SILVER 3 | ![SILVER 3](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/11/largeicon.png) |
+| 10 | GOLD 1 | ![GOLD 1](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/12/largeicon.png) |
+| 11 | GOLD 2 | ![GOLD 2](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/13/largeicon.png) |
+| 12 | GOLD 3 | ![GOLD 3](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/14/largeicon.png) |
+| 13 | PLATINUM 1 | ![PLATINUM 1](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/15/largeicon.png) |
+| 14 | PLATINUM 2 | ![PLATINUM 2](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/16/largeicon.png) |
+| 15 | PLATINUM 3 | ![PLATINUM 3](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/17/largeicon.png) |
+| 16 | DIAMOND 1 | ![DIAMOND 1](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/18/largeicon.png) |
+| 17 | DIAMOND 2 | ![DIAMOND 2](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/19/largeicon.png) |
+| 18 | DIAMOND 3 | ![DIAMOND 3](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/20/largeicon.png) |
+| 19 | ASCENDANT 1 | ![ASCENDANT 1](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/21/largeicon.png) |
+| 20 | ASCENDANT 2 | ![ASCENDANT 2](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/22/largeicon.png) |
+| 21 | ASCENDANT 3 | ![ASCENDANT 3](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/23/largeicon.png) |
+| 22 | IMMORTAL 1 | ![IMMORTAL 1](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/24/largeicon.png) |
+| 23 | IMMORTAL 2 | ![IMMORTAL 2](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/25/largeicon.png) |
+| 24 | IMMORTAL 3 | ![IMMORTAL 3](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/26/largeicon.png) |
+| 25s | RADIANT | ![RADIANT](https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/27/largeicon.png) |
 
 # Valorant Game Modes
 
