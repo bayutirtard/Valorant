@@ -678,7 +678,7 @@ Representing her home country of South Korea, Jett's agile and evasive fighting 
 
 ---
 
-## Ares
+## Ares (Recomended)
 ![Ares](https://media.valorant-api.com/weapons/55d8a0f4-4274-ca67-fe2c-06ab45efdf58/displayicon.png)
 
 **Category**: Heavy
@@ -719,7 +719,7 @@ Representing her home country of South Korea, Jett's agile and evasive fighting 
 
 ---
 
-## Bulldog
+## Bulldog (Recomended)
 ![Bulldog](https://media.valorant-api.com/weapons/ae3de142-4d85-2547-dd26-4e90bed35cf7/displayicon.png)
 
 **Category**: Rifle
@@ -739,7 +739,7 @@ Representing her home country of South Korea, Jett's agile and evasive fighting 
 
 ---
 
-## Phantom
+## Phantom (Recomended)
 ![Phantom](https://media.valorant-api.com/weapons/ee8e8d15-496b-07ac-e5f6-8fae5d4c7b1a/displayicon.png)
 
 **Category**: Rifle
@@ -760,7 +760,7 @@ Representing her home country of South Korea, Jett's agile and evasive fighting 
 
 ---
 
-## Judge
+## Judge (Recomended for close range)
 ![Judge](https://media.valorant-api.com/weapons/ec845bf4-4f79-ddda-a3da-0db3774b2794/displayicon.png)
 
 **Category**: Shotgun
@@ -990,7 +990,7 @@ Representing her home country of South Korea, Jett's agile and evasive fighting 
 
 ---
 
-## Spectre
+## Spectre (Recomended)
 ![Spectre](https://media.valorant-api.com/weapons/462080d1-4035-2937-7c09-27aa2a5c27a7/displayicon.png)
 
 **Category**: Smg
