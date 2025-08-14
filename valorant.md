@@ -69,10 +69,18 @@ Total Maps = 13
 11. The Range
 12. Corrode
 13. Haven
-
+    
+# Game Tips
+- Don't shoot while moving
+- Customise your personal crosshair
+- Always place your crosshair on head level
+- Train and adjust your sensitivity to make you easy aim for headshot
+- Practice before play a game to heat your aim up
+  
 # Description
+
 ## Role
--Controllers are one of the four roles that agents are divided into in VALORANT. The abilities of agents under this role allow them to assist their teammates by cutting enemy vision, taking control of an area, and forcing enemies into choke points.
+- Controllers are one of the four roles that agents are divided into in VALORANT. The abilities of agents under this role allow them to assist their teammates by cutting enemy vision, taking control of an area, and forcing enemies into choke points.
 - Duelists are one of the four roles that agents are divided into in VALORANT. Agents under this role have abilities that allow them to focus on being the first to enter sites and engage the enemy.
 Unlike other Agent classes, the Signature abilities for Duelists need to be recharged with 2 kills rather than a period of time.
 - Initiators are one of the four roles that agents are divided into in VALORANT. The abilities of agents under this role focus on initiating attacks on site, flushing enemies out of hiding spots and corners in order to assist the team when charging into battle.
