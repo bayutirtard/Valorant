@@ -1001,7 +1001,7 @@ Representing her home country of South Korea, Jett's agile and evasive fighting 
 
 ## Spectre 
 ![Spectre](https://media.valorant-api.com/weapons/462080d1-4035-2937-7c09-27aa2a5c27a7/displayicon.png)
-(Recomended for run & gun)
+
 **Category**: Smg
 
 **Cost**: 1600
@@ -1050,10 +1050,10 @@ Representing her home country of South Korea, Jett's agile and evasive fighting 
 **Cost**: 0
 
 ---
-# Recomended Weapons
-Recomended for beginners (because of easy recoil pattern) = Ares, Phantom, Bulldog
-Recomwnded for close range = Judge
-Recomended for run & gun = Spectre
+# Recommended Weapons
+- Recommended for beginners (because of easy recoil pattern) = Ares, Phantom, Bulldog
+- Recommended for close range = Judge
+- Recommended for run & gun = Spectre
 
 # Valorant Maps
 
