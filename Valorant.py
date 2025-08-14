@@ -206,37 +206,23 @@ def rating_buttons(idx):
         bot_msg = chat_hist[msg_i + 1]["content"]
     else:
         return
-    if idx in ratings:
-        thumb, stars = ratings[idx]
-        st.markdown(f"{'👍' if thumb == 'up' else '👎'} Rated — {'⭐'*stars} ({stars} stars)")
-        return
-    col1, col2 = st.columns([1, 1])
-    if f"temp_thumb_{idx}" not in st.session_state:
-        with col1:
-            if st.button("👍", key=f"up_{idx}"):
-                st.session_state[f"temp_thumb_{idx}"] = "up"
-        with col2:
-            if st.button("👎", key=f"down_{idx}"):
-                st.session_state[f"temp_thumb_{idx}"] = "down"
-    if f"temp_thumb_{idx}" in st.session_state:
-        stars_value = st.select_slider(
-            "Give a star rating:",
-            options=[1, 2, 3, 4, 5],
-            value=3,
-            format_func=lambda x: "⭐" * x,
-            key=f"stars_{idx}"
-        )
-        if st.button("Submit Rating", key=f"submit_rating_{idx}"):
-            thumb = st.session_state[f"temp_thumb_{idx}"]
-            ratings[idx] = (thumb, stars_value)
-            if thumb == "up":
-                chat_data["n_like"] += 1
-            else:
-                chat_data["n_dislike"] += 1
-            save_feedback_to_gsheet(user_msg, bot_msg, f"{thumb} | {stars_value} stars")
-            del st.session_state[f"temp_thumb_{idx}"]
-            st.rerun()
 
+    if idx in ratings:
+        stars = ratings[idx]
+        st.markdown(f"⭐ {stars} stars")
+        return
+
+    stars_value = st.select_slider(
+        "Give a star rating:",
+        options=[1, 2, 3, 4, 5],
+        value=3,
+        format_func=lambda x: "⭐" * x,
+        key=f"stars_{idx}"
+    )
+    if st.button("Submit Rating", key=f"submit_rating_{idx}"):
+        ratings[idx] = stars_value
+        save_feedback_to_gsheet(user_msg, bot_msg, f"{stars_value} stars")
+        st.rerun()
 # ======= Display Chat & Ratings =======
 for idx in range(0, (len(st.session_state.chat_history["messages"]) - 1) // 2):
     msg_user = st.session_state.chat_history["messages"][1:][idx * 2]
@@ -273,7 +259,15 @@ if submit and user_input:
     st.rerun()
 
 # ======= Stats =======
-st.markdown(f"### This Session Stats\n👍 **{st.session_state.chat_history['n_like']}**   👎 **{st.session_state.chat_history['n_dislike']}**")
+# ======= Stats =======
+if st.session_state.chat_history["ratings"]:
+    total_stars = sum(st.session_state.chat_history["ratings"].values())
+    count_ratings = len(st.session_state.chat_history["ratings"])
+    avg_stars = total_stars / count_ratings
+    st.markdown(f"### This Session Stats\n⭐ **Total Stars:** {total_stars}  \n⭐ **Average:** {avg_stars:.2f}")
+else:
+    st.markdown("### This Session Stats\nNo ratings yet.")
+
 
 
 
