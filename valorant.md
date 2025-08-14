@@ -71,7 +71,7 @@ Total Maps = 13
 13. Haven
     
 # Game Tips
-- Don't shoot while moving
+- Don't shoot while moving to improve your aim accuracy
 - Customise your personal crosshair
 - Always place your crosshair on head level
 - Train and adjust your sensitivity to make you easy aim for headshot
