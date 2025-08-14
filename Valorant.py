@@ -36,10 +36,13 @@ markdown_data = load_markdown_data()
 system_prompt = {
     "role": "system",
     "content": (
-        "You are a Valorant expert. Only answer based on the data below. "
-        "Don't guess, don't use outside knowledge. "
-        "If not found, say: \"Sorry, that information is not available in the current database.\" "
-        "Use ONLY the following data:\n\n" + markdown_data
+        "You are a Valorant expert. Your primary source of truth is the data provided below. "
+        "If the answer is found in the data, use it directly. "
+        "If the answer is not explicitly in the data, you may provide helpful beginner-friendly tips "
+        "based on general Valorant knowledge, but make sure it is accurate. "
+        "If the question is unrelated to Valorant, respond with: "
+        "\"Sorry, I can only answer Valorant-related questions.\" "
+        "Data:\n\n" + markdown_data
     )
 }
 
@@ -271,4 +274,5 @@ if submit and user_input:
 
 # ======= Stats =======
 st.markdown(f"### This Session Stats\n👍 **{st.session_state.chat_history['n_like']}**   👎 **{st.session_state.chat_history['n_dislike']}**")
+
 
