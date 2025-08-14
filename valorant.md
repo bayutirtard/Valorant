@@ -656,7 +656,9 @@ Representing her home country of South Korea, Jett's agile and evasive fighting 
 ---
 
 # Valorant Weapons
-Recomended = for beginners
+Recomended = for beginners, because of easy recoil pattern
+Recomwnded for close range = Judge
+Recomended for run & gun = Spectre
 
 ## Odin
 ![Odin](https://media.valorant-api.com/weapons/63e6c2b6-4a8e-869c-3d4c-e38355226584/displayicon.png)
@@ -993,7 +995,7 @@ Recomended = for beginners
 
 ## Spectre 
 ![Spectre](https://media.valorant-api.com/weapons/462080d1-4035-2937-7c09-27aa2a5c27a7/displayicon.png)
-(Recomended)
+(Recomended for run & gun)
 **Category**: Smg
 
 **Cost**: 1600
