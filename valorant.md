@@ -664,9 +664,7 @@ Representing her home country of South Korea, Jett's agile and evasive fighting 
 ---
 
 # Valorant Weapons
-Recomended = for beginners, because of easy recoil pattern
-Recomwnded for close range = Judge
-Recomended for run & gun = Spectre
+
 
 ## Odin
 ![Odin](https://media.valorant-api.com/weapons/63e6c2b6-4a8e-869c-3d4c-e38355226584/displayicon.png)
@@ -691,7 +689,7 @@ Recomended for run & gun = Spectre
 
 ## Ares 
 ![Ares](https://media.valorant-api.com/weapons/55d8a0f4-4274-ca67-fe2c-06ab45efdf58/displayicon.png)
-(Recomended)
+
 **Category**: Heavy
 
 **Cost**: 1600
@@ -732,7 +730,7 @@ Recomended for run & gun = Spectre
 
 ## Bulldog 
 ![Bulldog](https://media.valorant-api.com/weapons/ae3de142-4d85-2547-dd26-4e90bed35cf7/displayicon.png)
-(Recomended)
+
 **Category**: Rifle
 
 **Cost**: 2050
@@ -752,7 +750,7 @@ Recomended for run & gun = Spectre
 
 ## Phantom 
 ![Phantom](https://media.valorant-api.com/weapons/ee8e8d15-496b-07ac-e5f6-8fae5d4c7b1a/displayicon.png)
-(Recomended)
+
 **Category**: Rifle
 
 **Cost**: 2900
@@ -773,7 +771,7 @@ Recomended for run & gun = Spectre
 
 ## Judge 
 ![Judge](https://media.valorant-api.com/weapons/ec845bf4-4f79-ddda-a3da-0db3774b2794/displayicon.png)
-(Recomended for close range)
+
 **Category**: Shotgun
 
 **Cost**: 1850
@@ -1051,9 +1049,11 @@ Recomended for run & gun = Spectre
 
 **Cost**: 0
 
-
 ---
-
+# Recomended Weapons
+Recomended for beginners (because of easy recoil pattern) = Ares, Phantom, Bulldog
+Recomwnded for close range = Judge
+Recomended for run & gun = Spectre
 
 # Valorant Maps
 
