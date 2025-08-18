@@ -169,7 +169,6 @@ if st.session_state.all_chats:
         or (len(c["messages"]) > 1 and search_query.lower() in c["messages"][1]["content"].lower())
     ]
 
-    # Pisahkan pinned dan unpinned
     pinned_chats = [(i, c) for i, c in filtered_chats if c.get("pinned")]
     unpinned_chats = [(i, c) for i, c in filtered_chats if not c.get("pinned")]
 
@@ -244,7 +243,7 @@ if submit and user_input:
         st.session_state.current_chat_index = len(st.session_state.all_chats) - 1
     with st.spinner("Answering..."):
         response = client.chat.completions.create(
-            model="meta-llama/llama-4-scout-17b-16e-instruct",
+            model="gemma2-9b-it",
             messages=st.session_state.chat_history["messages"]
         )
         answer = response.choices[0].message.content
@@ -253,7 +252,6 @@ if submit and user_input:
     st.rerun()
 
 # ======= Stats =======
-# ======= Stats =======
 if st.session_state.chat_history["ratings"]:
     total_stars = sum(st.session_state.chat_history["ratings"].values())
     count_ratings = len(st.session_state.chat_history["ratings"])
@@ -261,6 +259,7 @@ if st.session_state.chat_history["ratings"]:
     st.markdown(f"### This Session Stats\n⭐ **Total Stars:** {total_stars}  \n⭐ **Average:** {avg_stars:.2f}")
 else:
     st.markdown("### This Session Stats\nNo ratings yet.")
+
 
 
 
