@@ -53,8 +53,6 @@ if "chat_history" not in st.session_state:
     st.session_state.chat_history = {
         "messages": [system_prompt],
         "ratings": {},
-        "n_like": 0,
-        "n_dislike": 0,
         "title": None,
         "pinned": False,
         "added_to_history": False
@@ -134,8 +132,6 @@ def render_chat_bubble(i, chat):
                     st.session_state.chat_history = {
                         "messages": [system_prompt],
                         "ratings": {},
-                        "n_like": 0,
-                        "n_dislike": 0,
                         "title": None,
                         "pinned": False,
                         "added_to_history": False
@@ -154,8 +150,6 @@ if st.sidebar.button("New Chat", use_container_width=True):
     st.session_state.chat_history = {
         "messages": [system_prompt],
         "ratings": {},
-        "n_like": 0,
-        "n_dislike": 0,
         "title": None,
         "pinned": False,
         "added_to_history": False
@@ -267,6 +261,7 @@ if st.session_state.chat_history["ratings"]:
     st.markdown(f"### This Session Stats\n⭐ **Total Stars:** {total_stars}  \n⭐ **Average:** {avg_stars:.2f}")
 else:
     st.markdown("### This Session Stats\nNo ratings yet.")
+
 
 
 
