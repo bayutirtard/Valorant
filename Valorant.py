@@ -243,7 +243,7 @@ if submit and user_input:
         st.session_state.current_chat_index = len(st.session_state.all_chats) - 1
     with st.spinner("Answering..."):
         response = client.chat.completions.create(
-            model="gemma2-9b-it",
+            model="meta-llama/llama-4-scout-17b-16e-instruct",
             messages=st.session_state.chat_history["messages"]
         )
         answer = response.choices[0].message.content
@@ -259,6 +259,7 @@ if st.session_state.chat_history["ratings"]:
     st.markdown(f"### This Session Stats\n⭐ **Total Stars:** {total_stars}  \n⭐ **Average:** {avg_stars:.2f}")
 else:
     st.markdown("### This Session Stats\nNo ratings yet.")
+
 
 
 
