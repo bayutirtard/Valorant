@@ -243,7 +243,7 @@ if submit and user_input:
         st.session_state.current_chat_index = len(st.session_state.all_chats) - 1
     with st.spinner("Answering..."):
         response = client.chat.completions.create(
-            model="meta-llama/llama-4-scout-17b-16e-instruct",
+            model="openai/gpt-oss-120b",
             messages=st.session_state.chat_history["messages"]
         )
         answer = response.choices[0].message.content
